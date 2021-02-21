@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: 'Rubik';
-    src: url('/fonts/Rubik-Semibold.ttf');
+    src: url('/fonts/Rubik-SemiBold.ttf');
     font-weight: 600;
     font-display: swap;
   }
@@ -30,6 +30,7 @@ export const GlobalStyle = createGlobalStyle`
   *::before,
   *::after { 
 	  box-sizing: border-box;
+    outline: none;
   }
   
   body {
@@ -88,5 +89,13 @@ export const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
+  }
+    
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: inherit;
   }
 `;
