@@ -5,27 +5,6 @@ const joinArrayOfString = (arrayStrings: string[]) =>
   Array.isArray(arrayStrings) ? arrayStrings.join() : '';
 
 export const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'Rubik';
-    src: url('/fonts/Rubik-Bold.ttf');
-    font-weight: 700;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Rubik';
-    src: url('/fonts/Rubik-SemiBold.ttf');
-    font-weight: 600;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Rubik';
-    src: url('/fonts/Rubik-Regular.ttf');
-    font-weight: 400;
-    font-display: swap;
-  }
-
   *,
   *::before,
   *::after { 
@@ -36,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family:  ${joinArrayOfString(theme.fontFamily.sans)};
+    font-family: ${joinArrayOfString(theme.fontFamily.sans)};
   }
 
   h1, h2, h3, h4, h5, h6, p, a {
