@@ -11,6 +11,7 @@ type TypographyProps = {
   lg?: keyof DefaultTheme['fontSize'];
   xl?: keyof DefaultTheme['fontSize'];
   letterSpacing?: string;
+  margin?: string;
 };
 
 export const Typography = styled.p<TypographyProps>`
@@ -32,6 +33,12 @@ export const Typography = styled.p<TypographyProps>`
     letterSpacing &&
     css`
       letter-spacing: ${letterSpacing};
+    `}
+
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin: ${margin};
     `}
 
   ${({ size }) =>
