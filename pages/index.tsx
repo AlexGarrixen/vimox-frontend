@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { LayoutApp } from '@components/Layout/LayoutApp';
-import { Typography } from '@components/DataDisplay/Typography';
+import { CarouselLatestSeries } from '@pageComponents/Home/CarouselLatestSeries';
 
 const Home = () => (
   <LayoutApp>
-    <Typography as='h1'>Home</Typography>
+    <CarouselLatestSeries />
   </LayoutApp>
 );
 
