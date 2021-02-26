@@ -21,6 +21,7 @@
     "paths": {
       "@components/*": ["components/*"],
       "@pageComponents/*": ["pageComponents/*"],
+      "@hooks/*": ["hooks/*"],
     }
   },
   "include": [

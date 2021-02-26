@@ -77,4 +77,8 @@ export const GlobalStyle = createGlobalStyle`
   textarea {
     font-family: inherit;
   }
+
+  .simplebar-scrollbar::before {
+    background-color: ${theme.colors.gray[100]};
+}
 `;
