@@ -36,8 +36,6 @@ export const NavSlider = () => {
             ref={setRefSliderNav}
             beforeChange={(currentSlide, nextSlide) => setIndex(nextSlide)}
             asNavFor={refSlider}
-            autoplay={true}
-            autoplaySpeed={5000}
             responsive={[
               {
                 breakpoint: 960,
