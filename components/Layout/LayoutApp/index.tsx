@@ -1,4 +1,5 @@
 import React from 'react';
+import { Header } from '../../Navigation/Header';
 import { LayoutAppStyled, ContentBox } from './styled';
 
 type LayoutAppProps = {
@@ -7,7 +8,7 @@ type LayoutAppProps = {
 
 export const LayoutApp = ({ children }: LayoutAppProps) => (
   <LayoutAppStyled>
-    <header></header>
+    <Header />
     <ContentBox>{children}</ContentBox>
     <footer></footer>
   </LayoutAppStyled>
