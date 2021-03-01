@@ -80,5 +80,28 @@ export const GlobalStyle = createGlobalStyle`
 
   .simplebar-scrollbar::before {
     background-color: ${theme.colors.gray[100]};
-}
+  }
+
+  .OverlayModal {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 58px 16px;
+    z-index: 10;
+  }
+
+  @media (min-width: ${theme.screens.sm}) {
+    .OverlayModal {
+      padding-top: 10vh;
+      padding-bottom: 10vh;
+    }
+  }
+
+  .ContentModal {
+    width: 100%;
+    height: 100%;
+  }
 `;
