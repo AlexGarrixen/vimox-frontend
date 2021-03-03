@@ -17,6 +17,7 @@
     "react-dom": "^17.0.1",
     "react-intersection-observer": "^8.31.0",
     "react-modal": "^3.12.1",
+    "react-query": "^3.12.0",
     "react-slick": "^0.28.0",
     "react-spring": "^8.0.27",
     "simplebar": "^5.3.0",
