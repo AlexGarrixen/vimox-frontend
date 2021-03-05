@@ -1,21 +1,33 @@
 import React from 'react';
+import Link from 'next/link';
 import { animated } from 'react-spring';
 import { Play } from '@components/Icon/Play';
 import { Typography } from '@components/DataDisplay/Typography';
+import type { Gener } from '@globalTypes/generServices';
 import { useAnimations } from './hook';
 import { SlideContentBox, GenersBox } from './styled';
 
 type SlideContentProps = {
   index: number;
+  name: string;
+  geners: Gener[];
+  id: string;
+  style?: React.CSSProperties;
 };
 
-export const SlideContent = ({ index }: SlideContentProps) => {
+export const SlideContent = ({
+  index,
+  id,
+  name,
+  geners,
+  style,
+}: SlideContentProps) => {
   const { headingCssProps, genersCssProps, playCssProps } = useAnimations(
     index
   );
 
   return (
-    <SlideContentBox>
+    <SlideContentBox style={style}>
       <animated.div style={headingCssProps}>
         <Typography
           as='h2'
@@ -25,18 +37,24 @@ export const SlideContent = ({ index }: SlideContentProps) => {
           margin='0 0 10px 0'
           white
         >
-          NAME OF SERIE {index}
+          {name}
         </Typography>
       </animated.div>
       <animated.div style={genersCssProps}>
         <GenersBox>
-          <Typography white>Action</Typography>
-          <Typography white>Comedy</Typography>
-          <Typography white>Other</Typography>
+          {geners.map(({ _id, name }) => (
+            <Typography key={_id} white>
+              {name}
+            </Typography>
+          ))}
         </GenersBox>
       </animated.div>
       <animated.div style={playCssProps}>
-        <Play color='#fff' xxl margin='10px 0 0 0' />
+        <Link href={`/serie/${id}`}>
+          <a>
+            <Play color='#fff' xxl margin='10px 0 0 0' />
+          </a>
+        </Link>
       </animated.div>
     </SlideContentBox>
   );

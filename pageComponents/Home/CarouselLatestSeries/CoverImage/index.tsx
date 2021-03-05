@@ -17,7 +17,7 @@ export const ImageStyled = styled(Image)`
 
 export const CoverImage = () => {
   const { data, activeIndex } = React.useContext(Context);
-  const transitions = useTransition(data[activeIndex], null, {
+  const transitions = useTransition(data[activeIndex], (item) => item._id, {
     from: {
       opacity: 1,
     },
@@ -28,7 +28,7 @@ export const CoverImage = () => {
     <>
       {transitions.map(({ key, props: cssProps, item }) => (
         <animated.div style={cssProps} key={key}>
-          <ImageStyled src='/placeholderImage.svg' />
+          <ImageStyled src={item.imageLg} />
         </animated.div>
       ))}
     </>

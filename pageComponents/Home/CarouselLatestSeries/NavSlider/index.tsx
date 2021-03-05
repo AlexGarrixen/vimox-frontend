@@ -51,9 +51,9 @@ export const NavSlider = () => {
               },
             ]}
           >
-            {data.map((v, idx) => (
-              <Slide key={idx} isActive={idx === activeIndex}>
-                <Image src='/placeholderImage.svg' />
+            {data.map(({ _id, imageSm }, idx) => (
+              <Slide key={_id} isActive={idx === activeIndex}>
+                <Image src={imageSm} />
               </Slide>
             ))}
           </Slider>

@@ -23,6 +23,9 @@
       "@pageComponents/*": ["pageComponents/*"],
       "@hooks/*": ["hooks/*"],
       "@contexts/*": ["contexts/*"],
+      "@utils/*": ["utils/*"],
+      "@services/*": ["services/*"],
+      "@globalTypes/*": ["types/*"],
     }
   },
   "include": [
