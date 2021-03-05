@@ -5,7 +5,7 @@ export const EpisodeBox = styled.article`
   align-items: center;
   position: relative;
   height: 80px;
-  padding-left: calc(110px + 12px);
+  padding-left: calc(130px + 12px);
   cursor: pointer;
 
   > div:last-child {
@@ -21,7 +21,7 @@ export const EpisodeBox = styled.article`
 `;
 
 export const ThumbnailBox = styled.div`
-  width: 110px;
+  width: 130px;
   height: inherit;
   background-color: ${({ theme }) => theme.colors.gray[300]};
   border-radius: 6px;
