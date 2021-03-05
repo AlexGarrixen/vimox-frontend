@@ -1,18 +1,37 @@
 import React from 'react';
 import { Image } from '@components/DataDisplay/Image';
 import { Typography } from '@components/DataDisplay/Typography';
+import { secondsToMinutes } from '@utils/convertTime';
 import { SerieBox, ThumbnailBox, ContentBox } from './styled';
 
-export const Serie = () => (
+type SerieProps = {
+  name: string;
+  thumbnail: string;
+  totalEpisodes: number;
+  duration: number;
+};
+
+const setPrefixTotalEps = (count: number) => (count === 1 ? 'Ep' : 'Eps');
+
+export const Serie = ({
+  name,
+  thumbnail,
+  duration,
+  totalEpisodes,
+}: SerieProps) => (
   <SerieBox>
     <ThumbnailBox>
-      <Image src='/placeholderImage.svg' />
+      <Image src={thumbnail} />
     </ThumbnailBox>
     <ContentBox>
       <Typography as='h6' white>
-        TITULO DE SERIE
+        {name.toUpperCase()}
       </Typography>
-      <Typography>2 Eps - 60 Minutos</Typography>
+      <Typography>
+        {`${totalEpisodes} ${setPrefixTotalEps(
+          totalEpisodes
+        )} - ${secondsToMinutes(duration)} Minutos`}
+      </Typography>
     </ContentBox>
   </SerieBox>
 );

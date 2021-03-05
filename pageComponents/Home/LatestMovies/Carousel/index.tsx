@@ -3,9 +3,14 @@ import Slider from 'react-slick';
 import { Serie } from '@components/DataDisplay/Serie';
 import { ChevronLeft } from '@components/Icon/ChevronLeft';
 import { ChevronRight } from '@components/Icon/ChevronRight';
+import type { GetSeriesResponse } from '@globalTypes/serieServices';
 import { CarouselBox, ArrowButton } from './styled';
 
-export const Carousel = () => {
+type CarouselProps = {
+  data: GetSeriesResponse['series'];
+};
+
+export const Carousel = ({ data }: CarouselProps) => {
   const [slider, setSlider] = React.useState<Slider>(null);
 
   const next = React.useCallback(() => slider.slickNext(), [slider]);
@@ -22,6 +27,7 @@ export const Carousel = () => {
         arrows={false}
         slidesToShow={5}
         className='carousel'
+        infinite={false}
         responsive={[
           {
             breakpoint: 1280,
@@ -43,12 +49,15 @@ export const Carousel = () => {
           },
         ]}
       >
-        <Serie />
-        <Serie />
-        <Serie />
-        <Serie />
-        <Serie />
-        <Serie />
+        {data.map(({ _id, name, imageMd, episodes, totalDuration }) => (
+          <Serie
+            key={_id}
+            name={name}
+            thumbnail={imageMd}
+            totalEpisodes={episodes.length}
+            duration={totalDuration}
+          />
+        ))}
       </Slider>
       <ArrowButton toRight onClick={next}>
         <ChevronRight color='#fff' xl />

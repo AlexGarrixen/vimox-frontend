@@ -10,7 +10,7 @@ import { CarouselBox } from './styled';
 
 export const CarouselLatestSeries = () => {
   const { isLoading, data, error } = useQuery(
-    ['latestSeries_home', { sort_createdAt: 'desc', limit_items: 10 }],
+    ['latestSeries_home', { sort_createdAt: 'desc', limit_items: 10, type: 'tv' }],
     async ({ queryKey }) => getSeries(queryKey[1])
   );
 
