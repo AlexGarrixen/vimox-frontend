@@ -4,12 +4,10 @@ import { Context } from '../../Context';
 
 const initialStyles = {
   opacity: 0,
-  y: 22,
 };
 
 const activeStyles = {
   opacity: 1,
-  y: 0,
 };
 
 export const useAnimations = (indexSlide: number) => {
@@ -23,17 +21,14 @@ export const useAnimations = (indexSlide: number) => {
 
   const headingCssProps = {
     opacity: headingStyles.opacity,
-    transform: headingStyles.y.interpolate((v) => `translate3d(0, ${v}px, 0)`),
   };
 
   const genersCssProps = {
     opacity: genersStyles.opacity,
-    transform: genersStyles.y.interpolate((v) => `translate3d(0, ${v}px, 0)`),
   };
 
   const playCssProps = {
     opacity: playStyles.opacity,
-    transform: playStyles.y.interpolate((v) => `translate3d(0, ${v}px, 0)`),
   };
 
   React.useEffect(() => {

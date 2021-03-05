@@ -1,5 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
+import Measure from 'react-measure';
 import styled from 'styled-components';
 import { Context } from '../Context';
 import { Container } from '@components/Layout/Container';
@@ -13,22 +14,41 @@ export const ContentBox = styled.div`
 
 export const Content = () => {
   const { refSliderNav, data, setRefSlider } = React.useContext(Context);
+  const [height, setHeight] = React.useState(0);
 
   return (
     <ContentBox>
-      <Container>
-        <Slider
-          slidesToShow={1}
-          arrows={false}
-          fade={true}
-          ref={setRefSlider}
-          asNavFor={refSliderNav}
-        >
-          {data.map((v, idx) => (
-            <SlideContent index={idx} key={idx} />
-          ))}
-        </Slider>
-      </Container>
+      <Measure
+        bound
+        onResize={(contentRect) => {
+          contentRect.entry && setHeight(contentRect.entry.height);
+        }}
+      >
+        {({ measureRef }) => (
+          <Container ref={measureRef}>
+            <Slider
+              slidesToShow={1}
+              arrows={false}
+              dots={false}
+              fade={true}
+              ref={setRefSlider}
+              asNavFor={refSliderNav}
+            >
+              {data.map(({ _id, name, geners }, idx) => (
+                <div key={_id}>
+                  <SlideContent
+                    index={idx}
+                    id={_id}
+                    name={name}
+                    geners={geners}
+                    style={{ minHeight: height }}
+                  />
+                </div>
+              ))}
+            </Slider>
+          </Container>
+        )}
+      </Measure>
     </ContentBox>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
+import type { GetSeriesResponse } from '@globalTypes/serieServices';
 
 type ContextValue = {
   activeIndex: number;
@@ -10,7 +11,7 @@ type ContextValue = {
   next: () => void;
   prev: () => void;
   setIndex: (index: number) => void;
-  data: number[];
+  data: GetSeriesResponse['series'];
 };
 
 export const Context = React.createContext<Partial<ContextValue>>({});

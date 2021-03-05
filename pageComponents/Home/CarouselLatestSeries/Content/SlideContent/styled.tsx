@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export const SlideContentBox = styled.div`
   max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 `;
 
 export const GenersBox = styled.div`
