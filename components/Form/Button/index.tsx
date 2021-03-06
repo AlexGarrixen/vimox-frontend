@@ -9,6 +9,7 @@ export type ButtonProps = {
   margin?: string;
   onClick?: (e: React.MouseEvent) => void;
   fullWidth?: boolean;
+  disabled?: boolean;
 };
 
 export const Button = React.forwardRef(
@@ -21,6 +22,7 @@ export const Button = React.forwardRef(
       primary,
       onClick,
       fullWidth,
+      disabled,
     }: ButtonProps,
     ref: React.Ref<HTMLButtonElement>
   ) => {
@@ -31,9 +33,12 @@ export const Button = React.forwardRef(
         margin={margin}
         onClick={onClick}
         fullWidth={fullWidth}
+        disabled={disabled}
       >
         {startIcon && <StartIcon>{startIcon}</StartIcon>}
-        <LabelText primary={primary}>{children}</LabelText>
+        <LabelText primary={primary} disabled={disabled}>
+          {children}
+        </LabelText>
         {endIcon && <EndIcon>{endIcon}</EndIcon>}
       </StyledButton>
     );

@@ -9,7 +9,7 @@ type Option = {
 
 export type SelectProps = {
   options?: Option[];
-  onChange?: (value: Option, name: string) => void;
+  onChange?: (value: any, name: string) => void;
   name?: string;
   placeholder?: string;
 };

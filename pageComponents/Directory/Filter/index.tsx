@@ -1,27 +1,41 @@
 import React from 'react';
-import { Button } from '@components/Form/Button';
+import { useQuery } from 'react-query';
 import { Select } from '@components/Form/Select';
+import { Skeleton } from './Skeleton';
+import { getGeners } from '@services/geners';
+import { useFilter } from './hook';
 import { FilterBox } from './styled';
 
-export const Filter = () => (
-  <FilterBox>
-    <Select
-      placeholder='Tipo'
-      onChange={(value) => console.log(value)}
-      options={[
-        { text: 'Tv', value: 'Tipo: Tv' },
-        { text: 'Pelicula', value: 'Tipo: Pelicula' },
-      ]}
-    />
-    <Select
-      placeholder='Genero'
-      onChange={(value) => console.log(value)}
-      options={[
-        { text: 'Todos', value: 'Genero: Todos' },
-        { text: 'Accion', value: 'Genero: Accion' },
-        { text: 'Comedia', value: 'Genero: Comedia' },
-      ]}
-    />
-    <Button primary>Filtar</Button>
-  </FilterBox>
-);
+export const Filter = () => {
+  const { data, isLoading, error } = useQuery(
+    'geners_directory',
+    async () => getGeners(),
+    {
+      refetchIntervalInBackground: false,
+    }
+  );
+
+  const { generOpts, handleChangeGener, handleChangeType } = useFilter(data);
+
+  if (error) return <p>{error}</p>;
+
+  if (isLoading) return <Skeleton />;
+
+  return (
+    <FilterBox>
+      <Select
+        placeholder='Tipo'
+        onChange={handleChangeType}
+        options={[
+          { text: 'Tv', value: 'Tipo: tv' },
+          { text: 'Pelicula', value: 'Tipo: movie' },
+        ]}
+      />
+      <Select
+        placeholder='Genero'
+        onChange={handleChangeGener}
+        options={generOpts}
+      />
+    </FilterBox>
+  );
+};
