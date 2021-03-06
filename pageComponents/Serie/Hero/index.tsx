@@ -2,15 +2,23 @@ import React from 'react';
 import { animated } from 'react-spring';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Container } from '@components/Layout/Container';
+import { Gener } from '@globalTypes/generServices';
 import { HeroBox, CoverImage, GenersBox } from './styled';
 import { useAnimations } from './hook';
 
-export const Hero = () => {
+type HeroProps = {
+  cover: string;
+  name: string;
+  sinopsis: string;
+  geners: Gener[];
+};
+
+export const Hero = ({ name, sinopsis, cover, geners }: HeroProps) => {
   const { headingCssProps, genersCssProps, sinopsisCssProps } = useAnimations();
 
   return (
     <HeroBox>
-      <CoverImage src='/placeholderImage.svg' />
+      <CoverImage src={cover} />
       <Container>
         <animated.div style={headingCssProps}>
           <Typography
@@ -19,25 +27,22 @@ export const Hero = () => {
             md='4xl'
             lg='5xl'
             white
-            margin='0 0 22px 0'
+            margin='0 0 18px 0'
           >
-            TITULO DE LA SERIE
+            {name.toUpperCase()}
           </Typography>
         </animated.div>
         <animated.div style={genersCssProps}>
           <GenersBox>
-            <Typography white>Action</Typography>
-            <Typography white>Comedy</Typography>
-            <Typography white>Otro</Typography>
+            {geners.map(({ _id, name }) => (
+              <Typography key={_id} white>
+                {name}
+              </Typography>
+            ))}
           </GenersBox>
         </animated.div>
         <animated.div style={sinopsisCssProps}>
-          <Typography>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil esse
-            voluptatibus qui quis nobis quam error corporis, blanditiis aut
-            quaerat ipsam iusto rem, quae quia impedit exercitationem commodi
-            recusandae? Laudantium?
-          </Typography>
+          <Typography>{sinopsis}</Typography>
         </animated.div>
       </Container>
     </HeroBox>

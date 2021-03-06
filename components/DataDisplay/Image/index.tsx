@@ -27,7 +27,14 @@ export const Image = ({ src, ...other }: ImageProps) => {
       image.src = image.dataset.src;
       image.onload = () => (image.style.opacity = '1');
     }
-  }, [refImg, inView]);
+
+    return () => {
+      if (refImg.current) {
+        refImg.current.setAttribute('src', '');
+        refImg.current.style.opacity = '0';
+      }
+    };
+  }, [refImg, inView, src]);
 
   return (
     <ImageStyled

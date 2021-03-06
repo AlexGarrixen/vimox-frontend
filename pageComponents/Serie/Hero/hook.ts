@@ -3,12 +3,10 @@ import { useSpring } from 'react-spring';
 
 const initialStyles = {
   opacity: 0,
-  y: 22,
 };
 
 const activeStyles = {
   opacity: 1,
-  y: 0,
 };
 
 export const useAnimations = () => {
@@ -20,17 +18,14 @@ export const useAnimations = () => {
 
   const headingCssProps = {
     opacity: headingStyles.opacity,
-    transform: headingStyles.y.interpolate((v) => `translate3d(0, ${v}px, 0)`),
   };
 
   const genersCssProps = {
     opacity: genersStyles.opacity,
-    transform: genersStyles.y.interpolate((v) => `translate3d(0, ${v}px, 0)`),
   };
 
   const sinopsisCssProps = {
     opacity: sinopsis.opacity,
-    transform: sinopsis.y.interpolate((v) => `translate3d(0, ${v}px, 0)`),
   };
 
   React.useEffect(() => {
