@@ -28,11 +28,24 @@ export const StyledButton = styled.button<ButtonProps>`
     css`
       margin: ${margin};
     `}
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      cursor: not-allowed;
+      background-color: ${({ theme }) => theme.colors.gray[400]};
+    `}
 `;
 
-export const LabelText = styled.span<Pick<ButtonProps, 'primary'>>`
+export const LabelText = styled.span<Pick<ButtonProps, 'primary' | 'disabled'>>`
   color: ${({ theme, primary }) => (primary ? '#fff' : theme.colors.gray[200])};
   font-size: ${({ theme }) => theme.fontSize.sm[0]};
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      color: ${({ theme }) => theme.colors.gray[300]};
+    `}
 `;
 
 export const StartIcon = styled.span`
