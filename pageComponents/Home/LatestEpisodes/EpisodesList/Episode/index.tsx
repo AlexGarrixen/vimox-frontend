@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Image } from '@components/DataDisplay/Image';
 import { EpisodeBox, ThumbnailBox } from './styled';
-import { StringifyOptions } from 'node:querystring';
 
 type EpisodeProps = {
   id: string;
