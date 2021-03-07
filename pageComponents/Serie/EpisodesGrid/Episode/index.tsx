@@ -5,14 +5,21 @@ import { ThumbnailBox, Thumbnail, PlayButton, Title } from './styled';
 
 type EpisodeProps = {
   id: string;
+  serieId: string;
   thumbnail: string;
   name: string;
   order: number;
 };
 
-export const Episode = ({ id, name, thumbnail, order }: EpisodeProps) => (
+export const Episode = ({
+  id,
+  serieId,
+  name,
+  thumbnail,
+  order,
+}: EpisodeProps) => (
   <div>
-    <Link href={`/watch/${id}`}>
+    <Link href={`/watch/${serieId}/${id}`}>
       <a>
         <ThumbnailBox>
           <Thumbnail src={thumbnail} />

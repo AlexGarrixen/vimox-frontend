@@ -31,7 +31,7 @@ const Serie = ({ querys }: SerieProps) => {
           cover={data.imageLg}
           geners={data.geners}
         />
-        <EpisodesGrid data={data.episodes} />
+        <EpisodesGrid data={data.episodes} serieId={data._id} />
       </>
     );
   };

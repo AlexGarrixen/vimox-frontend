@@ -18,6 +18,7 @@ export const EpisodesList = ({ data }: EpisodesListProps) => (
         <li key={_id}>
           <Episode
             id={_id}
+            serieId={serie._id}
             name={name}
             serie={serie.name}
             thumbnail={thumbnail}

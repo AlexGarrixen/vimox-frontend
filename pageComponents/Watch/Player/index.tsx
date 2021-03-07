@@ -7,10 +7,14 @@ const PlayerBox = styled.div`
   margin-top: 80px;
 `;
 
-export const PlayerComponent = () => (
+type PlayerProps = {
+  src: string;
+};
+
+export const PlayerComponent = ({ src }: PlayerProps) => (
   <PlayerBox>
     <Container>
-      <Player />
+      <Player src={src} />
     </Container>
   </PlayerBox>
 );

@@ -6,13 +6,20 @@ import { EpisodeBox, ThumbnailBox } from './styled';
 
 type EpisodeProps = {
   id: string;
+  serieId: string;
   name: string;
   serie: string;
   thumbnail: string;
 };
 
-export const Episode = ({ id, name, serie, thumbnail }: EpisodeProps) => (
-  <Link href={`/watch/${id}`}>
+export const Episode = ({
+  id,
+  serieId,
+  name,
+  serie,
+  thumbnail,
+}: EpisodeProps) => (
+  <Link href={`/watch/${serieId}/${id}`}>
     <a>
       <EpisodeBox>
         <ThumbnailBox>

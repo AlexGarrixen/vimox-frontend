@@ -7,21 +7,22 @@ const AboutBox = styled.div`
   margin: 30px 0;
 `;
 
-export const About = () => (
+type AboutProps = {
+  name: string;
+  order: number;
+  sinopsis: string;
+};
+
+export const About = ({ name, order, sinopsis }: AboutProps) => (
   <AboutBox>
     <Container>
       <Typography as='h3' xs='lg' sm='xl' md='2xl' white margin='0 0 12px 0'>
-        TITULO DEL EPISODEO
+        {name.toUpperCase()}
       </Typography>
       <Typography as='h5' white margin='0 0 16px 0'>
-        Episodeo 1
+        Episodeo {order}
       </Typography>
-      <Typography>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat,
-        porro! Ullam velit iste possimus, nemo magni consequatur harum
-        aspernatur tempore, quidem ex repellendus at voluptatem. Inventore at
-        eveniet distinctio ducimus.
-      </Typography>
+      <Typography>{sinopsis}</Typography>
     </Container>
   </AboutBox>
 );
