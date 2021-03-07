@@ -13,7 +13,9 @@ export const ContentBox = styled.div`
 `;
 
 export const Content = () => {
-  const { refSliderNav, data, setRefSlider } = React.useContext(Context);
+  const { refSliderNav, data, setRefSlider, activeIndex } = React.useContext(
+    Context
+  );
   const [height, setHeight] = React.useState(0);
 
   return (
@@ -42,6 +44,7 @@ export const Content = () => {
                     name={name}
                     geners={geners}
                     style={{ minHeight: height }}
+                    isActive={idx === activeIndex}
                   />
                 </div>
               ))}

@@ -1,10 +1,21 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const SlideContentBox = styled.div`
+type SlideContentBoxProps = {
+  isActive?: boolean;
+};
+
+export const SlideContentBox = styled.div<SlideContentBoxProps>`
   max-width: 600px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  position: relative;
+
+  ${({ isActive }) =>
+    isActive &&
+    css`
+      z-index: 1;
+    `}
 `;
 
 export const GenersBox = styled.div`
