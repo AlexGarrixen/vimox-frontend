@@ -13,6 +13,7 @@ type SlideContentProps = {
   geners: Gener[];
   id: string;
   style?: React.CSSProperties;
+  isActive?: boolean;
 };
 
 export const SlideContent = ({
@@ -21,13 +22,14 @@ export const SlideContent = ({
   name,
   geners,
   style,
+  isActive,
 }: SlideContentProps) => {
   const { headingCssProps, genersCssProps, playCssProps } = useAnimations(
     index
   );
 
   return (
-    <SlideContentBox style={style}>
+    <SlideContentBox style={style} isActive={isActive}>
       <animated.div style={headingCssProps}>
         <Typography
           as='h2'
