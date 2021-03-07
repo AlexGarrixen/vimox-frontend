@@ -12,8 +12,9 @@ type SerieProps = {
 };
 
 const Serie = ({ querys }: SerieProps) => {
-  const { data, isLoading, error } = useQuery('serie', async () =>
-    getSerie(querys.id)
+  const { data, isLoading, error } = useQuery(
+    ['serie', querys],
+    ({ queryKey }) => getSerie(queryKey[1].id)
   );
 
   const renderContent = () => {
