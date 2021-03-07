@@ -9,7 +9,7 @@ const PlayerBox = styled.div`
   ::before {
     content: '';
     display: block;
-    padding-top: 56.25%;
+    padding-top: 42.85%;
     background-color: ${({ theme }) => theme.colors.gray[300]};
   }
 `;
