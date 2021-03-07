@@ -27,4 +27,5 @@ export type GetEpisodesResponse = Episode[];
 
 export interface GetEpisodesParams {
   sort_createdAt?: 'asc' | 'desc';
+  of_serieId?: string;
 }

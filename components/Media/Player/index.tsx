@@ -22,12 +22,20 @@ const Iframe = styled.iframe`
   height: 100%;
 `;
 
-export const Player = () => (
-  <PlayerBox>
-    <Iframe
-      frameBorder='0'
-      src='https://mega.nz/embed/bcMzWApR#b5AgUHbu6OFcGE-DMNyGs1iypDa8Fpl7TzcWUlSCUjw'
-      allowFullScreen
-    />
-  </PlayerBox>
-);
+type PlayerProps = {
+  src: string;
+};
+
+export const Player = ({ src: srcProp }: PlayerProps) => {
+  const [src, setSrc] = React.useState(srcProp);
+
+  React.useEffect(() => {
+    setSrc(srcProp);
+  }, [srcProp]);
+
+  return (
+    <PlayerBox>
+      <Iframe frameBorder='0' src={src} allowFullScreen />
+    </PlayerBox>
+  );
+};

@@ -3,16 +3,24 @@ import Link from 'next/link';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Image } from '@components/DataDisplay/Image';
 import { EpisodeBox, ThumbnailBox } from './styled';
+import { StringifyOptions } from 'node:querystring';
 
 type EpisodeProps = {
   id: string;
+  serieId: string;
   name: string;
   serie: string;
   thumbnail: string;
 };
 
-export const Episode = ({ id, name, serie, thumbnail }: EpisodeProps) => (
-  <Link href={`/watch/${id}`}>
+export const Episode = ({
+  id,
+  serieId,
+  name,
+  serie,
+  thumbnail,
+}: EpisodeProps) => (
+  <Link href={`/watch/${serieId}/${id}`}>
     <a>
       <EpisodeBox>
         <ThumbnailBox>
