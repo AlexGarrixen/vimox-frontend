@@ -6,9 +6,17 @@ export type ContextAppValue = {
 };
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export type State = {};
+export type State = {
+  searchFinder: {
+    visible: boolean;
+  };
+};
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export type Actions = {
-  type: '';
-};
+export type Actions =
+  | {
+      type: 'SHOW_SEARCH_FINDER';
+    }
+  | {
+      type: 'HIDE_SEARCH_FINDER';
+    };

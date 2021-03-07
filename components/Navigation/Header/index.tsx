@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Search } from '@components/Icon/Search';
 import { Container } from '@components/Layout/Container';
+import { useSeriesFinder } from '@hooks/useSeriesFinder';
 import { HeaderBox, Nav, LinksBox, AnchorStyled, SearchButton } from './styled';
 
 const links = [
@@ -18,6 +19,8 @@ const links = [
 
 export const Header = () => {
   const router = useRouter();
+
+  const { showSeriesFinder } = useSeriesFinder();
 
   return (
     <HeaderBox>
@@ -36,7 +39,7 @@ export const Header = () => {
             ))}
           </LinksBox>
         </Nav>
-        <SearchButton>
+        <SearchButton onClick={showSeriesFinder}>
           <Search color='#fff' xl />
         </SearchButton>
       </Container>
