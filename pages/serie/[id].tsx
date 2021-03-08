@@ -2,6 +2,7 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import { useQuery } from 'react-query';
 import { LayoutApp } from '@components/Layout/LayoutApp';
+import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { Hero } from '@pageComponents/Serie/Hero';
 import { EpisodesGrid } from '@pageComponents/Serie/EpisodesGrid';
 import { Skeleton } from '@pageComponents/Serie/Skeleton';
@@ -12,13 +13,18 @@ type SerieProps = {
 };
 
 const Serie = ({ querys }: SerieProps) => {
-  const { data, isLoading, error } = useQuery(
+  const { data, isLoading, error, refetch } = useQuery(
     ['serie', querys],
     ({ queryKey }) => getSerie(queryKey[1].id)
   );
 
   const renderContent = () => {
-    if (error) return <p>{error}</p>;
+    if (error)
+      return (
+        <ErrorMessage margin='80px 0 0 0' onClickRetry={refetch}>
+          {error}
+        </ErrorMessage>
+      );
 
     if (isLoading) return <Skeleton />;
 

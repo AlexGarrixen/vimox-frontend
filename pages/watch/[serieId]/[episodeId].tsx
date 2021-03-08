@@ -2,6 +2,7 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import { useQuery } from 'react-query';
 import { LayoutApp } from '@components/Layout/LayoutApp';
+import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { PlayerComponent } from '@pageComponents/Watch/Player';
 import { NavButtons } from '@pageComponents/Watch/NavButtons';
 import { About } from '@pageComponents/Watch/About';
@@ -13,7 +14,7 @@ type WatchProps = {
 };
 
 const Watch = ({ querys }: WatchProps) => {
-  const { data, isLoading, error, isFetching } = useQuery(
+  const { data, isLoading, error, isFetching, refetch } = useQuery(
     ['episode_watch', querys],
     async ({ queryKey }) => {
       try {
@@ -34,7 +35,12 @@ const Watch = ({ querys }: WatchProps) => {
   );
 
   const renderContent = () => {
-    if (error) return <p>{error}</p>;
+    if (error)
+      return (
+        <ErrorMessage margin='80px 0 0 0' onClickRetry={refetch}>
+          {error}
+        </ErrorMessage>
+      );
 
     if (isLoading || isFetching) return <Skeleton />;
 
