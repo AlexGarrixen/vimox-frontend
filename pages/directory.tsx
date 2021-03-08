@@ -13,7 +13,7 @@ type HomeProps = {
 
 const Home = ({ querys }: HomeProps) => (
   <DirectoryProvider initialQuerys={querys}>
-    <LayoutApp>
+    <LayoutApp title='Directorio - GxAnime'>
       <Container>
         <Typography as='h4' white margin='80px 0 32px 0'>
           Series recientes
