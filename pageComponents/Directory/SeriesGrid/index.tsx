@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { Grid } from '@components/Layout/Grid';
 import { Serie } from '@components/DataDisplay/Serie';
 import { Button } from '@components/Form/Button';
+import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { DirectoryContext } from '@pageComponents/Directory/Context';
 import { Skeleton } from './Skeleton';
 import { getSeries } from '@services/series';
@@ -14,7 +15,7 @@ export const SeriesGrid = () => {
 
   const [page, setPage] = React.useState(1);
 
-  const { data, isLoading, error } = useQuery(
+  const { data, isLoading, error, refetch } = useQuery(
     [
       'series_directory',
       { ...querys, page_index: page, sort_createdAt: 'desc', limit_items: 12 },
@@ -25,7 +26,12 @@ export const SeriesGrid = () => {
     }
   );
 
-  if (error) return <p>{error}</p>;
+  if (error)
+    return (
+      <ErrorMessage margin='80px 0 0 0' onClickRetry={refetch}>
+        {error}
+      </ErrorMessage>
+    );
 
   if (isLoading) return <Skeleton />;
 
