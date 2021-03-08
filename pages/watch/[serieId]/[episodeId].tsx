@@ -59,7 +59,17 @@ const Watch = ({ querys }: WatchProps) => {
     );
   };
 
-  return <LayoutApp>{renderContent()}</LayoutApp>;
+  return (
+    <LayoutApp
+      title={
+        data?.episode?.name
+          ? `Mirando: ${data.episode.name}`
+          : 'GxAnime - mirar'
+      }
+    >
+      {renderContent()}
+    </LayoutApp>
+  );
 };
 
 export default Watch;

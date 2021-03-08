@@ -5,7 +5,7 @@ import { LatestEpisodes } from '@pageComponents/Home/LatestEpisodes';
 import { LatestMovies } from '@pageComponents/Home/LatestMovies';
 
 const Home = () => (
-  <LayoutApp>
+  <LayoutApp title='Anime Online - GxAnime'>
     <CarouselLatestSeries />
     <LatestEpisodes />
     <LatestMovies />

@@ -43,7 +43,11 @@ const Serie = ({ querys }: SerieProps) => {
     );
   };
 
-  return <LayoutApp>{renderContent()}</LayoutApp>;
+  return (
+    <LayoutApp title={data?.name || 'GxAnime - Serie'}>
+      {renderContent()}
+    </LayoutApp>
+  );
 };
 
 export default Serie;
