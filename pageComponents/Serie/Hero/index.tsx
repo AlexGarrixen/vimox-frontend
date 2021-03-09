@@ -3,6 +3,7 @@ import { animated } from 'react-spring';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Container } from '@components/Layout/Container';
 import { Gener } from '@globalTypes/generServices';
+import { useReadMore } from '@hooks/useReadMore';
 import { HeroBox, CoverImage, GenersBox } from './styled';
 import { useAnimations } from './hook';
 
@@ -15,6 +16,10 @@ type HeroProps = {
 
 export const Hero = ({ name, sinopsis, cover, geners }: HeroProps) => {
   const { headingCssProps, genersCssProps, sinopsisCssProps } = useAnimations();
+  const { text, showReadMore, showFullText, handleToggle } = useReadMore(
+    sinopsis,
+    120
+  );
 
   return (
     <HeroBox>
@@ -42,7 +47,19 @@ export const Hero = ({ name, sinopsis, cover, geners }: HeroProps) => {
           </GenersBox>
         </animated.div>
         <animated.div style={sinopsisCssProps}>
-          <Typography>{sinopsis}</Typography>
+          <Typography>
+            {text}
+            {showReadMore && (
+              <Typography
+                as='span'
+                white
+                onClick={handleToggle}
+                style={{ cursor: 'pointer' }}
+              >
+                {showFullText ? ' menos' : ' ...más'}
+              </Typography>
+            )}
+          </Typography>
         </animated.div>
       </Container>
     </HeroBox>
