@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Slider from 'react-slick';
 import { Serie } from '@components/DataDisplay/Serie';
 import { ChevronLeft } from '@components/Icon/ChevronLeft';
@@ -27,7 +28,7 @@ export const Carousel = ({ data }: CarouselProps) => {
         arrows={false}
         slidesToShow={5}
         className='carousel'
-        infinite={false}
+        infinite
         responsive={[
           {
             breakpoint: 1280,
@@ -50,13 +51,16 @@ export const Carousel = ({ data }: CarouselProps) => {
         ]}
       >
         {data.map(({ _id, name, imageMd, episodes, totalDuration }) => (
-          <Serie
-            key={_id}
-            name={name}
-            thumbnail={imageMd}
-            totalEpisodes={episodes.length}
-            duration={totalDuration}
-          />
+          <Link key={_id} href={`/serie/${_id}`}>
+            <a>
+              <Serie
+                name={name}
+                thumbnail={imageMd}
+                totalEpisodes={episodes.length}
+                duration={totalDuration}
+              />
+            </a>
+          </Link>
         ))}
       </Slider>
       <ArrowButton toRight onClick={next}>
