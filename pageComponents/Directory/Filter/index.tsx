@@ -4,7 +4,7 @@ import { Select } from '@components/Form/Select';
 import { Skeleton } from './Skeleton';
 import { getGeners } from '@services/geners';
 import { useFilter } from './hook';
-import { FilterBox } from './styled';
+import { FilterBox, FlexibleItemsBox } from './styled';
 
 export const Filter = () => {
   const { data, isLoading, error } = useQuery(
@@ -23,19 +23,21 @@ export const Filter = () => {
 
   return (
     <FilterBox>
-      <Select
-        placeholder='Tipo'
-        onChange={handleChangeType}
-        options={[
-          { text: 'Tv', value: 'Tipo: tv' },
-          { text: 'Pelicula', value: 'Tipo: movie' },
-        ]}
-      />
-      <Select
-        placeholder='Genero'
-        onChange={handleChangeGener}
-        options={generOpts}
-      />
+      <FlexibleItemsBox>
+        <Select
+          placeholder='Tipo'
+          onChange={handleChangeType}
+          options={[
+            { text: 'Tv', value: 'Tipo: tv' },
+            { text: 'Pelicula', value: 'Tipo: movie' },
+          ]}
+        />
+        <Select
+          placeholder='Genero'
+          onChange={handleChangeGener}
+          options={generOpts}
+        />
+      </FlexibleItemsBox>
     </FilterBox>
   );
 };
