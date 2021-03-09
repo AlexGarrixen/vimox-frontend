@@ -22,7 +22,7 @@ export const LayoutApp = ({ children, title }: LayoutAppProps) => {
         <meta charSet='utf-8' />
         <meta
           name='viewport'
-          content='initial-scale=1.0, width=device-width, user-scalable=no'
+          content='width=device-width, initial-scale=1, user-scalable=no'
         />
       </Head>
       <Header />
