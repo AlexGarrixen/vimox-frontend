@@ -10,6 +10,12 @@ export const Svg = styled.svg<SvgProps>`
       margin: ${margin};
     `}
 
+  ${({ color }) =>
+    color &&
+    css`
+      color: ${color};
+    `}
+
   ${({ sm }) =>
     sm &&
     css`

@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { Header } from '../../Navigation/Header';
 import { LayoutAppStyled, ContentBox } from './styled';
 import { Dialog } from '../../Feedback/Dialog';
+import { TabBottomNav } from '../../Navigation/TabBottomNav';
 import { SeriesFinder } from '../../DataDisplay/SeriesFinder';
 import { useSeriesFinder } from '@hooks/useSeriesFinder';
 
@@ -27,6 +28,7 @@ export const LayoutApp = ({ children, title }: LayoutAppProps) => {
       <Header />
       <ContentBox>{children}</ContentBox>
       <footer></footer>
+      <TabBottomNav />
       <Dialog
         isOpen={isVisible}
         onRequestClose={hideSeriesFinder}
