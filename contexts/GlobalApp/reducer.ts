@@ -1,4 +1,4 @@
-import type { State, Actions } from './contextApp';
+import type { State, Actions } from './types';
 
 export const reducer = (state: State, action: Actions): State => {
   switch (action.type) {
