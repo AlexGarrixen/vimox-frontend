@@ -23,7 +23,7 @@ export const NavSlider = () => {
     <NavSliderBox>
       <Container>
         <Typography as='h4' white margin='0 0 12px 0'>
-          Latest series
+          Ultimas series
         </Typography>
         <SliderBox>
           <ArrowButton onClick={prev}>
