@@ -25,7 +25,11 @@ export const Header = () => {
   return (
     <HeaderBox>
       <Container>
-        <img src='/logo.png' height={30} />
+        <Link href='/'>
+          <a>
+            <img src='/logo.png' height={30} />
+          </a>
+        </Link>
         <Nav>
           <LinksBox>
             {links.map(({ title, href }, idx) => (
