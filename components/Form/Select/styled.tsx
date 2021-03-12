@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import type { SelectProps } from './index';
 
 export const SelectBox = styled.div`
   display: inline-block;
@@ -13,7 +14,7 @@ export const SelectBox = styled.div`
   cursor: pointer;
 `;
 
-export const OptionsBox = styled.ul`
+export const OptionsBox = styled.ul<Pick<SelectProps, 'maxHeightOptions'>>`
   position: absolute;
   background-color: ${({ theme }) => theme.colors.gray[400]};
   top: calc(100% + 3px);
@@ -22,6 +23,13 @@ export const OptionsBox = styled.ul`
   border-radius: 6px;
   overflow: hidden;
   z-index: 3;
+
+  ${({ maxHeightOptions }) =>
+    maxHeightOptions &&
+    css`
+      max-height: ${maxHeightOptions}px;
+      overflow-y: auto;
+    `}
 `;
 
 export const Option = styled.li`

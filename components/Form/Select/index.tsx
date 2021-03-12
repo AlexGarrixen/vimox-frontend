@@ -12,6 +12,7 @@ export type SelectProps = {
   onChange?: (value: any, name: string) => void;
   name?: string;
   placeholder?: string;
+  maxHeightOptions?: number;
 };
 
 export const Select = ({
@@ -19,6 +20,7 @@ export const Select = ({
   name,
   options = [],
   placeholder,
+  maxHeightOptions,
 }: SelectProps) => {
   const [showOptions, setShowOptions] = React.useState(false);
 
@@ -45,7 +47,7 @@ export const Select = ({
     <SelectBox onClick={handleToggleOptions} ref={ref}>
       <span>{selectedOpt || placeholder}</span>
       {showOptions && (
-        <OptionsBox>
+        <OptionsBox maxHeightOptions={maxHeightOptions}>
           {options.map(({ text, value }) => (
             <Option key={`${value}-${text}`} onClick={handleClickOption(value)}>
               {text}
