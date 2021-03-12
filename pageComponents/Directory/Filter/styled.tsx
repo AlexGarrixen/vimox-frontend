@@ -1,25 +1,25 @@
 import styled from 'styled-components';
 
 export const FilterBox = styled.div`
-  margin-bottom: 30px;
-`;
+  padding-bottom: 330px;
+  margin-bottom: calc(-330px + 30px);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
 
-export const FlexibleItemsBox = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: -8px;
-
-  & > * {
-    margin: 8px;
+  .carousel_filter {
+    pointer-events: initial;
   }
 
-  & > * {
-    width: 100%;
+  .carousel_filter .slick-slide > div {
+    margin: 0 10px;
+    width: max-content;
   }
 
-  @media (min-width: ${({ theme }) => theme.screens.sm}) {
-    & > * {
-      width: auto;
-    }
+  .carousel_filter .slick-list {
+    padding-top: 4px;
+    margin: 0 -10px;
+    overflow: initial;
   }
 `;

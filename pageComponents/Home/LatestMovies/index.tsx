@@ -12,7 +12,7 @@ export const LatestMovies = () => {
   const { data, isLoading, error, refetch } = useQuery(
     [
       'latestMovies_home',
-      { limit_items: 10, type: 'movie', sort_createdAt: 'desc' },
+      { limit_items: 10, type: 'pelicula', sort_createdAt: 'desc' },
     ],
     async ({ queryKey }) => getSeries(queryKey[1])
   );
