@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const LayoutAppStyled = styled.div`
   min-height: 100vh;
@@ -12,6 +12,18 @@ export const LayoutAppStyled = styled.div`
   }
 `;
 
-export const ContentBox = styled.div`
+type ContentBoxProps = {
+  verticallyCenterContent?: boolean;
+};
+
+export const ContentBox = styled.div<ContentBoxProps>`
   flex: 1;
+
+  ${({ verticallyCenterContent }) =>
+    verticallyCenterContent &&
+    css`
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    `}
 `;
