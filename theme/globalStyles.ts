@@ -78,6 +78,12 @@ export const GlobalStyle = createGlobalStyle`
     font-family: inherit;
   }
 
+  button {
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
   .simplebar-scrollbar::before {
     background-color: ${theme.colors.gray[100]};
   }

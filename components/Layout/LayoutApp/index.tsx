@@ -10,9 +10,14 @@ import { useSeriesFinder } from '@hooks/useSeriesFinder';
 type LayoutAppProps = {
   children?: React.ReactNode;
   title?: string;
+  verticallyCenterContent?: boolean;
 };
 
-export const LayoutApp = ({ children, title }: LayoutAppProps) => {
+export const LayoutApp = ({
+  children,
+  title,
+  verticallyCenterContent,
+}: LayoutAppProps) => {
   const { isVisible, hideSeriesFinder } = useSeriesFinder();
 
   return (
@@ -38,7 +43,9 @@ export const LayoutApp = ({ children, title }: LayoutAppProps) => {
         />
       </Head>
       <Header />
-      <ContentBox>{children}</ContentBox>
+      <ContentBox verticallyCenterContent={verticallyCenterContent}>
+        {children}
+      </ContentBox>
       <footer></footer>
       <TabBottomNav />
       <Dialog

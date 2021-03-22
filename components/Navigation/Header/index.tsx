@@ -19,6 +19,7 @@ const links = [
 
 export const Header = () => {
   const router = useRouter();
+  const isLoginRoute = router.pathname === '/login';
 
   const { showSeriesFinder } = useSeriesFinder();
 
@@ -30,22 +31,26 @@ export const Header = () => {
             <img src='/logo.png' height={30} />
           </a>
         </Link>
-        <Nav>
-          <LinksBox>
-            {links.map(({ title, href }, idx) => (
-              <li key={idx}>
-                <Link href={href}>
-                  <AnchorStyled isActive={router.pathname === href}>
-                    {title}
-                  </AnchorStyled>
-                </Link>
-              </li>
-            ))}
-          </LinksBox>
-        </Nav>
-        <SearchButton onClick={showSeriesFinder}>
-          <Search color='#fff' xl />
-        </SearchButton>
+        {!isLoginRoute && (
+          <>
+            <Nav>
+              <LinksBox>
+                {links.map(({ title, href }, idx) => (
+                  <li key={idx}>
+                    <Link href={href}>
+                      <AnchorStyled isActive={router.pathname === href}>
+                        {title}
+                      </AnchorStyled>
+                    </Link>
+                  </li>
+                ))}
+              </LinksBox>
+            </Nav>
+            <SearchButton onClick={showSeriesFinder}>
+              <Search color='#fff' xl />
+            </SearchButton>
+          </>
+        )}
       </Container>
     </HeaderBox>
   );
