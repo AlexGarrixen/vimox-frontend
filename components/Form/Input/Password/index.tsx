@@ -24,7 +24,7 @@ export const InputPassword = ({
   return (
     <InputBox fullWidth={fullWidth}>
       <InputBox fullWidth={fullWidth} error={error}>
-        <InputStyled {...rest} type={type} />
+        <InputStyled {...rest} type={type} value={value} />
         <Adornment onClick={handleClickAdornment}>
           {type === 'password' ? <Eye lg /> : <EyeSlash lg />}
         </Adornment>
