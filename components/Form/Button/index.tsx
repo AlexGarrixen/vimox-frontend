@@ -10,6 +10,7 @@ export type ButtonProps = {
   onClick?: (e: React.MouseEvent) => void;
   fullWidth?: boolean;
   disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 };
 
 export const Button = React.forwardRef(
@@ -23,6 +24,7 @@ export const Button = React.forwardRef(
       onClick,
       fullWidth,
       disabled,
+      type = 'button',
     }: ButtonProps,
     ref: React.Ref<HTMLButtonElement>
   ) => {
@@ -34,6 +36,7 @@ export const Button = React.forwardRef(
         onClick={onClick}
         fullWidth={fullWidth}
         disabled={disabled}
+        type={type}
       >
         {startIcon && <StartIcon>{startIcon}</StartIcon>}
         <LabelText primary={primary} disabled={disabled}>

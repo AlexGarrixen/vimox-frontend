@@ -20,7 +20,7 @@ export const Adornment: React.FC<AdornmentProps> = ({
   onClick,
   ...rest
 }) => (
-  <AdornmentButton onClick={onClick} {...rest}>
+  <AdornmentButton type='button' onClick={onClick} {...rest}>
     {children}
   </AdornmentButton>
 );
