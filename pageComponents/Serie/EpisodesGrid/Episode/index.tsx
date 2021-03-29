@@ -19,7 +19,7 @@ export const Episode = ({
   order,
 }: EpisodeProps) => (
   <div>
-    <Link href={`/watch/${serieId}/${id}`}>
+    <Link href={`/watch?serieId=${serieId}&episodeId=${id}`}>
       <a>
         <ThumbnailBox>
           <Thumbnail src={thumbnail} />

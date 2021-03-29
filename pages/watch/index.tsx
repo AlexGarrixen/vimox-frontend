@@ -1,5 +1,5 @@
 import React from 'react';
-import { GetServerSideProps } from 'next';
+import { NextPageContext } from 'next';
 import { useQuery } from 'react-query';
 import { LayoutApp } from '@components/Layout/LayoutApp';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
@@ -29,7 +29,7 @@ const Watch = ({ querys }: WatchProps) => {
         };
       } catch (reason) {
         console.error(reason);
-        throw new Error('Algo salio mal intentalo mas tarde').message;
+        throw 'Algo salio mal intentalo mas tarde';
       }
     }
   );
@@ -72,10 +72,8 @@ const Watch = ({ querys }: WatchProps) => {
   );
 };
 
-export default Watch;
-
-export const getServerSideProps: GetServerSideProps = async (context) => ({
-  props: {
-    querys: context.query,
-  },
+Watch.getInitialProps = (ctx: NextPageContext) => ({
+  querys: ctx.query,
 });
+
+export default Watch;
