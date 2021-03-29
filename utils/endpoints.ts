@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://gx-anime-api.vercel.app';
+export const BASE_URL = process.env.NEXT_PUBLIC_EXTERNAL_SERVER_API_URL;
 
 export const SERIES = '/series';
 

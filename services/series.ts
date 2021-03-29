@@ -1,5 +1,5 @@
 import { request } from '@utils/request';
-import { errorHandler } from '@utils/errorHandlerAxios';
+import { getError } from '@utils/getErrorAxios';
 import { SERIES } from '@utils/endpoints';
 import type {
   GetSeriesParams,
@@ -14,7 +14,8 @@ export const getSeries = async <T extends GetSeriesResponse>(
     const { data } = await request<T>(SERIES, { params });
     return data;
   } catch (reason) {
-    throw new Error(errorHandler(reason)).message;
+    const error = getError(reason);
+    throw error.payload.message;
   }
 };
 
@@ -23,6 +24,7 @@ export const getSerie = async <T extends Serie>(serieId: string) => {
     const { data } = await request<T[]>(`${SERIES}/${serieId}`);
     return data[0];
   } catch (reason) {
-    throw new Error(errorHandler(reason)).message;
+    const error = getError(reason);
+    throw error.payload.message;
   }
 };
