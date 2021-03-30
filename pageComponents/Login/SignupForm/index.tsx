@@ -1,4 +1,6 @@
 import React from 'react';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 import { Input } from '@components/Form/Input';
 import { Button } from '@components/Form/Button';
 import { HelperText } from '@components/Form/HelperText';
@@ -6,8 +8,11 @@ import { Grid } from '@components/Layout/Grid';
 import { Typography } from '@components/DataDisplay/Typography';
 import { useForm } from '@hooks/useForm';
 import { signupSchema } from '@utils/yupSchemas';
+import { signup } from '@services/auth';
 
 export const SignupForm = (): JSX.Element => {
+  const router = useRouter();
+
   const {
     values,
     errors,
@@ -24,8 +29,14 @@ export const SignupForm = (): JSX.Element => {
       passwordConfirmation: '',
     },
     validationSchema: signupSchema,
-    onSubmit: (values, helpers) => {
-      console.log(values);
+    onSubmit: async ({ passwordConfirmation, ...values }, helpers) => {
+      try {
+        await signup(values);
+        helpers.setSubmitting(false);
+        router.push(`/email-confirmation?email=${values.email}`);
+      } catch (reason) {
+        toast.error(reason);
+      }
     },
   });
 
