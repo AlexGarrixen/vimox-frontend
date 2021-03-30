@@ -20,3 +20,18 @@ export const signup = async (values: SignupValues) => {
     throw error.payload.message;
   }
 };
+
+export const emailConfirmation = async (token: string) => {
+  try {
+    const { data } = await request(`${AUTH}/email-verification`, {
+      method: 'post',
+      params: {
+        token,
+      },
+    });
+    return data;
+  } catch (reason) {
+    const error = getError(reason);
+    throw error.payload.message;
+  }
+};

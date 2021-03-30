@@ -6,13 +6,15 @@ export default async (
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> => {
-  const { method, body } = req;
+  const { method, query } = req;
 
   if (method === 'POST') {
     try {
-      const { data } = await requestExternalServer('/auth/signup', {
+      const { data } = await requestExternalServer('/auth/email-confirmation', {
         method: 'post',
-        data: body,
+        data: {
+          emailToken: query.token,
+        },
       });
       res.status(201).json(data);
     } catch (reason) {
