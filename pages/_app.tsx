@@ -3,6 +3,7 @@ import { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ProviderApp } from '@contexts/GlobalApp';
+import { AuthProvider } from '@contexts/Auth/client';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { ToastContainerStyled } from '@components/Feedback/ToastContainer';
 import { GlobalStyle } from '../theme/globalStyles';
@@ -27,13 +28,15 @@ function App({ Component, pageProps }: AppProps) {
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <QueryClientProvider client={queryClient}>
-          <ProviderApp>
-            <Component {...pageProps} />
-            <ToastContainerStyled />
-          </ProviderApp>
-          {!isProd && <ReactQueryDevtools initialIsOpen={false} />}
-        </QueryClientProvider>
+        <AuthProvider>
+          <QueryClientProvider client={queryClient}>
+            <ProviderApp>
+              <Component {...pageProps} />
+              <ToastContainerStyled />
+            </ProviderApp>
+            {!isProd && <ReactQueryDevtools initialIsOpen={false} />}
+          </QueryClientProvider>
+        </AuthProvider>
       </ThemeProvider>
     </>
   );
