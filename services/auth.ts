@@ -35,3 +35,19 @@ export const emailConfirmation = async (token: string) => {
     throw error.payload.message;
   }
 };
+
+export const login = async (email: string, password: string) => {
+  try {
+    const { data } = await request(`${AUTH}/login`, {
+      method: 'post',
+      data: {
+        email,
+        password,
+      },
+    });
+    return data;
+  } catch (reason) {
+    const error = getError(reason);
+    throw error.payload.message;
+  }
+};

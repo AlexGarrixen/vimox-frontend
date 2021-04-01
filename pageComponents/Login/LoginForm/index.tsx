@@ -1,4 +1,6 @@
 import React from 'react';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 import { Input } from '@components/Form/Input';
 import { Button } from '@components/Form/Button';
 import { HelperText } from '@components/Form/HelperText';
@@ -6,8 +8,11 @@ import { Grid } from '@components/Layout/Grid';
 import { Typography } from '@components/DataDisplay/Typography';
 import { useForm } from '@hooks/useForm';
 import { loginSchema } from '@utils/yupSchemas';
+import { login } from '@services/auth';
 
 export const LoginForm = (): JSX.Element => {
+  const router = useRouter();
+
   const {
     errors,
     isValidForm,
@@ -22,8 +27,14 @@ export const LoginForm = (): JSX.Element => {
       password: '',
     },
     validationSchema: loginSchema,
-    onSubmit: (values, helpers) => {
-      console.log(values, helpers);
+    onSubmit: async (values, helpers) => {
+      try {
+        await login(values.email, btoa(values.password));
+        helpers.setSubmitting(false);
+        router.replace('/');
+      } catch (reason) {
+        toast.error(reason);
+      }
     },
   });
 
