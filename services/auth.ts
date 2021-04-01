@@ -1,6 +1,7 @@
 import { request } from '@utils/request';
 import { getError } from '@utils/getErrorAxios';
 import { AUTH } from '@utils/endpoints';
+import { PostLoginResponse } from '@globalTypes/authServices';
 
 interface SignupValues {
   username: string;
@@ -38,7 +39,7 @@ export const emailConfirmation = async (token: string) => {
 
 export const login = async (email: string, password: string) => {
   try {
-    const { data } = await request(`${AUTH}/login`, {
+    const { data } = await request<PostLoginResponse>(`${AUTH}/login`, {
       method: 'post',
       data: {
         email,

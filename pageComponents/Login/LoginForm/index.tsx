@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import { useAuthMethods } from '@contexts/Auth/hooks';
 import { Input } from '@components/Form/Input';
 import { Button } from '@components/Form/Button';
 import { HelperText } from '@components/Form/HelperText';
@@ -12,6 +13,7 @@ import { login } from '@services/auth';
 
 export const LoginForm = (): JSX.Element => {
   const router = useRouter();
+  const { logIn } = useAuthMethods();
 
   const {
     errors,
@@ -29,7 +31,7 @@ export const LoginForm = (): JSX.Element => {
     validationSchema: loginSchema,
     onSubmit: async (values, helpers) => {
       try {
-        await login(values.email, btoa(values.password));
+        await logIn(values.email, btoa(values.password));
         helpers.setSubmitting(false);
         router.replace('/');
       } catch (reason) {
