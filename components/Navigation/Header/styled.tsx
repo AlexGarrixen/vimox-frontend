@@ -49,7 +49,16 @@ export const AnchorStyled = styled.a<LinkProps>`
     `}
 `;
 
-export const SearchButton = styled.button`
+export const ActionsBox = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > *:not(:last-child) {
+    margin-right: 20px;
+  }
+`;
+
+export const IconButton = styled.button`
   border: none;
   background: transparent;
   cursor: pointer;

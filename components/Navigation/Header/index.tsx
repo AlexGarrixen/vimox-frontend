@@ -3,25 +3,39 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Search } from '@components/Icon/Search';
 import { Container } from '@components/Layout/Container';
+import { User } from '@components/Overlays/User';
+import { useSession } from '@contexts/Auth/hooks';
 import { useSeriesFinder } from '@hooks/useSeriesFinder';
-import { HeaderBox, Nav, LinksBox, AnchorStyled, SearchButton } from './styled';
+import {
+  HeaderBox,
+  Nav,
+  LinksBox,
+  AnchorStyled,
+  ActionsBox,
+  IconButton,
+} from './styled';
 
-const links = [
-  {
-    title: 'Inicio',
-    href: '/',
-  },
-  {
-    title: 'Directorio',
-    href: '/directory',
-  },
-];
+type LinkItemProps = {
+  title: string;
+  isActive: boolean;
+  href: string;
+};
+
+const LinkItem = ({ href, isActive, title }: LinkItemProps) => (
+  <li>
+    <Link href={href}>
+      <AnchorStyled isActive={isActive}>{title}</AnchorStyled>
+    </Link>
+  </li>
+);
 
 export const Header = () => {
   const router = useRouter();
-  const isLoginRoute = router.pathname === '/login';
-
+  const [session] = useSession();
   const { showSeriesFinder } = useSeriesFinder();
+
+  const isLoginRoute = router.pathname === '/login';
+  const isAuth = session && session.token;
 
   return (
     <HeaderBox>
@@ -35,20 +49,31 @@ export const Header = () => {
           <>
             <Nav>
               <LinksBox>
-                {links.map(({ title, href }, idx) => (
-                  <li key={idx}>
-                    <Link href={href}>
-                      <AnchorStyled isActive={router.pathname === href}>
-                        {title}
-                      </AnchorStyled>
-                    </Link>
-                  </li>
-                ))}
+                <LinkItem
+                  title='Inicio'
+                  href='/'
+                  isActive={router.pathname === '/'}
+                />
+                <LinkItem
+                  title='Directorio'
+                  href='/directory'
+                  isActive={router.pathname === '/directory'}
+                />
+                {isAuth && (
+                  <LinkItem
+                    title='Mi lista'
+                    href='/queue'
+                    isActive={router.pathname === '/queue'}
+                  />
+                )}
               </LinksBox>
             </Nav>
-            <SearchButton onClick={showSeriesFinder}>
-              <Search color='#fff' xl />
-            </SearchButton>
+            <ActionsBox>
+              {isAuth && <User username={session.user.username} />}
+              <IconButton onClick={showSeriesFinder}>
+                <Search color='#fff' xl />
+              </IconButton>
+            </ActionsBox>
           </>
         )}
       </Container>

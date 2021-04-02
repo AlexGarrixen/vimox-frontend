@@ -15,11 +15,11 @@ export const AuthProvider: React.FC = ({ children }) => {
         if (data?.cookies) {
           const token = data.cookies['token'];
           const refreshToken = data.cookies['refresh-token'];
-          const user = data.cookies['user-data'];
+          const user = JSON.parse(data.cookies['user-data']);
 
           sessionData.token = token;
           sessionData['refresh-token'] = refreshToken;
-          sessionData['user-data'] = user;
+          sessionData['user'] = user;
         }
 
         setSession(sessionData);
