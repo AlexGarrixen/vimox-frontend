@@ -24,6 +24,12 @@ export interface Serie {
     thumbnail: string;
     duration;
   }[];
+  addedByUsers: {
+    [key: string]: {
+      _id: string;
+      user: string;
+    };
+  };
 }
 
 export interface GetSeriesParams {
