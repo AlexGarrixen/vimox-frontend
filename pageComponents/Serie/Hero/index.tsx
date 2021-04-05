@@ -1,25 +1,57 @@
 import React from 'react';
 import { animated } from 'react-spring';
+import { toast } from 'react-toastify';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Container } from '@components/Layout/Container';
+import { Button } from '@components/Form/Button';
 import { Gener } from '@globalTypes/generServices';
+import { useSession } from '@contexts/Auth/hooks';
 import { useReadMore } from '@hooks/useReadMore';
+import { addSerieToList } from '@services/user';
 import { HeroBox, CoverImage, GenersBox } from './styled';
 import { useAnimations } from './hook';
 
 type HeroProps = {
+  serieId: string;
   cover: string;
   name: string;
   sinopsis: string;
   geners: Gener[];
+  isAdded: boolean;
 };
 
-export const Hero = ({ name, sinopsis, cover, geners }: HeroProps) => {
+export const Hero = ({
+  serieId,
+  name,
+  sinopsis,
+  cover,
+  geners,
+  isAdded,
+}: HeroProps) => {
   const { headingCssProps, genersCssProps, sinopsisCssProps } = useAnimations();
+
   const { text, showReadMore, showFullText, handleToggle } = useReadMore(
     sinopsis,
     120
   );
+
+  const [added, setAdded] = React.useState(isAdded);
+
+  const [session] = useSession();
+
+  const handleAddSerie = React.useCallback(async () => {
+    if (session) {
+      try {
+        await addSerieToList(serieId, session.user._id);
+        toast.success(`Agregaste ${name} a tu lista`);
+        setAdded(true);
+      } catch (reason) {
+        toast.error(reason);
+      }
+    } else {
+      toast.info('Inicia sesion para poder anadir esta serie');
+    }
+  }, [session]);
 
   return (
     <HeroBox>
@@ -60,6 +92,13 @@ export const Hero = ({ name, sinopsis, cover, geners }: HeroProps) => {
               </Typography>
             )}
           </Typography>
+          {!added ? (
+            <Button margin='14px 0 0 0' onClick={handleAddSerie}>
+              Añadir a mi lista
+            </Button>
+          ) : (
+            <Button margin='14px 0 0 0'>Quitar de mi lista</Button>
+          )}
         </animated.div>
       </Container>
     </HeroBox>
