@@ -2,24 +2,43 @@ import React from 'react';
 import { animated } from 'react-spring';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Container } from '@components/Layout/Container';
+import { Button } from '@components/Form/Button';
 import { Gener } from '@globalTypes/generServices';
 import { useReadMore } from '@hooks/useReadMore';
 import { HeroBox, CoverImage, GenersBox } from './styled';
-import { useAnimations } from './hook';
+import { useAnimations, useAddAndRemoveSerieOfList } from './hook';
 
 type HeroProps = {
+  serieId: string;
   cover: string;
   name: string;
   sinopsis: string;
   geners: Gener[];
+  isAdded: boolean;
 };
 
-export const Hero = ({ name, sinopsis, cover, geners }: HeroProps) => {
+export const Hero = ({
+  serieId,
+  name,
+  sinopsis,
+  cover,
+  geners,
+  isAdded,
+}: HeroProps) => {
   const { headingCssProps, genersCssProps, sinopsisCssProps } = useAnimations();
+
   const { text, showReadMore, showFullText, handleToggle } = useReadMore(
     sinopsis,
     120
   );
+
+  const {
+    added,
+    handleAddSerie,
+    handleRemoveSerie,
+    loadingAddSerie,
+    loadingDeleteSerie,
+  } = useAddAndRemoveSerieOfList({ isAdded, serieId, nameSerie: name });
 
   return (
     <HeroBox>
@@ -60,6 +79,23 @@ export const Hero = ({ name, sinopsis, cover, geners }: HeroProps) => {
               </Typography>
             )}
           </Typography>
+          {!added ? (
+            <Button
+              margin='14px 0 0 0'
+              onClick={handleAddSerie}
+              disabled={loadingAddSerie}
+            >
+              Añadir a mi lista
+            </Button>
+          ) : (
+            <Button
+              margin='14px 0 0 0'
+              onClick={handleRemoveSerie}
+              disabled={loadingDeleteSerie}
+            >
+              Quitar de mi lista
+            </Button>
+          )}
         </animated.div>
       </Container>
     </HeroBox>
