@@ -25,6 +25,19 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const error = getError(reason);
       res.status(error.statusCode).json(error.payload);
     }
+  } else if (method === 'DELETE') {
+    try {
+      const { data } = await requestExternalServer(
+        `/user/${query.id}/series/${body.serieId}`,
+        {
+          method: 'delete',
+        }
+      );
+      res.status(201).json(data);
+    } catch (reason) {
+      const error = getError(reason);
+      res.status(error.statusCode).json(error.payload);
+    }
   } else {
     res.status(405).end(`Method ${method} Not Allowed`);
   }

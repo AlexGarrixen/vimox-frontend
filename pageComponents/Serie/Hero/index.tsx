@@ -1,15 +1,12 @@
 import React from 'react';
 import { animated } from 'react-spring';
-import { toast } from 'react-toastify';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Container } from '@components/Layout/Container';
 import { Button } from '@components/Form/Button';
 import { Gener } from '@globalTypes/generServices';
-import { useSession } from '@contexts/Auth/hooks';
 import { useReadMore } from '@hooks/useReadMore';
-import { addSerieToList } from '@services/user';
 import { HeroBox, CoverImage, GenersBox } from './styled';
-import { useAnimations } from './hook';
+import { useAnimations, useAddAndRemoveSerieOfList } from './hook';
 
 type HeroProps = {
   serieId: string;
@@ -35,23 +32,13 @@ export const Hero = ({
     120
   );
 
-  const [added, setAdded] = React.useState(isAdded);
-
-  const [session] = useSession();
-
-  const handleAddSerie = React.useCallback(async () => {
-    if (session) {
-      try {
-        await addSerieToList(serieId, session.user._id);
-        toast.success(`Agregaste ${name} a tu lista`);
-        setAdded(true);
-      } catch (reason) {
-        toast.error(reason);
-      }
-    } else {
-      toast.info('Inicia sesion para poder anadir esta serie');
-    }
-  }, [session]);
+  const {
+    added,
+    handleAddSerie,
+    handleRemoveSerie,
+    loadingAddSerie,
+    loadingDeleteSerie,
+  } = useAddAndRemoveSerieOfList({ isAdded, serieId, nameSerie: name });
 
   return (
     <HeroBox>
@@ -93,11 +80,21 @@ export const Hero = ({
             )}
           </Typography>
           {!added ? (
-            <Button margin='14px 0 0 0' onClick={handleAddSerie}>
+            <Button
+              margin='14px 0 0 0'
+              onClick={handleAddSerie}
+              disabled={loadingAddSerie}
+            >
               Añadir a mi lista
             </Button>
           ) : (
-            <Button margin='14px 0 0 0'>Quitar de mi lista</Button>
+            <Button
+              margin='14px 0 0 0'
+              onClick={handleRemoveSerie}
+              disabled={loadingDeleteSerie}
+            >
+              Quitar de mi lista
+            </Button>
           )}
         </animated.div>
       </Container>
