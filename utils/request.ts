@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: '/api',
 });
 
@@ -10,6 +10,34 @@ const axiosInstanceExternalServer = axios.create({
     origin: process.env.ORIGIN_CLIENT,
   },
 });
+
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+    const isLoginRoute =
+      originalRequest.url && originalRequest.url === '/auth/login';
+
+    if (
+      error.response.status === 401 &&
+      originalRequest.url === '/auth/renew-token'
+    ) {
+      await request('/auth/logout', { method: 'post' });
+      window.location.replace('/login');
+      return Promise.reject(error);
+    }
+
+    if (error.response.status === 401 && !isLoginRoute) {
+      await request('/auth/renew-token', {
+        method: 'post',
+      });
+
+      return axiosInstance(originalRequest);
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 export const request = <T, R = AxiosResponse<T>>(
   url?: string,
