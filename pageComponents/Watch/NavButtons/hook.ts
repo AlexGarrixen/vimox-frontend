@@ -30,12 +30,18 @@ export const useNavigation = ({
   );
 
   const handleNextEpisode = React.useCallback(
-    () => router.replace(`/watch/${router.query.serieId}/${nextEpisode._id}`),
+    () =>
+      router.replace(
+        `/watch?serieId=${router.query.serieId}&episodeId=${nextEpisode._id}`
+      ),
     [router.query, nextEpisode]
   );
 
   const handlePrevEpisode = React.useCallback(
-    () => router.replace(`/watch/${router.query.serieId}/${prevEpisode._id}`),
+    () =>
+      router.replace(
+        `/watch?serieId=${router.query.serieId}&episodeId=${prevEpisode._id}`
+      ),
     [router.query, prevEpisode]
   );
 

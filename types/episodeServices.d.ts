@@ -20,6 +20,10 @@ export interface Episode {
     imageMd: string;
     imageLg: string;
     type: string;
+    addedByUsers: {
+      _id: string;
+      user: string;
+    }[];
   };
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { NextPageContext } from 'next';
 import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 import { LayoutApp } from '@components/Layout/LayoutApp';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { PlayerComponent } from '@pageComponents/Watch/Player';
@@ -8,12 +9,16 @@ import { NavButtons } from '@pageComponents/Watch/NavButtons';
 import { About } from '@pageComponents/Watch/About';
 import { Skeleton } from '@pageComponents/Watch/Skeleton';
 import { getEpisode, getEpisodes } from '@services/episodes';
+import { updateLastEpisodeWatched } from '@services/user';
+import { useSession } from '@contexts/Auth/hooks';
 
 type WatchProps = {
   querys: Record<string, string>;
 };
 
 const Watch = ({ querys }: WatchProps) => {
+  const [session, loading] = useSession();
+
   const { data, isLoading, error, isFetching, refetch } = useQuery(
     ['episode_watch', querys],
     async ({ queryKey }) => {
@@ -34,6 +39,24 @@ const Watch = ({ querys }: WatchProps) => {
     }
   );
 
+  React.useEffect(() => {
+    if (session) {
+      const userWatchingSerie = data?.episode.serie.addedByUsers?.find(
+        ({ user }) => user === session.user._id
+      );
+
+      if (userWatchingSerie) {
+        updateLastEpisodeWatched({
+          userId: session.user._id,
+          serieId: querys.serieId,
+          episodeId: querys.episodeId,
+        }).catch((reason) => {
+          toast.error(reason);
+        });
+      }
+    }
+  }, [session, data]);
+
   const renderContent = () => {
     if (error)
       return (
@@ -42,7 +65,7 @@ const Watch = ({ querys }: WatchProps) => {
         </ErrorMessage>
       );
 
-    if (isLoading || isFetching) return <Skeleton />;
+    if (isLoading || isFetching || loading) return <Skeleton />;
 
     if (!data || !data.episode) return <div />;
 

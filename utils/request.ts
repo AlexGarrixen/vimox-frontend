@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-export const axiosInstance = axios.create({
+const axiosInstance = axios.create({
   baseURL: '/api',
 });
 

@@ -37,3 +37,33 @@ export const deleteSerieOfList = async (serieId: string, userId: string) => {
     throw error.payload.message;
   }
 };
+
+interface UpdateLastEpisodeWatchedOptions {
+  serieId: string;
+  episodeId: string;
+  userId: string;
+}
+
+export const updateLastEpisodeWatched = async ({
+  episodeId,
+  serieId,
+  userId,
+}: UpdateLastEpisodeWatchedOptions) => {
+  try {
+    const { data } = await request(
+      `/user/${userId}/series/last-episode-watched`,
+      {
+        method: 'put',
+        data: {
+          lastEpisodeWatched: episodeId,
+          serieId,
+        },
+      }
+    );
+
+    return data;
+  } catch (reason) {
+    const error = getError(reason);
+    throw error.payload.message;
+  }
+};
