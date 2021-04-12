@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import { Container } from '@components/Layout/Container';
 import { Button } from '@components/Form/Button';
 import styled from 'styled-components';
