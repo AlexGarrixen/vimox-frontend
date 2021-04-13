@@ -11,6 +11,7 @@ export type ButtonProps = {
   fullWidth?: boolean;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
+  small?: boolean;
 };
 
 export const Button = React.forwardRef(
@@ -25,6 +26,7 @@ export const Button = React.forwardRef(
       fullWidth,
       disabled,
       type = 'button',
+      small,
     }: ButtonProps,
     ref: React.Ref<HTMLButtonElement>
   ) => {
@@ -37,6 +39,7 @@ export const Button = React.forwardRef(
         fullWidth={fullWidth}
         disabled={disabled}
         type={type}
+        small={small}
       >
         {startIcon && <StartIcon>{startIcon}</StartIcon>}
         <LabelText primary={primary} disabled={disabled}>

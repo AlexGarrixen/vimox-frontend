@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { Search } from '@components/Icon/Search';
 import { Container } from '@components/Layout/Container';
 import { User } from '@components/Overlays/User';
+import { Button } from '@components/Form/Button';
+import { Skeleton } from './Skeleton';
 import { useSession } from '@contexts/Auth/hooks';
 import { useSeriesFinder } from '@hooks/useSeriesFinder';
 import {
@@ -31,7 +33,7 @@ const LinkItem = ({ href, isActive, title }: LinkItemProps) => (
 
 export const Header = () => {
   const router = useRouter();
-  const [session] = useSession();
+  const [session, loading] = useSession();
   const { showSeriesFinder } = useSeriesFinder();
 
   const isLoginRoute = router.pathname === '/login';
@@ -45,37 +47,45 @@ export const Header = () => {
             <img src='/logo.png' height={30} />
           </a>
         </Link>
-        {!isLoginRoute && (
-          <>
-            <Nav>
-              <LinksBox>
-                <LinkItem
-                  title='Inicio'
-                  href='/'
-                  isActive={router.pathname === '/'}
-                />
-                <LinkItem
-                  title='Directorio'
-                  href='/directory'
-                  isActive={router.pathname === '/directory'}
-                />
-                {isAuth && (
+        {!isLoginRoute &&
+          (loading ? (
+            <Skeleton />
+          ) : (
+            <>
+              <Nav>
+                <LinksBox>
                   <LinkItem
-                    title='Mi lista'
-                    href='/queue'
-                    isActive={router.pathname === '/queue'}
+                    title='Inicio'
+                    href='/'
+                    isActive={router.pathname === '/'}
                   />
+                  <LinkItem
+                    title='Directorio'
+                    href='/directory'
+                    isActive={router.pathname === '/directory'}
+                  />
+                  {isAuth && (
+                    <LinkItem
+                      title='Mi lista'
+                      href='/queue'
+                      isActive={router.pathname === '/queue'}
+                    />
+                  )}
+                </LinksBox>
+              </Nav>
+              <ActionsBox>
+                {!isAuth && (
+                  <Button primary small onClick={() => router.push('/login')}>
+                    Inicia sesion
+                  </Button>
                 )}
-              </LinksBox>
-            </Nav>
-            <ActionsBox>
-              {isAuth && <User username={session.user.username} />}
-              <IconButton onClick={showSeriesFinder}>
-                <Search color='#fff' xl />
-              </IconButton>
-            </ActionsBox>
-          </>
-        )}
+                {isAuth && <User username={session.user.username} />}
+                <IconButton onClick={showSeriesFinder}>
+                  <Search color='#fff' xl />
+                </IconButton>
+              </ActionsBox>
+            </>
+          ))}
       </Container>
     </HeaderBox>
   );
