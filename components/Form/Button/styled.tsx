@@ -35,6 +35,12 @@ export const StyledButton = styled.button<ButtonProps>`
       cursor: not-allowed;
       background-color: ${({ theme }) => theme.colors.gray[400]};
     `}
+
+  ${({ small }) =>
+    small &&
+    css`
+      padding: 6px 18px;
+    `}
 `;
 
 export const LabelText = styled.span<Pick<ButtonProps, 'primary' | 'disabled'>>`
