@@ -1,5 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
+import Link from 'next/link';
 import { Context } from '../Context';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Image } from '@components/DataDisplay/Image';
@@ -53,7 +54,11 @@ export const NavSlider = () => {
           >
             {data.map(({ _id, imageSm }, idx) => (
               <Slide key={_id} isActive={idx === activeIndex}>
-                <Image src={imageSm} />
+                <Link href={`/serie/${_id}`}>
+                  <a>
+                    <Image src={imageSm} />
+                  </a>
+                </Link>
               </Slide>
             ))}
           </Slider>
