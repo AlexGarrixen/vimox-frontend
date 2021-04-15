@@ -1,7 +1,10 @@
 import React from 'react';
 import { Image } from '@components/DataDisplay/Image';
 import { Typography } from '@components/DataDisplay/Typography';
-import { secondsToMinutes } from '@utils/convertTime';
+import {
+  convertToHoursAndMinutes,
+  formatHoursAndMinutes,
+} from '@utils/convertTime';
 import { SerieBox, ThumbnailBox, ContentBox } from './styled';
 
 type SerieProps = {
@@ -18,20 +21,27 @@ export const Serie = ({
   thumbnail,
   duration,
   totalEpisodes,
-}: SerieProps) => (
-  <SerieBox>
-    <ThumbnailBox>
-      <Image src={thumbnail} />
-    </ThumbnailBox>
-    <ContentBox>
-      <Typography as='h6' white>
-        {name.toUpperCase()}
-      </Typography>
-      <Typography>
-        {`${totalEpisodes} ${setPrefixTotalEps(
-          totalEpisodes
-        )} - ${secondsToMinutes(duration)} Minutos`}
-      </Typography>
-    </ContentBox>
-  </SerieBox>
-);
+}: SerieProps) => {
+  const [hours, minutes] = React.useMemo(
+    () => convertToHoursAndMinutes(duration),
+    [duration]
+  );
+
+  return (
+    <SerieBox>
+      <ThumbnailBox>
+        <Image src={thumbnail} />
+      </ThumbnailBox>
+      <ContentBox>
+        <Typography as='h6' white>
+          {name.toUpperCase()}
+        </Typography>
+        <Typography>
+          {`${totalEpisodes} ${setPrefixTotalEps(
+            totalEpisodes
+          )} - ${formatHoursAndMinutes(hours, minutes)}`}
+        </Typography>
+      </ContentBox>
+    </SerieBox>
+  );
+};
