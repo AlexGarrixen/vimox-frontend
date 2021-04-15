@@ -1,20 +1,10 @@
 const hourInSeconds = 3600;
 
-const secondsToMinutes = (seconds: number) => Math.ceil(seconds / 60);
-
-const secondsToHours = (seconds: number) => {
-  const value = (seconds / hourInSeconds).toFixed(2);
-  const [hours, minutes] = value.toString().split('.');
-
-  return [
-    parseInt(hours),
-    minutes.startsWith('0') ? parseInt(minutes.charAt(1)) : parseInt(minutes),
-  ];
-};
-
 export const convertToHoursAndMinutes = (seconds: number): number[] => {
-  if (seconds >= hourInSeconds) return secondsToHours(seconds);
-  return [0, secondsToMinutes(seconds)];
+  const hours = Math.floor(seconds / hourInSeconds);
+  const minutes = Math.floor(seconds / 60) % 60;
+
+  return [hours, minutes];
 };
 
 export const formatHoursAndMinutes = (
