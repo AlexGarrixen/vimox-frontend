@@ -18,3 +18,15 @@ export const signupSchema = Yup.object({
     .oneOf([Yup.ref('password')], 'La contraseña no hace match')
     .required('Confirmacion de contraseña requerida'),
 });
+
+export const resetPasswordSchema = Yup.object({
+  password: Yup.string()
+    .matches(
+      /^(?=.{8,}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?\W).*$/,
+      'Debe contener 8 caracteres como minimo, un numero, un caracter especial, una letra en minúscula y otra en mayúscula'
+    )
+    .required('La contraseña es requerida'),
+  passwordConfirmation: Yup.string()
+    .oneOf([Yup.ref('password')], 'La contraseña no hace match')
+    .required('Confirmacion de contraseña requerida'),
+});
