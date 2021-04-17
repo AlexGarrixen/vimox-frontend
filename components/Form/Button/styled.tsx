@@ -41,6 +41,12 @@ export const StyledButton = styled.button<ButtonProps>`
     css`
       padding: 6px 18px;
     `}
+  
+  ${({ fullWidth }) =>
+    fullWidth &&
+    css`
+      width: 100%;
+    `}
 `;
 
 export const LabelText = styled.span<Pick<ButtonProps, 'primary' | 'disabled'>>`
