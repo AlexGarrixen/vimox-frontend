@@ -1,13 +1,21 @@
 import React from 'react';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 import { Grid } from '@components/Layout/Grid';
 import { Button } from '@components/Form/Button';
 import { Input } from '@components/Form/Input';
 import { HelperText } from '@components/Form/HelperText';
 import { Typography } from '@components/DataDisplay/Typography';
+import { PasswordResetedSuccessfully } from '../PasswordResetedSuccessfully';
 import { useForm } from '@hooks/useForm';
 import { resetPasswordSchema } from '@utils/yupSchemas';
+import { resetPassword } from '@services/auth';
 
 export const Form = (): JSX.Element => {
+  const router = useRouter();
+
+  const [isSuccessfully, setSuccessfully] = React.useState(false);
+
   const {
     values,
     errors,
@@ -22,12 +30,23 @@ export const Form = (): JSX.Element => {
       passwordConfirmation: '',
     },
     validationSchema: resetPasswordSchema,
-    onSubmit: (values, helpers) => {
-      console.log(values);
+    onSubmit: async (values, helpers) => {
+      try {
+        await resetPassword(
+          window.btoa(values.password),
+          router.query.token as string
+        );
+        helpers.setSubmitting(false);
+        setSuccessfully(true);
+      } catch (reason) {
+        toast.error(reason);
+      }
     },
   });
 
-  return (
+  return isSuccessfully ? (
+    <PasswordResetedSuccessfully />
+  ) : (
     <div>
       <Typography as='h3' white>
         Crea una nueva contraseña
