@@ -52,3 +52,34 @@ export const login = async (email: string, password: string) => {
     throw error.payload.message;
   }
 };
+
+export const forgotPassword = async (email: string) => {
+  try {
+    const { data } = await request(`${AUTH}/forgot-password`, {
+      method: 'post',
+      data: { email },
+    });
+
+    return data;
+  } catch (reason) {
+    const error = getError(reason);
+    throw error.payload.message;
+  }
+};
+
+export const resetPassword = async (
+  newPassword: string,
+  resetToken: string
+) => {
+  try {
+    const { data } = await request(`${AUTH}/reset-password`, {
+      method: 'put',
+      data: { newPassword, resetToken },
+    });
+
+    return data;
+  } catch (reason) {
+    const error = getError(reason);
+    throw error.payload.message;
+  }
+};

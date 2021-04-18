@@ -1,10 +1,13 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { Button } from '@components/Form/Button';
 import { Input } from '@components/Form/Input';
 import { HelperText } from '@components/Form/HelperText';
 import { Typography } from '@components/DataDisplay/Typography';
+import { EmailSend } from '../EmailSend';
 import { useForm } from '@hooks/useForm';
+import { forgotPassword } from '@services/auth';
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -13,6 +16,8 @@ const validationSchema = Yup.object({
 });
 
 export const Form = (): JSX.Element => {
+  const [isSuccessfully, setSuccessfully] = React.useState(false);
+
   const {
     values,
     errors,
@@ -26,12 +31,20 @@ export const Form = (): JSX.Element => {
       email: '',
     },
     validationSchema,
-    onSubmit: (values, helpers) => {
-      console.log(values);
+    onSubmit: async (values, helpers) => {
+      try {
+        await forgotPassword(values.email);
+        helpers.setSubmitting(false);
+        setSuccessfully(true);
+      } catch (reason) {
+        toast.error(reason);
+      }
     },
   });
 
-  return (
+  return isSuccessfully ? (
+    <EmailSend />
+  ) : (
     <div style={{ textAlign: 'center' }}>
       <img src='/forgot-password.png' />
       <Typography as='h3' white>

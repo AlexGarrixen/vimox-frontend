@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { useAuthMethods } from '@contexts/Auth/hooks';
@@ -73,6 +74,13 @@ export const LoginForm = (): JSX.Element => {
             error={Boolean(errors.password)}
             fullWidth
           />
+          <Link href='/forgot-password'>
+            <a>
+              <HelperText style={{ textAlign: 'right', color: '#fff' }}>
+                ¿Olvidaste tu contraseña?
+              </HelperText>
+            </a>
+          </Link>
           {errors.password && <HelperText error>{errors.password}</HelperText>}
         </div>
         <Button primary type='submit' disabled={!isValidForm || isSubmitting}>
