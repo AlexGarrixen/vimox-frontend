@@ -9,7 +9,8 @@
     "start": "next start",
     "prepare": "husky install",
     "format": "prettier --write .",
-    "lint": "eslint . --ext .ts --ext .tsx --ext .js"
+    "lint": "eslint . --ext .ts --ext .tsx --ext .js",
+    "lint:fix": "eslint . --ext .ts --ext .tsx --ext .js --fix"
   },
   "keywords": [],
   "author": "alexGarrixen",
