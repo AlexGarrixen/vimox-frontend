@@ -1,6 +1,10 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 const axiosInstance = axios.create({
+  baseURL: process.env.EXTERNAL_SERVER_API_URL,
+});
+
+const axiosInstanceNextApi = axios.create({
   baseURL: '/api',
 });
 
@@ -53,6 +57,15 @@ export const requestExternalServer = <T = unknown, R = AxiosResponse<T>>(
   config?: Omit<AxiosRequestConfig, 'url' | 'baseURL'>
 ): Promise<R> =>
   axiosInstanceExternalServer.request<T, R>({
+    url,
+    ...config,
+  });
+
+export const requestApiRoute = <T = unknown, R = AxiosResponse<T>>(
+  url?: string,
+  config?: Omit<AxiosRequestConfig, 'url' | 'baseURL'>
+): Promise<R> =>
+  axiosInstanceNextApi.request<T, R>({
     url,
     ...config,
   });
