@@ -39,7 +39,7 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-export const request = <T, R = AxiosResponse<T>>(
+export const request = <T = unknown, R = AxiosResponse<T>>(
   url?: string,
   config?: Omit<AxiosRequestConfig, 'url' | 'baseURL'>
 ): Promise<R> =>
@@ -48,7 +48,7 @@ export const request = <T, R = AxiosResponse<T>>(
     ...config,
   });
 
-export const requestExternalServer = <T, R = AxiosResponse<T>>(
+export const requestExternalServer = <T = unknown, R = AxiosResponse<T>>(
   url?: string,
   config?: Omit<AxiosRequestConfig, 'url' | 'baseURL'>
 ): Promise<R> =>

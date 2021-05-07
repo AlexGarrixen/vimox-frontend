@@ -1,16 +1,11 @@
-import { NextPageContext } from 'next';
+import { NextPageContext, NextApiRequest } from 'next';
 import nookies from 'nookies';
+import { extractSession } from '@utils/extractSession';
 
-export const getSession = (ctx: NextPageContext) => {
+export const getSession = (
+  ctx?: Pick<NextPageContext, 'req'> | { req: NextApiRequest }
+) => {
   const cookies = nookies.get(ctx);
-  const session: { [key: string]: string } = {};
-  const token = cookies.token;
-  const refreshToken = cookies['refresh-token'];
-  const user = cookies['user-data'];
 
-  if (token) session.token = token;
-  if (refreshToken) session['refreshToken'] = refreshToken;
-  if (user) session['user-data'] = user;
-
-  return session;
+  return extractSession(cookies);
 };
