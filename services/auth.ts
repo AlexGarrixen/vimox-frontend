@@ -1,7 +1,10 @@
 import { request } from '@utils/request';
 import { getError } from '@utils/getErrorAxios';
 import { AUTH } from '@utils/endpoints';
-import { PostLoginResponse } from '@globalTypes/authServices';
+import {
+  PostLoginResponse,
+  ResponseGetSession,
+} from '@globalTypes/authServices';
 
 interface SignupValues {
   username: string;
@@ -77,6 +80,16 @@ export const resetPassword = async (
       data: { newPassword, resetToken },
     });
 
+    return data;
+  } catch (reason) {
+    const error = getError(reason);
+    throw error.payload.message;
+  }
+};
+
+export const getSession = async () => {
+  try {
+    const { data } = await request<ResponseGetSession>('/auth/session');
     return data;
   } catch (reason) {
     const error = getError(reason);

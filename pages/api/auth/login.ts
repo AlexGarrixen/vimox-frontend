@@ -24,25 +24,23 @@ export default async (
         }
       );
 
-      const isSecureCookie = process.env.NODE === 'production';
-
       setCookie({ res }, 'token', data.token, {
         path: '/',
         sameSite: 'lax',
         httpOnly: true,
-        secure: isSecureCookie,
+        secure: true,
       });
       setCookie({ res }, 'refresh-token', data.refreshToken, {
         path: '/',
         sameSite: 'lax',
         httpOnly: true,
-        secure: isSecureCookie,
+        secure: true,
       });
       setCookie({ res }, 'user-data', JSON.stringify(data.user), {
         path: '/',
         sameSite: 'lax',
         httpOnly: true,
-        secure: isSecureCookie,
+        secure: true,
       });
 
       res.status(201).json(data);

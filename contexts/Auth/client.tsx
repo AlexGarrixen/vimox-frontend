@@ -1,6 +1,6 @@
 import React from 'react';
 import { AuthContext } from './AuthContext';
-import { request } from '@utils/request';
+import { getSession } from '@services/auth';
 import { Session } from './types';
 
 export const AuthProvider: React.FC = ({ children }) => {
@@ -8,21 +8,9 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = React.useState(!Boolean(session));
 
   React.useEffect(() => {
-    request<Record<string, string>>('auth/cookies')
-      .then(({ data }) => {
-        const sessionData: { [key: string]: string } = {};
-
-        if (data?.cookies) {
-          const token = data.cookies['token'];
-          const refreshToken = data.cookies['refresh-token'];
-          const user = JSON.parse(data.cookies['user-data']);
-
-          sessionData.token = token;
-          sessionData['refresh-token'] = refreshToken;
-          sessionData['user'] = user;
-        }
-
-        setSession(sessionData);
+    getSession()
+      .then(({ session }) => {
+        setSession(session);
         setLoading(false);
       })
       .catch((reason) => {
