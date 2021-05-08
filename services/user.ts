@@ -1,10 +1,13 @@
 import { request } from '@utils/request';
 import { getError } from '@utils/getErrorAxios';
 import { GetUserSeries, PostUserSerie } from '@globalTypes/userServices';
+import routes from '@config/apiRoutes';
 
 export const getListOfSeries = async (userId: string) => {
   try {
-    const { data } = await request<GetUserSeries>(`/user/${userId}/series`);
+    const { data } = await request<GetUserSeries>(
+      routes.user.getSeries(userId)
+    );
     return data;
   } catch (reason) {
     const error = getError(reason);
@@ -14,10 +17,13 @@ export const getListOfSeries = async (userId: string) => {
 
 export const addSerieToList = async (serieId: string, userId: string) => {
   try {
-    const { data } = await request<PostUserSerie>(`/user/${userId}/series`, {
-      method: 'post',
-      data: { serieId },
-    });
+    const { data } = await request<PostUserSerie>(
+      routes.user.postSerie(userId),
+      {
+        method: 'post',
+        data: { serieId },
+      }
+    );
     return data;
   } catch (reason) {
     const error = getError(reason);
@@ -27,9 +33,8 @@ export const addSerieToList = async (serieId: string, userId: string) => {
 
 export const deleteSerieOfList = async (serieId: string, userId: string) => {
   try {
-    const { data } = await request(`/user/${userId}/series`, {
+    const { data } = await request(routes.user.deleteSerie(userId, serieId), {
       method: 'delete',
-      data: { serieId },
     });
     return data;
   } catch (reason) {
@@ -50,16 +55,13 @@ export const updateLastEpisodeWatched = async ({
   userId,
 }: UpdateLastEpisodeWatchedOptions) => {
   try {
-    const { data } = await request(
-      `/user/${userId}/series/last-episode-watched`,
-      {
-        method: 'put',
-        data: {
-          lastEpisodeWatched: episodeId,
-          serieId,
-        },
-      }
-    );
+    const { data } = await request(routes.user.lastEpisodeWatched(userId), {
+      method: 'put',
+      data: {
+        lastEpisodeWatched: episodeId,
+        serieId,
+      },
+    });
 
     return data;
   } catch (reason) {

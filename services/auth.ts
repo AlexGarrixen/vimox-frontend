@@ -1,5 +1,6 @@
 import { request, requestApiRoute } from '@utils/request';
 import { getError } from '@utils/getErrorAxios';
+import routes from '@config/apiRoutes';
 import {
   PostLoginResponse,
   ResponseGetSession,
@@ -13,7 +14,7 @@ interface SignupValues {
 
 export const signup = async (values: SignupValues) => {
   try {
-    const { data } = await request('/auth/signup', {
+    const { data } = await request(routes.auth.signup, {
       method: 'post',
       data: values,
     });
@@ -26,7 +27,7 @@ export const signup = async (values: SignupValues) => {
 
 export const emailConfirmation = async (token: string) => {
   try {
-    const { data } = await request('/auth/email-confirmation', {
+    const { data } = await request(routes.auth.emailConfirmation, {
       method: 'post',
       data: {
         emailToken: token,
@@ -41,7 +42,7 @@ export const emailConfirmation = async (token: string) => {
 
 export const login = async (email: string, password: string) => {
   try {
-    const { data } = await request<PostLoginResponse>('/auth/login', {
+    const { data } = await request<PostLoginResponse>(routes.auth.login, {
       method: 'post',
       auth: {
         username: email,
@@ -57,7 +58,7 @@ export const login = async (email: string, password: string) => {
 
 export const forgotPassword = async (email: string) => {
   try {
-    const { data } = await request('/auth/forgot-password', {
+    const { data } = await request(routes.auth.forgotPassword, {
       method: 'post',
       data: { email },
     });
@@ -74,7 +75,7 @@ export const resetPassword = async (
   resetToken: string
 ) => {
   try {
-    const { data } = await request('/auth/reset-password', {
+    const { data } = await request(routes.auth.resetPassword, {
       method: 'put',
       data: { newPassword, resetToken },
     });
@@ -88,7 +89,9 @@ export const resetPassword = async (
 
 export const getSession = async () => {
   try {
-    const { data } = await requestApiRoute<ResponseGetSession>('/auth/session');
+    const { data } = await requestApiRoute<ResponseGetSession>(
+      routes.auth.session
+    );
     return data;
   } catch (reason) {
     const error = getError(reason);
