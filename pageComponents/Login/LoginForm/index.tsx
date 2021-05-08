@@ -10,7 +10,6 @@ import { Grid } from '@components/Layout/Grid';
 import { Typography } from '@components/DataDisplay/Typography';
 import { useForm } from '@hooks/useForm';
 import { loginSchema } from '@utils/yupSchemas';
-import { login } from '@services/auth';
 
 export const LoginForm = (): JSX.Element => {
   const router = useRouter();
@@ -32,7 +31,7 @@ export const LoginForm = (): JSX.Element => {
     validationSchema: loginSchema,
     onSubmit: async (values, helpers) => {
       try {
-        await logIn(values.email, btoa(values.password));
+        await logIn(values.email, values.password);
         helpers.setSubmitting(false);
         router.replace('/');
       } catch (reason) {
