@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { AuthContext } from './AuthContext';
 import { login } from '@services/auth';
-import { request } from '@utils/request';
+import { request, requestApiRoute } from '@utils/request';
 import { Session } from './types';
 
 export const useAuthMethods = () => {
@@ -12,6 +12,10 @@ export const useAuthMethods = () => {
   const logIn = async (email: string, password: string) => {
     try {
       const sessionData = await login(email, password);
+      await requestApiRoute('/auth/session', {
+        data: sessionData,
+        method: 'post',
+      });
       setSession(sessionData);
 
       return true;
@@ -21,7 +25,7 @@ export const useAuthMethods = () => {
   };
 
   const logOut = async () => {
-    await request('/auth/logout', { method: 'post' });
+    await requestApiRoute('/auth/session', { method: 'delete' });
     setSession(null);
     router.replace('/login');
   };

@@ -32,10 +32,7 @@ export const Form = (): JSX.Element => {
     validationSchema: resetPasswordSchema,
     onSubmit: async (values, helpers) => {
       try {
-        await resetPassword(
-          window.btoa(values.password),
-          router.query.token as string
-        );
+        await resetPassword(values.password, router.query.token as string);
         helpers.setSubmitting(false);
         setSuccessfully(true);
       } catch (reason) {

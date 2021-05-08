@@ -1,6 +1,5 @@
-import { request } from '@utils/request';
+import { request, requestApiRoute } from '@utils/request';
 import { getError } from '@utils/getErrorAxios';
-import { AUTH } from '@utils/endpoints';
 import {
   PostLoginResponse,
   ResponseGetSession,
@@ -14,7 +13,7 @@ interface SignupValues {
 
 export const signup = async (values: SignupValues) => {
   try {
-    const { data } = await request(`${AUTH}/signup`, {
+    const { data } = await request('/auth/signup', {
       method: 'post',
       data: values,
     });
@@ -27,10 +26,10 @@ export const signup = async (values: SignupValues) => {
 
 export const emailConfirmation = async (token: string) => {
   try {
-    const { data } = await request(`${AUTH}/email-verification`, {
+    const { data } = await request('/auth/email-confirmation', {
       method: 'post',
-      params: {
-        token,
+      data: {
+        emailToken: token,
       },
     });
     return data;
@@ -42,10 +41,10 @@ export const emailConfirmation = async (token: string) => {
 
 export const login = async (email: string, password: string) => {
   try {
-    const { data } = await request<PostLoginResponse>(`${AUTH}/login`, {
+    const { data } = await request<PostLoginResponse>('/auth/login', {
       method: 'post',
-      data: {
-        email,
+      auth: {
+        username: email,
         password,
       },
     });
@@ -58,7 +57,7 @@ export const login = async (email: string, password: string) => {
 
 export const forgotPassword = async (email: string) => {
   try {
-    const { data } = await request(`${AUTH}/forgot-password`, {
+    const { data } = await request('/auth/forgot-password', {
       method: 'post',
       data: { email },
     });
@@ -75,7 +74,7 @@ export const resetPassword = async (
   resetToken: string
 ) => {
   try {
-    const { data } = await request(`${AUTH}/reset-password`, {
+    const { data } = await request('/auth/reset-password', {
       method: 'put',
       data: { newPassword, resetToken },
     });
@@ -89,7 +88,7 @@ export const resetPassword = async (
 
 export const getSession = async () => {
   try {
-    const { data } = await request<ResponseGetSession>('/auth/session');
+    const { data } = await requestApiRoute<ResponseGetSession>('/auth/session');
     return data;
   } catch (reason) {
     const error = getError(reason);
