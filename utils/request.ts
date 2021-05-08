@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import { ResponseGetSession } from '@globalTypes/authServices';
+import routes from '@config/apiRoutes';
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_EXTERNAL_SERVER_API_URL,
@@ -28,12 +29,14 @@ export const requestApiRoute = <T = unknown, R = AxiosResponse<T>>(
   });
 
 axiosInstance.interceptors.request.use(async (req) => {
-  const { data } = await requestApiRoute<ResponseGetSession>('/auth/session');
+  const { data } = await requestApiRoute<ResponseGetSession>(
+    routes.auth.session
+  );
 
   if (data.session)
     req.headers['Authorization'] = `Bearer ${data.session.token}`;
 
-  if (req.url === '/auth/renew-token' && data.session) {
+  if (req.url === routes.auth.renewToken && data.session) {
     req.data = { refreshToken: data.session.refreshToken };
   }
 
@@ -41,10 +44,10 @@ axiosInstance.interceptors.request.use(async (req) => {
 });
 
 const authenticationRoutesWithoutToken = [
-  '/auth/login',
-  '/auth/reset-password',
-  '/auth/forgot-password',
-  '/auth/email-confirmation',
+  routes.auth.login,
+  routes.auth.resetPassword,
+  routes.auth.forgotPassword,
+  routes.auth.emailConfirmation,
 ];
 
 axiosInstance.interceptors.response.use(
@@ -54,9 +57,9 @@ axiosInstance.interceptors.response.use(
 
     if (
       error.response.status === 401 &&
-      originalRequest.url === '/auth/renew-token'
+      originalRequest.url === routes.auth.renewToken
     ) {
-      await requestApiRoute('/auth/session', { method: 'delete' });
+      await requestApiRoute(routes.auth.session, { method: 'delete' });
       window.location.replace('/login');
       return Promise.reject(error);
     }
@@ -65,11 +68,11 @@ axiosInstance.interceptors.response.use(
       error.response.status === 401 &&
       !authenticationRoutesWithoutToken.includes(originalRequest.url)
     ) {
-      const { data: newCredentials } = await request('/auth/renew-token', {
+      const { data: newCredentials } = await request(routes.auth.renewToken, {
         method: 'post',
       });
 
-      await requestApiRoute('/auth/renew-credentials', {
+      await requestApiRoute(routes.auth.renewCredentials, {
         method: 'post',
         data: { newCredentials },
       });

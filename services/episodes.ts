@@ -1,6 +1,6 @@
 import { request } from '@utils/request';
 import { getError } from '@utils/getErrorAxios';
-import { EPISODES } from '@utils/endpoints';
+import routes from '@config/apiRoutes';
 import type {
   GetEpisodesParams,
   GetEpisodesResponse,
@@ -11,7 +11,7 @@ export const getEpisodes = async <T extends GetEpisodesResponse>(
   params: GetEpisodesParams = {}
 ) => {
   try {
-    const { data } = await request<T>(EPISODES, { params });
+    const { data } = await request<T>(routes.episodes.all, { params });
     return data;
   } catch (reason) {
     const error = getError(reason);
@@ -21,7 +21,7 @@ export const getEpisodes = async <T extends GetEpisodesResponse>(
 
 export const getEpisode = async <T extends Episode>(episodeId: string) => {
   try {
-    const { data } = await request<T>(`${EPISODES}/${episodeId}`);
+    const { data } = await request<T>(routes.episodes.getOne(episodeId));
     return data;
   } catch (reason) {
     const error = getError(reason);
