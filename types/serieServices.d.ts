@@ -33,7 +33,7 @@ export interface Serie {
 }
 
 export interface GetSeriesParams {
-  type?: 'tv' | 'movie';
+  type?: string;
   title?: string;
   sort_createdAt?: 'asc' | 'desc';
   limit_items?: number;

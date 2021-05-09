@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const CarouselBox = styled.div`
+export const Root = styled.div`
   position: relative;
 
   .carousel .slick-slide > div {
@@ -16,11 +16,9 @@ export const CarouselBox = styled.div`
   }
 `;
 
-type ArrowButtonProps = {
+export const ArrowButton = styled.button<{
   toRight?: boolean;
-};
-
-export const ArrowButton = styled.button<ArrowButtonProps>`
+}>`
   display: none;
 
   @media (min-width: ${({ theme }) => theme.screens.md}) {

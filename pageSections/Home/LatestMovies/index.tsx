@@ -6,15 +6,13 @@ import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { getSeries } from '@services/series';
 import { Carousel } from './Carousel';
 import { Skeleton } from './Skeleton';
-import { LatestMoviesBox } from './styled';
+import { Root } from './styled';
 
 export const LatestMovies = () => {
   const { data, isLoading, error, refetch } = useQuery(
-    [
-      'latestMovies_home',
-      { limit_items: 10, type: 'pelicula', sort_createdAt: 'desc' },
-    ],
-    async ({ queryKey }) => getSeries(queryKey[1])
+    'latestMovies_home',
+    () =>
+      getSeries({ limit_items: 10, type: 'pelicula', sort_createdAt: 'desc' })
   );
 
   if (error)
@@ -27,13 +25,13 @@ export const LatestMovies = () => {
   if (isLoading) return <Skeleton />;
 
   return (
-    <LatestMoviesBox>
+    <Root>
       <Container>
         <Typography as='h4' white margin='0 0 32px 0'>
           Ultimas peliculas
         </Typography>
-        <Carousel data={data.series} />
+        <Carousel series={data.series} />
       </Container>
-    </LatestMoviesBox>
+    </Root>
   );
 };

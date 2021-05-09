@@ -4,14 +4,14 @@ import Slider from 'react-slick';
 import { Serie } from '@components/DataDisplay/Serie';
 import { ChevronLeft } from '@components/Icon/ChevronLeft';
 import { ChevronRight } from '@components/Icon/ChevronRight';
-import type { GetSeriesResponse } from '@globalTypes/serieServices';
-import { CarouselBox, ArrowButton } from './styled';
+import { GetSeriesResponse } from '@globalTypes/serieServices';
+import { Root, ArrowButton } from './styled';
 
 type CarouselProps = {
-  data: GetSeriesResponse['series'];
+  series: GetSeriesResponse['series'];
 };
 
-export const Carousel = ({ data }: CarouselProps) => {
+export const Carousel = ({ series }: CarouselProps) => {
   const [slider, setSlider] = React.useState<Slider>(null);
 
   const next = React.useCallback(() => slider.slickNext(), [slider]);
@@ -19,7 +19,7 @@ export const Carousel = ({ data }: CarouselProps) => {
   const prev = React.useCallback(() => slider.slickPrev(), [slider]);
 
   return (
-    <CarouselBox>
+    <Root>
       <ArrowButton onClick={prev}>
         <ChevronLeft color='#fff' xl />
       </ArrowButton>
@@ -50,22 +50,23 @@ export const Carousel = ({ data }: CarouselProps) => {
           },
         ]}
       >
-        {data.map(({ _id, name, imageMd, episodes, totalDuration }) => (
-          <Link key={_id} href={`/serie/${_id}`}>
-            <a>
-              <Serie
-                name={name}
-                thumbnail={imageMd}
-                totalEpisodes={episodes.length}
-                duration={totalDuration}
-              />
-            </a>
-          </Link>
-        ))}
+        {Array.isArray(series) &&
+          series.map(({ _id, name, imageMd, episodes, totalDuration }) => (
+            <Link key={_id} href={`/serie/${_id}`}>
+              <a>
+                <Serie
+                  name={name}
+                  thumbnail={imageMd}
+                  totalEpisodes={episodes.length}
+                  duration={totalDuration}
+                />
+              </a>
+            </Link>
+          ))}
       </Slider>
       <ArrowButton toRight onClick={next}>
         <ChevronRight color='#fff' xl />
       </ArrowButton>
-    </CarouselBox>
+    </Root>
   );
 };
