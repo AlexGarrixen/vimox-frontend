@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
-export const LatestEpisodesBox = styled.section`
+export const Root = styled.section`
   margin-top: 80px;
 `;

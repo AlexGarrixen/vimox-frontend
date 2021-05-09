@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Image } from '@components/DataDisplay/Image';
-import { EpisodeBox, ThumbnailBox } from './styled';
+import { Root, ThumbnailBox } from './styled';
 
 type EpisodeProps = {
   id: string;
@@ -21,7 +21,7 @@ export const Episode = ({
 }: EpisodeProps) => (
   <Link href={`/watch?serieId=${serieId}&episodeId=${id}`}>
     <a>
-      <EpisodeBox>
+      <Root>
         <ThumbnailBox>
           <Image src={thumbnail} />
         </ThumbnailBox>
@@ -31,7 +31,7 @@ export const Episode = ({
           </Typography>
           <Typography>{name}</Typography>
         </div>
-      </EpisodeBox>
+      </Root>
     </a>
   </Link>
 );

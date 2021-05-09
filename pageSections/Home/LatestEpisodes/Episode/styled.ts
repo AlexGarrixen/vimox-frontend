@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const EpisodeBox = styled.article`
+export const Root = styled.article`
   display: flex;
   align-items: center;
   position: relative;
