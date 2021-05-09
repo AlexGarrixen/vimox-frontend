@@ -25,7 +25,7 @@ export const LatestEpisodes = () => {
   return (
     <LatestEpisodesBox>
       <Container>
-        <EpisodesList data={data} />
+        <EpisodesList data={data.data} />
       </Container>
     </LatestEpisodesBox>
   );

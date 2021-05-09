@@ -27,7 +27,13 @@ export interface Episode {
   };
 }
 
-export type GetEpisodesResponse = Episode[];
+export interface GetEpisodesResponse {
+  data: Episode[];
+  lastPage: string;
+  nextPage: string;
+  prevPage: string;
+  count: number;
+}
 
 export interface GetEpisodesParams {
   sort_createdAt?: 'asc' | 'desc';

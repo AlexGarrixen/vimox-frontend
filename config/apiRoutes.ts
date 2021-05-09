@@ -23,8 +23,8 @@ const apiRoutes = {
   user: {
     getSeries: (userId: string) => `/user/${userId}/series`,
     postSerie: (userId: string) => `/user/${userId}/series`,
-    lastEpisodeWatched: (userId: string) =>
-      `/user/${userId}/series/last-episode-watched`,
+    lastEpisodeWatched: (userId: string, serieId: string) =>
+      `/user/${userId}/series/${serieId}/last-episode-watched`,
     deleteSerie: (userId: string, serieId: string) =>
       `/user/${userId}/series/${serieId}`,
   },

@@ -5,7 +5,7 @@ import type { GetEpisodesResponse } from '@globalTypes/episodeServices';
 import { Episode } from './Episode';
 
 type EpisodesListProps = {
-  data: GetEpisodesResponse;
+  data: GetEpisodesResponse['data'];
 };
 
 export const EpisodesList = ({ data }: EpisodesListProps) => (

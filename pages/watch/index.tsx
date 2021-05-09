@@ -72,7 +72,10 @@ const Watch = ({ querys }: WatchProps) => {
     return (
       <>
         <PlayerComponent src={data.episode.src} />
-        <NavButtons currentEpisode={data.episode} episodes={data.episodes} />
+        <NavButtons
+          currentEpisode={data.episode}
+          episodes={data.episodes.data}
+        />
         <About
           name={data.episode.name}
           order={data.episode.order}
