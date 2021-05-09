@@ -3,9 +3,9 @@ import { GetServerSideProps } from 'next';
 import { useQuery } from 'react-query';
 import { LayoutApp } from '@components/Layout/LayoutApp';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
-import { Hero } from '@pageComponents/Serie/Hero';
-import { EpisodesGrid } from '@pageComponents/Serie/EpisodesGrid';
-import { Skeleton } from '@pageComponents/Serie/Skeleton';
+import { Hero } from 'pageSections/Serie/Hero';
+import { EpisodesGrid } from 'pageSections/Serie/EpisodesGrid';
+import { Skeleton } from '@pageSections/Serie/Skeleton';
 import { getSerie } from '@services/series';
 import { useSession } from '@contexts/Auth/hooks';
 
