@@ -55,13 +55,15 @@ export const updateLastEpisodeWatched = async ({
   userId,
 }: UpdateLastEpisodeWatchedOptions) => {
   try {
-    const { data } = await request(routes.user.lastEpisodeWatched(userId), {
-      method: 'put',
-      data: {
-        lastEpisodeWatched: episodeId,
-        serieId,
-      },
-    });
+    const { data } = await request(
+      routes.user.lastEpisodeWatched(userId, serieId),
+      {
+        method: 'put',
+        data: {
+          lastEpisodeWatched: episodeId,
+        },
+      }
+    );
 
     return data;
   } catch (reason) {
