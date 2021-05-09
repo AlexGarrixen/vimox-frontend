@@ -15,9 +15,9 @@ export const ImageStyled = styled(Image)`
   object-position: center;
 `;
 
-export const CoverImage = () => {
-  const { data, activeIndex } = React.useContext(Context);
-  const transitions = useTransition(data[activeIndex], (item) => item._id, {
+export const BackgroundCover = () => {
+  const { series, activeIndex } = React.useContext(Context);
+  const transitions = useTransition(series[activeIndex], (item) => item._id, {
     from: {
       opacity: 1,
     },

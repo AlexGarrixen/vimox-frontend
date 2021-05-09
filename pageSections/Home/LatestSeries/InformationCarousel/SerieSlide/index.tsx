@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { animated } from 'react-spring';
 import { Play } from '@components/Icon/Play';
 import { Typography } from '@components/DataDisplay/Typography';
-import type { Gener } from '@globalTypes/generServices';
+import { Gener } from '@globalTypes/generServices';
 import { useAnimations } from './hook';
-import { SlideContentBox, GenersBox } from './styled';
+import { Root, GenersBox } from './styled';
 
-type SlideContentProps = {
+type SerieSlideProps = {
   index: number;
   name: string;
   geners: Gener[];
@@ -16,20 +16,20 @@ type SlideContentProps = {
   isActive?: boolean;
 };
 
-export const SlideContent = ({
+export const SerieSlide = ({
   index,
   id,
   name,
   geners,
   style,
   isActive,
-}: SlideContentProps) => {
+}: SerieSlideProps) => {
   const { headingCssProps, genersCssProps, playCssProps } = useAnimations(
     index
   );
 
   return (
-    <SlideContentBox style={style} isActive={isActive}>
+    <Root style={style} isActive={isActive}>
       <animated.div style={headingCssProps}>
         <Typography
           as='h2'
@@ -58,6 +58,6 @@ export const SlideContent = ({
           </a>
         </Link>
       </animated.div>
-    </SlideContentBox>
+    </Root>
   );
 };

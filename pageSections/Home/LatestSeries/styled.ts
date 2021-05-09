@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CarouselBox = styled.section`
+export const Root = styled.section`
   min-height: 100vh;
   display: flex;
   flex-direction: column;

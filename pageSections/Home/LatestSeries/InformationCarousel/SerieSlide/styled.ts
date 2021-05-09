@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
-type SlideContentBoxProps = {
+type SerieSlideProps = {
   isActive?: boolean;
 };
 
-export const SlideContentBox = styled.div<SlideContentBoxProps>`
+export const Root = styled.div<SerieSlideProps>`
   max-width: 600px;
   display: flex;
   flex-direction: column;
