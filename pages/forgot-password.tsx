@@ -1,7 +1,7 @@
 import React from 'react';
 import { LayoutApp } from '@components/Layout/LayoutApp';
 import { Container } from '@components/Layout/Container';
-import { Form } from '@pageComponents/ForgotPassword/Form';
+import { Form } from '@pageSections/ForgotPassword/Form';
 
 const ForgotPassword = (): JSX.Element => (
   <LayoutApp title='Olvidaste tu contraseña' verticallyCenterContent>

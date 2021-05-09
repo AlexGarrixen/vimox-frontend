@@ -3,9 +3,9 @@ import { GetServerSideProps } from 'next';
 import { LayoutApp } from '@components/Layout/LayoutApp';
 import { Container } from '@components/Layout/Container';
 import { Typography } from '@components/DataDisplay/Typography';
-import { DirectoryProvider } from '@pageComponents/Directory/Provider';
-import { SeriesGrid } from '@pageComponents/Directory/SeriesGrid';
-import { Filter } from '@pageComponents/Directory/Filter';
+import { DirectoryProvider } from '@pageSections/Directory/Provider';
+import { SeriesGrid } from '@pageSections/Directory/SeriesGrid';
+import { Filter } from '@pageSections/Directory/Filter';
 
 type HomeProps = {
   querys: Record<string, string>;

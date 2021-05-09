@@ -5,7 +5,7 @@ import { Grid } from '@components/Layout/Grid';
 import { Serie } from '@components/DataDisplay/Serie';
 import { Button } from '@components/Form/Button';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
-import { DirectoryContext } from '@pageComponents/Directory/Context';
+import { DirectoryContext } from '../Context';
 import { Skeleton } from './Skeleton';
 import { getSeries } from '@services/series';
 import { SeriesGridBox, MoreButtonBox } from './styled';
