@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FilterBox = styled.div`
+export const Root = styled.div`
   padding-bottom: 330px;
   margin-bottom: calc(-330px + 30px);
   overflow: hidden;
