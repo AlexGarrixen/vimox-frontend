@@ -2,29 +2,20 @@ import React from 'react';
 import { animated } from 'react-spring';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Container } from '@components/Layout/Container';
-import { Button } from '@components/Form/Button';
+import { ButtonAddQueue } from './ButtonAddQueue';
 import { Gener } from '@globalTypes/generServices';
 import { useReadMore } from '@hooks/useReadMore';
-import { HeroBox, CoverImage, GenersBox } from './styled';
-import { useAnimations, useAddAndRemoveSerieOfList } from './hook';
+import { Root, CoverImage, GenersBox } from './styled';
+import { useAnimations } from './hook';
 
 type HeroProps = {
-  serieId: string;
   cover: string;
   name: string;
   sinopsis: string;
   geners: Gener[];
-  isAdded: boolean;
 };
 
-export const Hero = ({
-  serieId,
-  name,
-  sinopsis,
-  cover,
-  geners,
-  isAdded,
-}: HeroProps) => {
+export const Hero = ({ name, sinopsis, cover, geners }: HeroProps) => {
   const { headingCssProps, genersCssProps, sinopsisCssProps } = useAnimations();
 
   const { text, showReadMore, showFullText, handleToggle } = useReadMore(
@@ -32,16 +23,8 @@ export const Hero = ({
     120
   );
 
-  const {
-    added,
-    handleAddSerie,
-    handleRemoveSerie,
-    loadingAddSerie,
-    loadingDeleteSerie,
-  } = useAddAndRemoveSerieOfList({ isAdded, serieId, nameSerie: name });
-
   return (
-    <HeroBox>
+    <Root>
       <CoverImage src={cover} />
       <Container>
         <animated.div style={headingCssProps}>
@@ -79,25 +62,9 @@ export const Hero = ({
               </Typography>
             )}
           </Typography>
-          {!added ? (
-            <Button
-              margin='14px 0 0 0'
-              onClick={handleAddSerie}
-              disabled={loadingAddSerie}
-            >
-              Añadir a mi lista
-            </Button>
-          ) : (
-            <Button
-              margin='14px 0 0 0'
-              onClick={handleRemoveSerie}
-              disabled={loadingDeleteSerie}
-            >
-              Quitar de mi lista
-            </Button>
-          )}
+          <ButtonAddQueue />
         </animated.div>
       </Container>
-    </HeroBox>
+    </Root>
   );
 };

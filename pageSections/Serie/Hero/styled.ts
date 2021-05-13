@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Image } from '@components/DataDisplay/Image';
 
-export const HeroBox = styled.div`
+export const Root = styled.div`
   min-height: 100vh;
   position: relative;
   display: flex;
