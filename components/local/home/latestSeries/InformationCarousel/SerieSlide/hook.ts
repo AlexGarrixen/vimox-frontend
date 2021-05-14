@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSpring } from 'react-spring';
-import { Context } from '../../Context/Context';
+import { Context } from '../../Provider/Context';
 
 const initialStyles = {
   opacity: 0,

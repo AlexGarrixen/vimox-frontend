@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-import { Context } from '../../Context';
+import { Context } from '../../Provider';
 import { SerieSlide } from '../SerieSlide';
 
 type CarouselProps = {

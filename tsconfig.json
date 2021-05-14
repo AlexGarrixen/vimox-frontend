@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["components/global/*"],
+      "@localComponents/*": ["components/local/*"],
       "@pageSections/*": ["pageSections/*"],
       "@hooks/*": ["hooks/*"],
       "@contexts/*": ["contexts/*"],

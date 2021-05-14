@@ -2,7 +2,7 @@ import React from 'react';
 import { useTransition, animated } from 'react-spring';
 import styled from 'styled-components';
 import { Image } from '@components/DataDisplay/Image';
-import { Context } from '../Context';
+import { Context } from '../Provider';
 
 export const ImageStyled = styled(Image)`
   position: absolute;

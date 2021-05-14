@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-import { Context } from '../../Context';
+import { Context } from '../../Provider';
 import { ChevronLeft } from '@components/Icon/ChevronLeft';
 import { ChevronRight } from '@components/Icon/ChevronRight';
 import { ThumbnailSlide } from '../ThumbnailSlide';
