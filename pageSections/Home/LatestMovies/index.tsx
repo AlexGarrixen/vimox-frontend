@@ -4,8 +4,8 @@ import { Typography } from '@components/DataDisplay/Typography';
 import { Container } from '@components/Layout/Container';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { getSeries } from '@services/series';
-import { Carousel } from './Carousel';
-import { Skeleton } from './Skeleton';
+import { Carousel } from '@localComponents/home/latestMovies/Carousel';
+import { Skeleton } from '@localComponents/home/latestMovies/Skeleton';
 import { Root } from './styled';
 
 export const LatestMovies = () => {
