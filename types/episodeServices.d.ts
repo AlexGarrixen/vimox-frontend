@@ -38,4 +38,5 @@ export interface GetEpisodesResponse {
 export interface GetEpisodesParams {
   sort_createdAt?: 'asc' | 'desc';
   of_serieId?: string;
+  limit_items?: ?number;
 }

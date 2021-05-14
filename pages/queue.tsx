@@ -1,5 +1,5 @@
 import React from 'react';
-import { QueueList } from '@pageComponents/Queue/QueueList';
+import { QueueList } from '@pageSections/Queue/QueueList';
 import { LayoutApp } from '@components/Layout/LayoutApp';
 import { AccessDenied } from '@components/Feedback/AccessDenied';
 import { useSession } from '@contexts/Auth/hooks';

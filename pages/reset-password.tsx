@@ -1,7 +1,7 @@
 import React from 'react';
 import { LayoutApp } from '@components/Layout/LayoutApp';
 import { Container } from '@components/Layout/Container';
-import { Form } from '@pageComponents/ResetPassword/Form';
+import { Form } from '@pageSections/ResetPassword/Form';
 
 const ResetPassword = (): JSX.Element => (
   <LayoutApp verticallyCenterContent>
