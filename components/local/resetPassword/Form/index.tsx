@@ -6,15 +6,16 @@ import { Button } from '@components/Form/Button';
 import { Input } from '@components/Form/Input';
 import { HelperText } from '@components/Form/HelperText';
 import { Typography } from '@components/DataDisplay/Typography';
-import { PasswordResetedSuccessfully } from '../PasswordResetedSuccessfully';
 import { useForm } from '@hooks/useForm';
 import { resetPasswordSchema } from '@utils/yupSchemas';
 import { resetPassword } from '@services/auth';
 
-export const Form = (): JSX.Element => {
-  const router = useRouter();
+type FormProps = {
+  onSuccess?: () => void;
+};
 
-  const [isSuccessfully, setSuccessfully] = React.useState(false);
+export const Form = ({ onSuccess }: FormProps): JSX.Element => {
+  const router = useRouter();
 
   const {
     values,
@@ -34,16 +35,14 @@ export const Form = (): JSX.Element => {
       try {
         await resetPassword(values.password, router.query.token as string);
         helpers.setSubmitting(false);
-        setSuccessfully(true);
+        onSuccess && onSuccess();
       } catch (reason) {
         toast.error(reason);
       }
     },
   });
 
-  return isSuccessfully ? (
-    <PasswordResetedSuccessfully />
-  ) : (
+  return (
     <div>
       <Typography as='h3' white>
         Crea una nueva contraseña
