@@ -2,11 +2,11 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { getSeries } from '@services/series';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
-import { Provider } from './Context';
-import { BackgroundCover } from './BackgroundCover';
-import { InformationCarousel } from './InformationCarousel';
-import { NavigationCarousel } from './NavigationCarousel';
-import { Skeleton } from './Skeleton';
+import { Provider } from '@localComponents/home/latestSeries/Provider';
+import { BackgroundCover } from '@localComponents/home/latestSeries/BackgroundCover';
+import { InformationCarousel } from '@localComponents/home/latestSeries/InformationCarousel';
+import { NavigationCarousel } from '@localComponents/home/latestSeries/NavigationCarousel';
+import { Skeleton } from '@localComponents/home/latestSeries/Skeleton';
 import { Root } from './styled';
 
 export const LatestSeries = () => {

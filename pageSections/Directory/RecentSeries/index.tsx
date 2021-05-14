@@ -4,10 +4,10 @@ import { getSeries } from '@services/series';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { Typography } from '@components/DataDisplay/Typography';
 import { useFilterQuery } from '@hooks/useFilterQuery';
-import { Filter } from './Filter';
-import { SeriesGrid } from './SeriesGrid';
-import { PaginationControls } from './PaginationControls';
-import { Skeleton } from './Skeleton';
+import { Filter } from '@localComponents/directory/recentSeries/Filter';
+import { SeriesGrid } from '@localComponents/directory/recentSeries/SeriesGrid';
+import { PaginationControls } from '@localComponents/directory/recentSeries/PaginationControls';
+import { Skeleton } from '@localComponents/directory/recentSeries/Skeleton';
 
 export const RecentSeries = () => {
   const { recoverFilterQuerys } = useFilterQuery();

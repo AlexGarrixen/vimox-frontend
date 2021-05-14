@@ -4,10 +4,9 @@ import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import { LayoutApp } from '@components/Layout/LayoutApp';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
-import { PlayerComponent } from '@pageSections/Watch/Player';
-import { NavButtons } from '@pageSections/Watch/NavButtons';
-import { About } from '@pageSections/Watch/About';
-import { Skeleton } from '@pageSections/Watch/Skeleton';
+import { Provider } from '@localComponents/watch/Provider';
+import { Skeleton } from '@localComponents/watch/Skeleton';
+import { MediaContent } from '@pageSections/Watch/MediaContent';
 import { getEpisode, getEpisodes } from '@services/episodes';
 import { updateLastEpisodeWatched } from '@services/user';
 import { useSession } from '@contexts/Auth/hooks';
@@ -33,7 +32,6 @@ const Watch = ({ querys }: WatchProps) => {
           episodes: data[1],
         };
       } catch (reason) {
-        console.error(reason);
         throw 'Algo salio mal intentalo mas tarde';
       }
     }
@@ -41,11 +39,11 @@ const Watch = ({ querys }: WatchProps) => {
 
   React.useEffect(() => {
     if (session) {
-      const userWatchingSerie = data?.episode.serie.addedByUsers?.find(
+      const inQueueUser = data?.episode.serie.addedByUsers?.find(
         ({ user }) => user === session.user._id
       );
 
-      if (userWatchingSerie) {
+      if (inQueueUser) {
         updateLastEpisodeWatched({
           userId: session.user._id,
           serieId: querys.serieId,
@@ -57,34 +55,6 @@ const Watch = ({ querys }: WatchProps) => {
     }
   }, [session, data]);
 
-  const renderContent = () => {
-    if (error)
-      return (
-        <ErrorMessage margin='80px 0 0 0' onClickRetry={refetch}>
-          {error}
-        </ErrorMessage>
-      );
-
-    if (isLoading || isFetching || loading) return <Skeleton />;
-
-    if (!data || !data.episode) return <div />;
-
-    return (
-      <>
-        <PlayerComponent src={data.episode.src} />
-        <NavButtons
-          currentEpisode={data.episode}
-          episodes={data.episodes.data}
-        />
-        <About
-          name={data.episode.name}
-          order={data.episode.order}
-          sinopsis={data.episode.sinopsis}
-        />
-      </>
-    );
-  };
-
   return (
     <LayoutApp
       title={
@@ -93,7 +63,17 @@ const Watch = ({ querys }: WatchProps) => {
           : 'GxAnime - mirar'
       }
     >
-      {renderContent()}
+      {error ? (
+        <ErrorMessage margin='80px 0 0 0' onClickRetry={refetch}>
+          {error}
+        </ErrorMessage>
+      ) : isLoading || isFetching || loading ? (
+        <Skeleton />
+      ) : (
+        <Provider episode={data.episode} episodesSerie={data.episodes.data}>
+          <MediaContent />
+        </Provider>
+      )}
     </LayoutApp>
   );
 };

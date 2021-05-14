@@ -3,10 +3,10 @@ import { GetServerSideProps } from 'next';
 import { useQuery } from 'react-query';
 import { LayoutApp } from '@components/Layout/LayoutApp';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
-import { Provider } from '@pageSections/Serie/Context';
+import { Provider } from '@localComponents/serie/Provider';
+import { Skeleton } from '@localComponents/serie/Skeleton';
 import { Hero } from '@pageSections/Serie/Hero';
 import { EpisodesGrid } from '@pageSections/Serie/EpisodesGrid';
-import { Skeleton } from '@pageSections/Serie/Skeleton';
 import { getSerie } from '@services/series';
 
 type SerieProps = {

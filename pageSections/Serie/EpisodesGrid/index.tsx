@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Grid } from '@components/Layout/Grid';
 import { Container } from '@components/Layout/Container';
-import { Episode } from './Episode';
+import { Episode } from '@localComponents/serie/EpisodesGrid/Episode';
 import type { Serie } from '@globalTypes/serieServices';
 
 type EpisodesGridProps = {

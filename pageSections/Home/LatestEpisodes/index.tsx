@@ -2,9 +2,9 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { Container } from '@components/Layout/Container';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
+import { EpisodesGrid } from '@localComponents/home/latestEpisodes/EpisodesGrid';
+import { Skeleton } from '@localComponents/home/latestEpisodes/Skeleton';
 import { getEpisodes } from '@services/episodes';
-import { EpisodesGrid } from './EpisodesGrid';
-import { Skeleton } from './Skeleton';
 import { Root } from './styled';
 
 export const LatestEpisodes = () => {

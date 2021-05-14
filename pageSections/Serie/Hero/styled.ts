@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Image } from '@components/DataDisplay/Image';
 
 export const Root = styled.div`
   min-height: 100vh;
@@ -34,29 +33,5 @@ export const Root = styled.div`
   h2,
   p {
     max-width: 600px;
-  }
-`;
-
-export const CoverImage = styled(Image)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 70%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-`;
-
-export const GenersBox = styled.div`
-  display: flex;
-  margin-bottom: 14px;
-
-  p:not(:last-child) {
-    margin-right: 12px;
-  }
-
-  p:not(:last-child)::after {
-    content: '|';
-    margin-left: 12px;
   }
 `;

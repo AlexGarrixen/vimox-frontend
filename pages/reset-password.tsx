@@ -1,12 +1,12 @@
 import React from 'react';
 import { LayoutApp } from '@components/Layout/LayoutApp';
 import { Container } from '@components/Layout/Container';
-import { Form } from '@pageSections/ResetPassword/Form';
+import { FormReset } from '@pageSections/ResetPassword/FormReset';
 
 const ResetPassword = (): JSX.Element => (
   <LayoutApp verticallyCenterContent>
     <Container maxWidth='sm'>
-      <Form />
+      <FormReset />
     </Container>
   </LayoutApp>
 );
