@@ -1,33 +1,29 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import type { NavButtonsProps } from './index';
+import { Context } from '../../Provider';
 import type { Episode } from '@globalTypes/episodeServices';
 
-export const useNavigation = ({
-  currentEpisode,
-  episodes,
-}: NavButtonsProps) => {
+export const useNavigation = () => {
+  const { episodesSerie, episode } = React.useContext(Context);
   const router = useRouter();
 
   const episodesByOrder = React.useMemo(() => {
     const map: Record<number, Episode> = {};
 
-    for (const ep of episodes) {
+    for (const ep of episodesSerie) {
       map[ep.order] = ep;
     }
 
     return map;
-  }, [episodes]);
+  }, [episodesSerie]);
 
-  const nextEpisode = React.useMemo(
-    () => episodesByOrder[currentEpisode.order + 1],
-    [episodesByOrder]
-  );
+  const nextEpisode = React.useMemo(() => episodesByOrder[episode.order + 1], [
+    episodesByOrder,
+  ]);
 
-  const prevEpisode = React.useMemo(
-    () => episodesByOrder[currentEpisode.order - 1],
-    [episodesByOrder]
-  );
+  const prevEpisode = React.useMemo(() => episodesByOrder[episode.order - 1], [
+    episodesByOrder,
+  ]);
 
   const handleNextEpisode = React.useCallback(
     () =>
@@ -49,6 +45,5 @@ export const useNavigation = ({
     handleNextEpisode,
     handlePrevEpisode,
     nextEpisode,
-    prevEpisode,
   };
 };
