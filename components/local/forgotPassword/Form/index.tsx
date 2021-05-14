@@ -5,7 +5,6 @@ import { Button } from '@components/Form/Button';
 import { Input } from '@components/Form/Input';
 import { HelperText } from '@components/Form/HelperText';
 import { Typography } from '@components/DataDisplay/Typography';
-import { EmailSend } from '../EmailSend';
 import { useForm } from '@hooks/useForm';
 import { forgotPassword } from '@services/auth';
 
@@ -15,9 +14,11 @@ const validationSchema = Yup.object({
     .required('El email es requerido'),
 });
 
-export const Form = (): JSX.Element => {
-  const [isSuccessfully, setSuccessfully] = React.useState(false);
+type FormProps = {
+  onSuccess?: () => void;
+};
 
+export const Form = ({ onSuccess }: FormProps): JSX.Element => {
   const {
     values,
     errors,
@@ -35,16 +36,14 @@ export const Form = (): JSX.Element => {
       try {
         await forgotPassword(values.email);
         helpers.setSubmitting(false);
-        setSuccessfully(true);
+        onSuccess && onSuccess();
       } catch (reason) {
         toast.error(reason);
       }
     },
   });
 
-  return isSuccessfully ? (
-    <EmailSend />
-  ) : (
+  return (
     <div style={{ textAlign: 'center' }}>
       <img src='/forgot-password.png' />
       <Typography as='h3' white>
