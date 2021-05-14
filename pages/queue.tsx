@@ -7,18 +7,9 @@ import { useSession } from '@contexts/Auth/hooks';
 const MyList = (): JSX.Element => {
   const [session, loading] = useSession();
 
-  if (loading) return <LayoutApp>Cargando</LayoutApp>;
-
-  if (!session || !session.token)
-    return (
-      <LayoutApp verticallyCenterContent>
-        <AccessDenied />
-      </LayoutApp>
-    );
-
   return (
-    <LayoutApp title='Mi lista'>
-      <QueueList />
+    <LayoutApp title='Mi lista' verticallyCenterContent={!session}>
+      {loading ? <div /> : !session ? <AccessDenied /> : <QueueList />}
     </LayoutApp>
   );
 };
