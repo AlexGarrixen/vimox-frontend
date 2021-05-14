@@ -2,7 +2,7 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { addSerieToList, deleteSerieOfList } from '@services/user';
 import { useSession } from '@contexts/Auth/hooks';
-import { Context } from '../../Context';
+import { Context } from '../../Provider';
 
 export const useAddQueue = (opts?: { onSuccess?: () => void }) => {
   const { serieId, serieName } = React.useContext(Context);

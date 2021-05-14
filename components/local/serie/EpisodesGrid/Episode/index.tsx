@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Play } from '@components/Icon/Play';
-import { Context } from '../../Context';
+import { Context } from '../../Provider';
 import { ThumbnailBox, Thumbnail, PlayButton, Title } from './styled';
 
 type EpisodeProps = {

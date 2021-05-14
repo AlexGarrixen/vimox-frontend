@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@components/Form/Button';
-import { Context } from '../../Context';
+import { Context } from '../../Provider';
 import { useAddQueue, useRemoveQueue } from './hook';
 
 export const ButtonAddQueue = () => {

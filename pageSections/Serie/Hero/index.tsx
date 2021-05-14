@@ -2,10 +2,12 @@ import React from 'react';
 import { animated } from 'react-spring';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Container } from '@components/Layout/Container';
-import { ButtonAddQueue } from './ButtonAddQueue';
+import { ButtonAddQueue } from '@localComponents/serie/Hero/ButtonAddQueue';
+import { CoverImage } from '@localComponents/serie/Hero/CoverImage';
+import { Geners } from '@localComponents/serie/Hero/Geners';
+import { Sinopsis } from '@localComponents/serie/Hero/Sinopsis';
 import { Gener } from '@globalTypes/generServices';
-import { useReadMore } from '@hooks/useReadMore';
-import { Root, CoverImage, GenersBox } from './styled';
+import { Root } from './styled';
 import { useAnimations } from './hook';
 
 type HeroProps = {
@@ -17,11 +19,6 @@ type HeroProps = {
 
 export const Hero = ({ name, sinopsis, cover, geners }: HeroProps) => {
   const { headingCssProps, genersCssProps, sinopsisCssProps } = useAnimations();
-
-  const { text, showReadMore, showFullText, handleToggle } = useReadMore(
-    sinopsis,
-    120
-  );
 
   return (
     <Root>
@@ -40,28 +37,10 @@ export const Hero = ({ name, sinopsis, cover, geners }: HeroProps) => {
           </Typography>
         </animated.div>
         <animated.div style={genersCssProps}>
-          <GenersBox>
-            {geners.map(({ _id, name }) => (
-              <Typography key={_id} white>
-                {name}
-              </Typography>
-            ))}
-          </GenersBox>
+          <Geners geners={geners} />
         </animated.div>
         <animated.div style={sinopsisCssProps}>
-          <Typography>
-            {text}
-            {showReadMore && (
-              <Typography
-                as='span'
-                white
-                onClick={handleToggle}
-                style={{ cursor: 'pointer' }}
-              >
-                {showFullText ? ' menos' : ' ...más'}
-              </Typography>
-            )}
-          </Typography>
+          <Sinopsis text={sinopsis} />
           <ButtonAddQueue />
         </animated.div>
       </Container>
