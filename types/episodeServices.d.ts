@@ -27,6 +27,12 @@ export interface Episode {
   };
 }
 
+export interface ResponseGetEpisode {
+  episode: Episode;
+  nextEpisode: Episode | null;
+  prevEpisode: Episode | null;
+}
+
 export interface GetEpisodesResponse {
   data: Episode[];
   lastPage: string;

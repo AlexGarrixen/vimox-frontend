@@ -7,7 +7,7 @@ import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { Provider } from '@localComponents/watch/Provider';
 import { Skeleton } from '@localComponents/watch/Skeleton';
 import { MediaContent } from '@pageSections/Watch/MediaContent';
-import { getEpisode, getEpisodes } from '@services/episodes';
+import { getEpisode } from '@services/episodes';
 import { updateLastEpisodeWatched } from '@services/user';
 import { useSession } from '@contexts/Auth/hooks';
 
@@ -19,22 +19,8 @@ const Watch = ({ querys }: WatchProps) => {
   const [session, loading] = useSession();
 
   const { data, isLoading, error, isFetching, refetch } = useQuery(
-    ['episode_watch', querys],
-    async ({ queryKey }) => {
-      try {
-        const data = await Promise.all([
-          getEpisode(queryKey[1].episodeId),
-          getEpisodes({ of_serieId: queryKey[1].serieId }),
-        ]);
-
-        return {
-          episode: data[0],
-          episodes: data[1],
-        };
-      } catch (reason) {
-        throw 'Algo salio mal intentalo mas tarde';
-      }
-    }
+    ['episode_watch', querys.episodeId],
+    async ({ queryKey }) => getEpisode(queryKey[1])
   );
 
   React.useEffect(() => {
@@ -70,7 +56,11 @@ const Watch = ({ querys }: WatchProps) => {
       ) : isLoading || isFetching || loading ? (
         <Skeleton />
       ) : (
-        <Provider episode={data.episode} episodesSerie={data.episodes.data}>
+        <Provider
+          episode={data.episode}
+          nextEpisode={data.nextEpisode}
+          prevEpisode={data.prevEpisode}
+        >
           <MediaContent />
         </Provider>
       )}
