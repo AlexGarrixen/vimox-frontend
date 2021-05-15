@@ -10,15 +10,15 @@ const ButtonsBox = styled.div`
 `;
 
 export const NavButtons = () => {
-  const { episode } = React.useContext(Context);
-  const { handleNextEpisode, handlePrevEpisode, nextEpisode } = useNavigation();
+  const { nextEpisode, prevEpisode } = React.useContext(Context);
+  const { handleNextEpisode, handlePrevEpisode } = useNavigation();
 
   return (
     <ButtonsBox>
       <Container>
         <Button
           margin='0 12px 0 0'
-          disabled={episode.order < 2}
+          disabled={!prevEpisode}
           onClick={handlePrevEpisode}
         >
           Anterior

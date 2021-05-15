@@ -9,14 +9,16 @@ type ProviderProps = ContextValue & {
 export const Provider = ({
   children,
   episode,
-  episodesSerie,
+  nextEpisode,
+  prevEpisode,
 }: ProviderProps) => {
   const contextValue = React.useMemo(
     () => ({
       episode,
-      episodesSerie,
+      nextEpisode,
+      prevEpisode,
     }),
-    [episode, episodesSerie]
+    [episode, nextEpisode, prevEpisode]
   );
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;

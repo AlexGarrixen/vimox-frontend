@@ -2,5 +2,6 @@ import { Episode } from '@globalTypes/episodeServices';
 
 export interface ContextValue {
   episode: Episode;
-  episodesSerie: Episode[];
+  nextEpisode: Episode | null;
+  prevEpisode: Episode | null;
 }
