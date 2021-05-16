@@ -3,10 +3,17 @@ import { NextPageContext } from 'next';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import { LayoutApp } from '@components/Layout/LayoutApp';
+import { Container } from '@components/Layout/Container';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { Provider } from '@localComponents/watch/Provider';
 import { Skeleton } from '@localComponents/watch/Skeleton';
+import {
+  LayoutBox,
+  ContentMainBox,
+  SidebarBox,
+} from '@localComponents/watch/LayoutBox';
 import { MediaContent } from '@pageSections/Watch/MediaContent';
+import { NextEpisodes } from '@pageSections/Watch/NextEpisodes';
 import { getEpisode } from '@services/episodes';
 import { updateLastEpisodeWatched } from '@services/user';
 import { useSession } from '@contexts/Auth/hooks';
@@ -61,7 +68,16 @@ const Watch = ({ querys }: WatchProps) => {
           nextEpisode={data.nextEpisode}
           prevEpisode={data.prevEpisode}
         >
-          <MediaContent />
+          <Container>
+            <LayoutBox>
+              <ContentMainBox>
+                <MediaContent />
+              </ContentMainBox>
+              <SidebarBox>
+                <NextEpisodes />
+              </SidebarBox>
+            </LayoutBox>
+          </Container>
         </Provider>
       )}
     </LayoutApp>
