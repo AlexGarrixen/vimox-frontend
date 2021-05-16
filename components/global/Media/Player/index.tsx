@@ -12,12 +12,6 @@ const PlayerBox = styled.div`
     padding-top: 56.25%;
     background-color: ${({ theme }) => theme.colors.gray[300]};
   }
-
-  @media (min-width: ${({ theme }) => theme.screens.sm}) {
-    ::before {
-      padding-top: 42.85%;
-    }
-  }
 `;
 
 const Iframe = styled.iframe`

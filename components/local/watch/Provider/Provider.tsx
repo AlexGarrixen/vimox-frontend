@@ -11,14 +11,18 @@ export const Provider = ({
   episode,
   nextEpisode,
   prevEpisode,
+  nextEpisodes,
+  serieId,
 }: ProviderProps) => {
   const contextValue = React.useMemo(
     () => ({
       episode,
       nextEpisode,
       prevEpisode,
+      nextEpisodes,
+      serieId,
     }),
-    [episode, nextEpisode, prevEpisode]
+    [episode, nextEpisode, prevEpisode, nextEpisodes, serieId]
   );
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;

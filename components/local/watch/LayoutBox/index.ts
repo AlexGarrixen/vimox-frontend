@@ -1,0 +1,24 @@
+import styled from 'styled-components';
+
+export const LayoutBox = styled.section`
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'contentMain'
+    'sidebar';
+  margin: 80px 0;
+
+  @media (min-width: ${({ theme }) => theme.screens.md}) {
+    grid-template-columns: 1fr 280px;
+    grid-template-areas: 'contentMain sidebar';
+  }
+`;
+
+export const ContentMainBox = styled.div`
+  grid-area: contentMain;
+`;
+
+export const SidebarBox = styled.div`
+  grid-area: sidebar;
+`;

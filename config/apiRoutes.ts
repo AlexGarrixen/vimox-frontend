@@ -16,6 +16,8 @@ const apiRoutes = {
   episodes: {
     all: '/episodes',
     getOne: (episodeId: string) => `/episodes/${episodeId}`,
+    getNextEpisodes: (episodeId: string) =>
+      `/episodes/${episodeId}/next-episodes`,
   },
   geners: {
     all: '/geners',
