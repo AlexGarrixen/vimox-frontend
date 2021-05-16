@@ -14,7 +14,7 @@ import {
 } from '@localComponents/watch/LayoutBox';
 import { MediaContent } from '@pageSections/Watch/MediaContent';
 import { NextEpisodes } from '@pageSections/Watch/NextEpisodes';
-import { getEpisode } from '@services/episodes';
+import { getEpisode, getNextEpisodes } from '@services/episodes';
 import { updateLastEpisodeWatched } from '@services/user';
 import { useSession } from '@contexts/Auth/hooks';
 
@@ -23,16 +23,23 @@ type WatchProps = {
 };
 
 const Watch = ({ querys }: WatchProps) => {
-  const [session, loading] = useSession();
+  const [session] = useSession();
 
-  const { data, isLoading, error, isFetching, refetch } = useQuery(
+  const episodeQuery = useQuery(
     ['episode_watch', querys.episodeId],
-    async ({ queryKey }) => getEpisode(queryKey[1])
+    ({ queryKey }) => getEpisode(queryKey[1]),
+    { refetchIntervalInBackground: false }
+  );
+
+  const nextEpisodesQuery = useQuery(
+    ['next_episodes', querys.episodeId],
+    ({ queryKey }) => getNextEpisodes(queryKey[1]),
+    { refetchIntervalInBackground: false }
   );
 
   React.useEffect(() => {
     if (session) {
-      const inQueueUser = data?.episode.serie.addedByUsers?.find(
+      const inQueueUser = episodeQuery.data?.episode.serie.addedByUsers?.find(
         ({ user }) => user === session.user._id
       );
 
@@ -46,35 +53,51 @@ const Watch = ({ querys }: WatchProps) => {
         });
       }
     }
-  }, [session, data]);
+  }, [session, episodeQuery.data]);
 
   return (
     <LayoutApp
       title={
-        data?.episode?.name
-          ? `Mirando: ${data.episode.name}`
+        episodeQuery.data?.episode?.name
+          ? `Mirando: ${episodeQuery.data.episode.name}`
           : 'GxAnime - mirar'
       }
     >
-      {error ? (
-        <ErrorMessage margin='80px 0 0 0' onClickRetry={refetch}>
-          {error}
-        </ErrorMessage>
-      ) : isLoading || isFetching || loading ? (
+      {episodeQuery.isFetching || nextEpisodesQuery.isFetching ? (
         <Skeleton />
       ) : (
         <Provider
-          episode={data.episode}
-          nextEpisode={data.nextEpisode}
-          prevEpisode={data.prevEpisode}
+          serieId={querys.serieId}
+          episode={episodeQuery.data?.episode}
+          nextEpisode={episodeQuery.data?.nextEpisode}
+          prevEpisode={episodeQuery.data?.prevEpisode}
+          nextEpisodes={nextEpisodesQuery.data}
         >
           <Container>
             <LayoutBox>
               <ContentMainBox>
-                <MediaContent />
+                {episodeQuery.isError ? (
+                  <ErrorMessage
+                    margin='80px 0 0 0'
+                    onClickRetry={episodeQuery.refetch}
+                  >
+                    {episodeQuery.error}
+                  </ErrorMessage>
+                ) : (
+                  <MediaContent />
+                )}
               </ContentMainBox>
               <SidebarBox>
-                <NextEpisodes />
+                {nextEpisodesQuery.isError ? (
+                  <ErrorMessage
+                    margin='80px 0 0 0'
+                    onClickRetry={nextEpisodesQuery.refetch}
+                  >
+                    {nextEpisodesQuery.error}
+                  </ErrorMessage>
+                ) : (
+                  <NextEpisodes />
+                )}
               </SidebarBox>
             </LayoutBox>
           </Container>

@@ -17,6 +17,6 @@ export const Episode = ({ name, thumbnail, order }: EpisodeProps) => (
     <Typography as='h6' white margin='12px 0 2px 0'>
       {name}
     </Typography>
-    <Typography>episode {order}</Typography>
+    <Typography>Episodio {order}</Typography>
   </Root>
 );

@@ -46,3 +46,5 @@ export interface GetEpisodesParams {
   of_serieId?: string;
   limit_items?: ?number;
 }
+
+export type ResponseGetNextEpisodes = Episode[];

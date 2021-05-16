@@ -5,6 +5,7 @@ import type {
   GetEpisodesParams,
   GetEpisodesResponse,
   ResponseGetEpisode,
+  ResponseGetNextEpisodes,
 } from '@globalTypes/episodeServices';
 
 export const getEpisodes = async <T extends GetEpisodesResponse>(
@@ -24,6 +25,18 @@ export const getEpisode = async <T extends ResponseGetEpisode>(
 ) => {
   try {
     const { data } = await request<T>(routes.episodes.getOne(episodeId));
+    return data;
+  } catch (reason) {
+    const error = getError(reason);
+    throw error.payload.message;
+  }
+};
+
+export const getNextEpisodes = async (episodeId: string) => {
+  try {
+    const { data } = await request<ResponseGetNextEpisodes>(
+      routes.episodes.getNextEpisodes(episodeId)
+    );
     return data;
   } catch (reason) {
     const error = getError(reason);
