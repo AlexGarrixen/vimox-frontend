@@ -32,6 +32,9 @@ const apiRoutes = {
     deleteSerie: (userId: string, serieId: string) =>
       `/user/${userId}/series/${serieId}`,
   },
+  search: {
+    serie: '/search/serie',
+  },
 };
 
 export default apiRoutes;
