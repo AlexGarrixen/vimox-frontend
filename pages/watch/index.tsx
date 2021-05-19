@@ -15,7 +15,7 @@ import {
 import { MediaContent } from '@pageSections/Watch/MediaContent';
 import { NextEpisodes } from '@pageSections/Watch/NextEpisodes';
 import { getEpisode, getNextEpisodes } from '@services/episodes';
-import { updateLastEpisodeWatched } from '@services/user';
+import { updateLastEpisodeWatched, getOneSerie } from '@services/user';
 import { useSession } from '@contexts/Auth/hooks';
 
 type WatchProps = {
@@ -37,22 +37,23 @@ const Watch = ({ querys }: WatchProps) => {
     { refetchIntervalInBackground: false }
   );
 
-  React.useEffect(() => {
-    if (session) {
-      const inQueueUser = episodeQuery.data?.episode.serie.addedByUsers?.find(
-        ({ user }) => user === session.user._id
-      );
+  const shouldUpdateLastEpisodeWatched = async () => {
+    try {
+      const serieInQueue = await getOneSerie(querys.serieId, session.user._id);
 
-      if (inQueueUser) {
-        updateLastEpisodeWatched({
+      if (serieInQueue)
+        await updateLastEpisodeWatched({
           userId: session.user._id,
           serieId: querys.serieId,
           episodeId: querys.episodeId,
-        }).catch((reason) => {
-          toast.error(reason);
         });
-      }
+    } catch (reason) {
+      toast.error(reason);
     }
+  };
+
+  React.useEffect(() => {
+    if (session) shouldUpdateLastEpisodeWatched();
   }, [session, episodeQuery.data]);
 
   return (

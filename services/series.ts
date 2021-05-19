@@ -19,10 +19,10 @@ export const getSeries = async <T extends GetSeriesResponse>(
   }
 };
 
-export const getSerie = async <T extends Serie>(serieId: string) => {
+export const getSerie = async (serieId: string) => {
   try {
-    const { data } = await request<T[]>(routes.series.getOne(serieId));
-    return data[0];
+    const { data } = await request<Serie>(routes.series.getOne(serieId));
+    return data;
   } catch (reason) {
     const error = getError(reason);
     throw error.payload.message;

@@ -5,7 +5,7 @@ import { Gener } from '@globalTypes/generServices';
 
 const Root = styled.div`
   display: flex;
-  margin-bottom: 14px;
+  align-items: center;
 
   p:not(:last-child) {
     margin-right: 12px;
@@ -14,6 +14,10 @@ const Root = styled.div`
   p:not(:last-child)::after {
     content: '|';
     margin-left: 12px;
+  }
+
+  p:last-child::after {
+    content: '...';
   }
 `;
 
@@ -24,7 +28,7 @@ type GenersProps = {
 export const Geners = ({ geners }: GenersProps) => (
   <Root>
     {Array.isArray(geners) &&
-      geners.map(({ _id, name }) => (
+      geners.slice(0, 3).map(({ _id, name }) => (
         <Typography key={_id} white>
           {name}
         </Typography>
