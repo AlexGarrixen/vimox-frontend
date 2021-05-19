@@ -1,32 +1,22 @@
 import React from 'react';
 import { Image } from '@components/DataDisplay/Image';
 import { Typography } from '@components/DataDisplay/Typography';
-import {
-  convertToHoursAndMinutes,
-  formatHoursAndMinutes,
-} from '@utils/convertTime';
+import { Serie as ISerie } from '@globalTypes/serieServices';
 import { SerieBox, ThumbnailBox, ContentBox } from './styled';
 
 type SerieProps = {
   name: string;
   thumbnail: string;
-  totalEpisodes: number;
-  duration: number;
+  countEpisodes: number;
+  geners: ISerie['geners'];
 };
-
-const setPrefixTotalEps = (count: number) => (count === 1 ? 'Ep' : 'Eps');
 
 export const Serie = ({
   name,
   thumbnail,
-  duration,
-  totalEpisodes,
+  geners,
+  countEpisodes,
 }: SerieProps) => {
-  const [hours, minutes] = React.useMemo(
-    () => convertToHoursAndMinutes(duration),
-    [duration]
-  );
-
   return (
     <SerieBox>
       <ThumbnailBox>
@@ -36,11 +26,12 @@ export const Serie = ({
         <Typography as='h6' white>
           {name.toUpperCase()}
         </Typography>
-        <Typography>
-          {`${totalEpisodes} ${setPrefixTotalEps(
-            totalEpisodes
-          )} - ${formatHoursAndMinutes(hours, minutes)}`}
-        </Typography>
+        {Array.isArray(geners) && (
+          <Typography>{geners.map(({ name }) => name).join(', ')}</Typography>
+        )}
+        <Typography>{`${countEpisodes} ${
+          countEpisodes === 1 ? 'Video' : 'Videos'
+        }`}</Typography>
       </ContentBox>
     </SerieBox>
   );

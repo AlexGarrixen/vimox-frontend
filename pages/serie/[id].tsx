@@ -27,17 +27,20 @@ const Serie = ({ querys }: SerieProps) => {
         </ErrorMessage>
       ) : isLoading ? (
         <Skeleton />
+      ) : !data ? (
+        <div />
       ) : (
         <Provider
           serieId={data._id}
           serieName={data.name}
-          addedByUsers={data?.addedByUsers}
+          isInQueue={data.isInQueue}
         >
           <Hero
             name={data.name}
             sinopsis={data.sinopsis}
             cover={data.imageLg}
             geners={data.geners}
+            duration={data.duration}
           />
           <EpisodesGrid data={data.episodes} />
         </Provider>

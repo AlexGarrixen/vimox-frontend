@@ -51,14 +51,14 @@ export const Carousel = ({ series }: CarouselProps) => {
         ]}
       >
         {Array.isArray(series) &&
-          series.map(({ _id, name, imageMd, episodes, totalDuration }) => (
+          series.map(({ _id, name, imageMd, geners, episodes }) => (
             <Link key={_id} href={`/serie/${_id}`}>
               <a>
                 <Serie
                   name={name}
                   thumbnail={imageMd}
-                  totalEpisodes={episodes.length}
-                  duration={totalDuration}
+                  geners={geners}
+                  countEpisodes={episodes.length}
                 />
               </a>
             </Link>

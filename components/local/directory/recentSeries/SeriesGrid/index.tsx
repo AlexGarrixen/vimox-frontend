@@ -13,14 +13,14 @@ export const SeriesGrid = ({ series }: SeriesGridProps) => {
     <div style={{ marginBottom: 40 }}>
       <Grid xs='2' sm='3' md='4' lg='5' gap={1.5}>
         {Array.isArray(series) &&
-          series.map(({ _id, name, imageMd, totalDuration, episodes }) => (
+          series.map(({ _id, name, imageMd, episodes, geners }) => (
             <Link key={_id} href={`/serie/${_id}`}>
               <a>
                 <Serie
                   name={name}
-                  duration={totalDuration}
                   thumbnail={imageMd}
-                  totalEpisodes={episodes.length}
+                  countEpisodes={episodes.length}
+                  geners={geners}
                 />
               </a>
             </Link>

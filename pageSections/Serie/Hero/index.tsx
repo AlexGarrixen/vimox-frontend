@@ -6,8 +6,9 @@ import { ButtonAddQueue } from '@localComponents/serie/Hero/ButtonAddQueue';
 import { CoverImage } from '@localComponents/serie/Hero/CoverImage';
 import { Geners } from '@localComponents/serie/Hero/Geners';
 import { Sinopsis } from '@localComponents/serie/Hero/Sinopsis';
+import { Duration } from '@localComponents/serie/Hero/Duration';
 import { Gener } from '@globalTypes/generServices';
-import { Root } from './styled';
+import { Root, InformationBox } from './styled';
 import { useAnimations } from './hook';
 
 type HeroProps = {
@@ -15,9 +16,16 @@ type HeroProps = {
   name: string;
   sinopsis: string;
   geners: Gener[];
+  duration: number;
 };
 
-export const Hero = ({ name, sinopsis, cover, geners }: HeroProps) => {
+export const Hero = ({
+  name,
+  sinopsis,
+  cover,
+  geners,
+  duration,
+}: HeroProps) => {
   const { headingCssProps, genersCssProps, sinopsisCssProps } = useAnimations();
 
   return (
@@ -37,7 +45,10 @@ export const Hero = ({ name, sinopsis, cover, geners }: HeroProps) => {
           </Typography>
         </animated.div>
         <animated.div style={genersCssProps}>
-          <Geners geners={geners} />
+          <InformationBox>
+            <Geners geners={geners} />
+            <Duration duration={duration} />
+          </InformationBox>
         </animated.div>
         <animated.div style={sinopsisCssProps}>
           <Sinopsis text={sinopsis} />

@@ -1,6 +1,10 @@
 import { request } from '@utils/request';
 import { getError } from '@utils/getErrorAxios';
-import { GetUserSeries, PostUserSerie } from '@globalTypes/userServices';
+import {
+  GetUserSeries,
+  PostUserSerie,
+  ResponseGetUserSerie,
+} from '@globalTypes/userServices';
 import routes from '@config/apiRoutes';
 
 export const getListOfSeries = async (userId: string) => {
@@ -65,6 +69,18 @@ export const updateLastEpisodeWatched = async ({
       }
     );
 
+    return data;
+  } catch (reason) {
+    const error = getError(reason);
+    throw error.payload.message;
+  }
+};
+
+export const getOneSerie = async (serieId: string, userId: string) => {
+  try {
+    const { data } = await request<ResponseGetUserSerie>(
+      routes.user.getOneSerie(userId, serieId)
+    );
     return data;
   } catch (reason) {
     const error = getError(reason);

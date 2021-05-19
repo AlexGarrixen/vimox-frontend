@@ -8,7 +8,7 @@ export interface Serie {
   imageMd: string;
   imageLg: string;
   type: string;
-  totalDuration: number;
+  duration: number;
   geners: {
     _id: string;
     createdAt: string;
@@ -19,17 +19,11 @@ export interface Serie {
     name: string;
     sinopsis: string;
     src: string;
-    previewImage: string;
     order: number;
     thumbnail: string;
     duration;
   }[];
-  addedByUsers: {
-    [key: string]: {
-      _id: string;
-      user: string;
-    };
-  };
+  isInQueue: boolean;
 }
 
 export interface GetSeriesParams {
@@ -41,7 +35,9 @@ export interface GetSeriesParams {
 }
 
 export interface GetSeriesResponse {
-  series: Serie[];
+  series: (Omit<Serie, 'episodes' | 'totalDuration'> & {
+    episodes: string[];
+  })[];
   count: number;
   lastPage: number;
 }

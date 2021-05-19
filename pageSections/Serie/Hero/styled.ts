@@ -35,3 +35,19 @@ export const Root = styled.div`
     max-width: 600px;
   }
 `;
+
+export const InformationBox = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+
+  & > div::after {
+    content: '';
+    display: inline-block;
+    border-radius: 50%;
+    width: 6px;
+    height: 6px;
+    background-color: #fff;
+    margin: 0 12px;
+  }
+`;

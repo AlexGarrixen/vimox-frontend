@@ -4,8 +4,8 @@ import { Context } from '../../Provider';
 import { useAddQueue, useRemoveQueue } from './hook';
 
 export const ButtonAddQueue = () => {
-  const { addedInQueue } = React.useContext(Context);
-  const [isAddedInQueue, setAddedInQueue] = React.useState(addedInQueue);
+  const { isInQueue } = React.useContext(Context);
+  const [isAddedInQueue, setAddedInQueue] = React.useState(isInQueue);
   const { loading: loadingAddQueue, handleAddSerie } = useAddQueue({
     onSuccess: () => setAddedInQueue(true),
   });
@@ -14,8 +14,8 @@ export const ButtonAddQueue = () => {
   });
 
   React.useEffect(() => {
-    setAddedInQueue(addedInQueue);
-  }, [addedInQueue]);
+    setAddedInQueue(isInQueue);
+  }, [isInQueue]);
 
   if (!isAddedInQueue)
     return (

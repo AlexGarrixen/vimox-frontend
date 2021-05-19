@@ -13,3 +13,10 @@ export type GetUserSeries = UserSerie[];
 export interface PostUserSerie extends Omit<UserSerie, 'lastEpisodeWatched'> {
   lastEpisodeWatched: string;
 }
+
+export type ResponseGetUserSerie = {
+  lastEpisodeWatched: string;
+  _id: string;
+  userId: string;
+  serie: string;
+} | null;
