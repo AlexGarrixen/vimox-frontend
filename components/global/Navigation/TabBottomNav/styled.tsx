@@ -1,29 +1,39 @@
 import styled, { css } from 'styled-components';
+import { animated } from 'react-spring';
 
 type IconBoxProps = {
   isActive?: boolean;
 };
 
-export const TabBottonNavBox = styled.ul`
+export const TabBottonNavBox = styled.nav`
   position: fixed;
-  bottom: 0;
+  bottom: 14px;
   left: 0;
   right: 0;
   z-index: 5;
 
   & > div {
     display: flex;
-    background-color: ${({ theme }) => theme.colors.gray[500]};
+    justify-content: center;
   }
+`;
+
+export const TabsBox = styled(animated.ul)`
+  background-color: ${({ theme }) => theme.colors.gray[400]};
+  display: inline-flex;
+  padding: 10px;
+  border-radius: 25px;
+  overflow-y: hidden;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  max-width: 100%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  will-change: transform;
 `;
 
 export const Tab = styled.li`
   flex-shrink: 0;
   color: ${({ theme }) => theme.colors.primary};
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10px 0 4px 0;
 
   & > a {
     display: inherit;
@@ -32,7 +42,7 @@ export const Tab = styled.li`
   }
 
   &:not(:last-of-type) {
-    margin-right: 24px;
+    margin-right: 14px;
   }
 `;
 
@@ -44,7 +54,6 @@ export const IconBox = styled.div<IconBoxProps>`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  margin-bottom: 4px;
 
   ${({ isActive }) =>
     isActive &&
