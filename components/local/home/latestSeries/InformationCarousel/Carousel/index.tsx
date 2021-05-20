@@ -24,15 +24,16 @@ export const Carousel = ({ slideMinHeight }: CarouselProps) => {
     >
       {Array.isArray(series) &&
         series.map(({ _id, name, geners }, idx) => (
-          <SerieSlide
-            key={_id}
-            index={idx}
-            id={_id}
-            name={name}
-            geners={geners}
-            style={{ minHeight: slideMinHeight }}
-            isActive={idx === activeIndex}
-          />
+          <div key={_id}>
+            <SerieSlide
+              index={idx}
+              id={_id}
+              name={name}
+              geners={geners}
+              style={{ minHeight: slideMinHeight }}
+              isActive={idx === activeIndex}
+            />
+          </div>
         ))}
     </Slider>
   );
