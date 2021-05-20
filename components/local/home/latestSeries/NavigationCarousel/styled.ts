@@ -9,7 +9,7 @@ export const Root = styled.div`
   }
 
   .carousel .slick-list {
-    padding-top: 4px;
+    padding: 4px 0;
     margin: 0 -10px;
   }
 `;
