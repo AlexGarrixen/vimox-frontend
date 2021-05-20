@@ -1,14 +1,16 @@
 import React from 'react';
 import { Image } from '@components/DataDisplay/Image';
 import { Typography } from '@components/DataDisplay/Typography';
+import { Bookmark } from '@components/Icon/Bookmark';
 import { Serie as ISerie } from '@globalTypes/serieServices';
-import { SerieBox, ThumbnailBox, ContentBox } from './styled';
+import { SerieBox, ThumbnailBox, ContentBox, BookmarkBox } from './styled';
 
 type SerieProps = {
   name: string;
   thumbnail: string;
   countEpisodes: number;
   geners: ISerie['geners'];
+  isInQueue?: boolean;
 };
 
 export const Serie = ({
@@ -16,9 +18,15 @@ export const Serie = ({
   thumbnail,
   geners,
   countEpisodes,
+  isInQueue,
 }: SerieProps) => {
   return (
     <SerieBox>
+      {isInQueue && (
+        <BookmarkBox>
+          <Bookmark sm />
+        </BookmarkBox>
+      )}
       <ThumbnailBox>
         <Image src={thumbnail} />
       </ThumbnailBox>
