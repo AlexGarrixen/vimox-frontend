@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const SerieBox = styled.div``;
+export const SerieBox = styled.div`
+  position: relative;
+`;
 
 export const ThumbnailBox = styled.div`
   position: relative;
@@ -40,4 +42,19 @@ export const ContentBox = styled.div`
     white-space: nowrap;
     overflow: hidden;
   }
+`;
+
+export const BookmarkBox = styled.div`
+  width: 30px;
+  height: 30px;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: #fff;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  border-radius: 50%;
 `;

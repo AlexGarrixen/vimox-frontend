@@ -13,7 +13,7 @@ export const SeriesGrid = ({ series }: SeriesGridProps) => {
     <div style={{ marginBottom: 40 }}>
       <Grid xs='2' sm='3' md='4' lg='5' gap={1.5}>
         {Array.isArray(series) &&
-          series.map(({ _id, name, imageMd, episodes, geners }) => (
+          series.map(({ _id, name, imageMd, episodes, geners, isInQueue }) => (
             <Link key={_id} href={`/serie/${_id}`}>
               <a>
                 <Serie
@@ -21,6 +21,7 @@ export const SeriesGrid = ({ series }: SeriesGridProps) => {
                   thumbnail={imageMd}
                   countEpisodes={episodes.length}
                   geners={geners}
+                  isInQueue={isInQueue}
                 />
               </a>
             </Link>
