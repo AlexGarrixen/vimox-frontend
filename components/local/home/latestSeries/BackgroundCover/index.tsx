@@ -1,6 +1,6 @@
 import React from 'react';
-import { useTransition, animated } from 'react-spring';
 import styled from 'styled-components';
+import { useTransition, a } from 'react-spring';
 import { Image } from '@components/DataDisplay/Image';
 import { Context } from '../Provider';
 
@@ -17,20 +17,16 @@ export const ImageStyled = styled(Image)`
 
 export const BackgroundCover = () => {
   const { series, activeIndex } = React.useContext(Context);
-  const transitions = useTransition(series[activeIndex], (item) => item._id, {
-    from: {
-      opacity: 1,
-    },
+  const transitions = useTransition(activeIndex, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
     leave: { opacity: 0 },
+    key: activeIndex,
   });
 
-  return (
-    <>
-      {transitions.map(({ key, props: cssProps, item }) => (
-        <animated.div style={cssProps} key={key}>
-          <ImageStyled src={item.imageLg} />
-        </animated.div>
-      ))}
-    </>
-  );
+  return transitions((styles, idx) => (
+    <a.div style={styles}>
+      <ImageStyled src={series[idx].imageLg} />
+    </a.div>
+  ));
 };
