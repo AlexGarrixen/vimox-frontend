@@ -26,7 +26,6 @@ export const Carousel = ({ slideMinHeight }: CarouselProps) => {
         series.map(({ _id, name, geners }, idx) => (
           <div key={_id}>
             <SerieSlide
-              index={idx}
               id={_id}
               name={name}
               geners={geners}
