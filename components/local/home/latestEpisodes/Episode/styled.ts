@@ -11,13 +11,6 @@ export const Root = styled.article`
   > div:last-child {
     width: 100%;
   }
-
-  h6,
-  p {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
 `;
 
 export const ThumbnailBox = styled.div`

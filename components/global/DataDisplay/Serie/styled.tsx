@@ -35,13 +35,6 @@ export const ThumbnailBox = styled.div`
 
 export const ContentBox = styled.div`
   margin-top: 16px;
-
-  h6,
-  p {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
 `;
 
 export const BookmarkBox = styled.div`

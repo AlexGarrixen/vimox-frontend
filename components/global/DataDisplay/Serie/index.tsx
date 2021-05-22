@@ -2,6 +2,7 @@ import React from 'react';
 import { Image } from '@components/DataDisplay/Image';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Bookmark } from '@components/Icon/Bookmark';
+import { Truncate } from '../Truncate';
 import { Serie as ISerie } from '@globalTypes/serieServices';
 import { SerieBox, ThumbnailBox, ContentBox, BookmarkBox } from './styled';
 
@@ -31,11 +32,15 @@ export const Serie = ({
         <Image src={thumbnail} />
       </ThumbnailBox>
       <ContentBox>
-        <Typography as='h6' white>
-          {name.toUpperCase()}
-        </Typography>
+        <Truncate>
+          <Typography as='h6' white>
+            {name.toUpperCase()}
+          </Typography>
+        </Truncate>
         {Array.isArray(geners) && (
-          <Typography>{geners.map(({ name }) => name).join(', ')}</Typography>
+          <Truncate>
+            <Typography>{geners.map(({ name }) => name).join(', ')}</Typography>
+          </Truncate>
         )}
         <Typography>{`${countEpisodes} ${
           countEpisodes === 1 ? 'Video' : 'Videos'
