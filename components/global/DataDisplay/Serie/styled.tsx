@@ -10,23 +10,11 @@ export const ThumbnailBox = styled.div`
   overflow: hidden;
   transition: box-shadow 250ms linear;
 
-  ::before {
-    content: '';
-    display: block;
-    background-color: ${({ theme }) => theme.colors.gray[300]};
-    padding-top: 150%;
-  }
-
   :hover {
     box-shadow: 0 0 0 4px ${({ theme }) => theme.colors.primary};
   }
 
   img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     object-fit: cover;
     object-position: center;
     pointer-events: none;

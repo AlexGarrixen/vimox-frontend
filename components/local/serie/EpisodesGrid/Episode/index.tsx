@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Play } from '@components/Icon/Play';
+import { AspectRatio } from '@components/Layout/AspectRatio';
 import { Context } from '../../Provider';
 import { ThumbnailBox, Thumbnail, PlayButton, Title } from './styled';
 
@@ -19,7 +20,9 @@ export const Episode = ({ id, name, thumbnail, order }: EpisodeProps) => {
       <Link href={`/watch?serieId=${serieId}&episodeId=${id}`}>
         <a>
           <ThumbnailBox>
-            <Thumbnail src={thumbnail} />
+            <AspectRatio ratio='16:9'>
+              <Thumbnail src={thumbnail} />
+            </AspectRatio>
             <PlayButton>
               <Play color='#fff' xxxl />
             </PlayButton>

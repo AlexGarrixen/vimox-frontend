@@ -1,25 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { AspectRatio } from '@components/Layout/AspectRatio';
 
 const PlayerBox = styled.div`
   position: relative;
   border-radius: 6px;
   overflow: hidden;
-
-  ::before {
-    content: '';
-    display: block;
-    padding-top: 56.25%;
-    background-color: ${({ theme }) => theme.colors.gray[300]};
-  }
-`;
-
-const Iframe = styled.iframe`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  background-color: ${({ theme }) => theme.colors.gray[300]};
 `;
 
 type PlayerProps = {
@@ -35,7 +22,9 @@ export const Player = ({ src: srcProp }: PlayerProps) => {
 
   return (
     <PlayerBox>
-      <Iframe frameBorder='0' src={src} allowFullScreen />
+      <AspectRatio ratio='16:9'>
+        <iframe frameBorder='0' src={src} allowFullScreen />
+      </AspectRatio>
     </PlayerBox>
   );
 };

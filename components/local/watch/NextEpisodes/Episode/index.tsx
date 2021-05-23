@@ -1,7 +1,9 @@
 import React from 'react';
 import { Image } from '@components/DataDisplay/Image';
 import { Typography } from '@components/DataDisplay/Typography';
-import { Root, ThumbnailBox } from './styled';
+import { Truncate } from '@components/DataDisplay/Truncate';
+import { AspectRatio } from '@components/Layout/AspectRatio';
+import { ThumbnailBox } from './styled';
 
 type EpisodeProps = {
   name: string;
@@ -10,13 +12,17 @@ type EpisodeProps = {
 };
 
 export const Episode = ({ name, thumbnail, order }: EpisodeProps) => (
-  <Root>
+  <div>
     <ThumbnailBox>
-      <Image src={thumbnail} alt='img_episode' />
+      <AspectRatio ratio='16:9'>
+        <Image src={thumbnail} alt='img_episode' />
+      </AspectRatio>
     </ThumbnailBox>
-    <Typography as='h6' white margin='12px 0 2px 0'>
-      {name}
-    </Typography>
+    <Truncate>
+      <Typography as='h6' white margin='12px 0 2px 0'>
+        {name}
+      </Typography>
+    </Truncate>
     <Typography>Episodio {order}</Typography>
-  </Root>
+  </div>
 );
