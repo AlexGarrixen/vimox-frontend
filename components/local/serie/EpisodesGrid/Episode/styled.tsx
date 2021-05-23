@@ -10,12 +10,6 @@ export const ThumbnailBox = styled.div`
   overflow: hidden;
   transition: box-shadow 250ms linear;
 
-  ::before {
-    content: '';
-    padding-top: 56.25%;
-    display: block;
-  }
-
   :hover {
     box-shadow: 0 0 0 4px ${({ theme }) => theme.colors.primary};
   }
@@ -26,13 +20,8 @@ export const ThumbnailBox = styled.div`
 `;
 
 export const Thumbnail = styled(Image)`
-  position: absolute;
   object-fit: cover;
   object-position: center;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
 `;
 
 export const PlayButton = styled.button`

@@ -2,6 +2,7 @@ import React from 'react';
 import { Image } from '@components/DataDisplay/Image';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Bookmark } from '@components/Icon/Bookmark';
+import { AspectRatio } from '@components/Layout/AspectRatio';
 import { Truncate } from '../Truncate';
 import { Serie as ISerie } from '@globalTypes/serieServices';
 import { SerieBox, ThumbnailBox, ContentBox, BookmarkBox } from './styled';
@@ -29,7 +30,9 @@ export const Serie = ({
         </BookmarkBox>
       )}
       <ThumbnailBox>
-        <Image src={thumbnail} />
+        <AspectRatio ratio='2:3'>
+          <Image src={thumbnail} />
+        </AspectRatio>
       </ThumbnailBox>
       <ContentBox>
         <Truncate>
