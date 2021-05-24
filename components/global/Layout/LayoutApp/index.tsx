@@ -46,7 +46,7 @@ export const LayoutApp = ({
       <ContentBox verticallyCenterContent={verticallyCenterContent}>
         {children}
       </ContentBox>
-      <footer></footer>
+      <footer />
       <TabBottomNav />
       <Dialog
         isOpen={isVisible}
