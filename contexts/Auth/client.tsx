@@ -5,7 +5,7 @@ import { Session } from './types';
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [session, setSession] = React.useState<Partial<Session['data']>>(null);
-  const [loading, setLoading] = React.useState(!Boolean(session));
+  const [loading, setLoading] = React.useState(!session);
 
   React.useEffect(() => {
     getSession()

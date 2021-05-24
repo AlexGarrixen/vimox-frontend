@@ -55,7 +55,7 @@ export const Typography = styled.p<TypographyProps>`
         line-height: ${({ theme }) => theme.fontSize[xs][1]};
       }
     `}
-    
+
   ${({ sm }) =>
     sm &&
     css`

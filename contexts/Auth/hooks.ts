@@ -10,6 +10,7 @@ export const useAuthMethods = () => {
   const router = useRouter();
 
   const logIn = async (email: string, password: string) => {
+    // eslint-disable-next-line no-useless-catch
     try {
       const sessionData = await login(email, password);
       await requestApiRoute('/auth/session', {
