@@ -7,7 +7,6 @@ export const LayoutBox = styled.section`
   grid-template-areas:
     'contentMain'
     'sidebar';
-  margin: 80px 0;
 
   @media (min-width: ${({ theme }) => theme.screens.md}) {
     grid-template-columns: 1fr 280px;

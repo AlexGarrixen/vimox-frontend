@@ -2,6 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { Grid } from '@components/Layout/Grid';
+import { Spacing } from '@components/Layout/Spacing';
 import { Button } from '@components/Form/Button';
 import { Input } from '@components/Form/Input';
 import { HelperText } from '@components/Form/HelperText';
@@ -47,10 +48,12 @@ export const Form = ({ onSuccess }: FormProps): JSX.Element => {
       <Typography as='h3' white>
         Crea una nueva contraseña
       </Typography>
-      <Typography margin='12px 0 24px 0'>
+      <Spacing size={12} />
+      <Typography>
         Su nueva contraseña debe ser diferente de las contraseñas de uso
         anterior
       </Typography>
+      <Spacing size={24} />
       <form onSubmit={handleSubmit}>
         <Grid cols='1' gap={1.5}>
           <div>

@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 import { getSeries } from '@services/series';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { Typography } from '@components/DataDisplay/Typography';
+import { Spacing } from '@components/Layout/Spacing';
 import { useFilterQuery } from '@hooks/useFilterQuery';
 import { Filter } from '@localComponents/directory/recentSeries/Filter';
 import { SeriesGrid } from '@localComponents/directory/recentSeries/SeriesGrid';
@@ -32,14 +33,13 @@ export const RecentSeries = () => {
 
   return (
     <section>
-      <Typography as='h4' white margin='80px 0 32px 0'>
+      <Typography as='h4' white>
         Series recientes
       </Typography>
+      <Spacing size={32} />
       <Filter />
       {error ? (
-        <ErrorMessage margin='80px 0 0 0' onClickRetry={refetch}>
-          {error}
-        </ErrorMessage>
+        <ErrorMessage onClickRetry={refetch}>{error}</ErrorMessage>
       ) : isLoading ? (
         <Skeleton />
       ) : (

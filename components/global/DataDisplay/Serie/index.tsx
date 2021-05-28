@@ -1,11 +1,12 @@
 import React from 'react';
 import { Image } from '@components/DataDisplay/Image';
 import { Typography } from '@components/DataDisplay/Typography';
+import { Spacing } from '@components/Layout/Spacing';
 import { Bookmark } from '@components/Icon/Bookmark';
 import { AspectRatio } from '@components/Layout/AspectRatio';
 import { Truncate } from '../Truncate';
 import { Serie as ISerie } from '@globalTypes/serieServices';
-import { SerieBox, ThumbnailBox, ContentBox, BookmarkBox } from './styled';
+import { SerieBox, ThumbnailBox, BookmarkBox } from './styled';
 
 type SerieProps = {
   name: string;
@@ -34,7 +35,8 @@ export const Serie = ({
           <Image src={thumbnail} />
         </AspectRatio>
       </ThumbnailBox>
-      <ContentBox>
+      <Spacing size={16} />
+      <div>
         <Truncate>
           <Typography as='h6' white>
             {name.toUpperCase()}
@@ -48,7 +50,7 @@ export const Serie = ({
         <Typography>{`${countEpisodes} ${
           countEpisodes === 1 ? 'Video' : 'Videos'
         }`}</Typography>
-      </ContentBox>
+      </div>
     </SerieBox>
   );
 };

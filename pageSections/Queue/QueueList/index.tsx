@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useQuery } from 'react-query';
 import { Grid } from '@components/Layout/Grid';
 import { Container } from '@components/Layout/Container';
+import { Spacing } from '@components/Layout/Spacing';
 import { Typography } from '@components/DataDisplay/Typography';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { useSession } from '@contexts/Auth/hooks';
@@ -29,9 +30,10 @@ export const QueueList = (): JSX.Element => {
           <Skeleton />
         ) : (
           <>
-            <Typography as='h4' white margin='0 0 32px 0'>
+            <Typography as='h4' white>
               Sigue mirando
             </Typography>
+            <Spacing size={32} />
             <Grid xs='1' sm='2' md='3' lg='4' gap={2}>
               {Array.isArray(data) &&
                 data.map((item) => (

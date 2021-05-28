@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import { LayoutApp } from '@components/Layout/LayoutApp';
 import { Container } from '@components/Layout/Container';
+import { Spacing } from '@components/Layout/Spacing';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { Provider } from '@localComponents/watch/Provider';
 import { Skeleton } from '@localComponents/watch/Skeleton';
@@ -74,6 +75,7 @@ const Watch = ({ querys }: WatchProps) => {
           prevEpisode={episodeQuery.data?.prevEpisode}
           nextEpisodes={nextEpisodesQuery.data}
         >
+          <Spacing size={80} />
           <Container>
             <LayoutBox>
               <ContentMainBox>
@@ -102,6 +104,7 @@ const Watch = ({ querys }: WatchProps) => {
               </SidebarBox>
             </LayoutBox>
           </Container>
+          <Spacing size={30} />
         </Provider>
       )}
     </LayoutApp>

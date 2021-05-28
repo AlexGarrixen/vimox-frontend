@@ -21,10 +21,6 @@ export const ThumbnailBox = styled.div`
   }
 `;
 
-export const ContentBox = styled.div`
-  margin-top: 16px;
-`;
-
 export const BookmarkBox = styled.div`
   width: 30px;
   height: 30px;

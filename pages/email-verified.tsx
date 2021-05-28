@@ -2,6 +2,7 @@ import React from 'react';
 import { NextPageContext } from 'next';
 import { LayoutApp } from '@components/Layout/LayoutApp';
 import { Container } from '@components/Layout/Container';
+import { Spacing } from '@components/Layout/Spacing';
 import { Typography } from '@components/DataDisplay/Typography';
 import { emailConfirmation } from '@services/auth';
 
@@ -57,7 +58,9 @@ const EmailVerified = ({ querys }: EmailVerifiedProps): JSX.Element => {
 
   return (
     <LayoutApp title='GxAnime - email confirmation' verticallyCenterContent>
+      <Spacing size={80} />
       <Container style={{ textAlign: 'center' }}>{renderContent()}</Container>
+      <Spacing size={30} />
     </LayoutApp>
   );
 };

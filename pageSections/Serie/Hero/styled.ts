@@ -39,7 +39,9 @@ export const Root = styled.div`
 export const InformationBox = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   margin-bottom: 14px;
+  gap: 6px;
 
   & > div::after {
     content: '';

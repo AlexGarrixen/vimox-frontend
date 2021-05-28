@@ -7,6 +7,7 @@ import { Input } from '@components/Form/Input';
 import { Button } from '@components/Form/Button';
 import { HelperText } from '@components/Form/HelperText';
 import { Grid } from '@components/Layout/Grid';
+import { Spacing } from '@components/Layout/Spacing';
 import { Typography } from '@components/DataDisplay/Typography';
 import { useForm } from '@hooks/useForm';
 import { loginSchema } from '@utils/yupSchemas';
@@ -42,12 +43,12 @@ export const LoginForm = (): JSX.Element => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Typography as='h3' margin='0 0 8px 0' white>
+      <Typography as='h3' white>
         Iniciar Sesión
       </Typography>
-      <Typography margin='0 0 28px 0'>
-        ¿Ya tienes una cuenta? Inicia sesión más abajo.
-      </Typography>
+      <Spacing size={8} />
+      <Typography>¿Ya tienes una cuenta? Inicia sesión más abajo.</Typography>
+      <Spacing size={28} />
       <Grid cols='1' gap={2}>
         <div>
           <Input

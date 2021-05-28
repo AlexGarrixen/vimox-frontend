@@ -2,6 +2,7 @@ import React from 'react';
 import { NextPageContext } from 'next';
 import { LayoutApp } from '@components/Layout/LayoutApp';
 import { Container } from '@components/Layout/Container';
+import { Spacing } from '@components/Layout/Spacing';
 import { Typography } from '@components/DataDisplay/Typography';
 
 type EmailConfirmationProps = {
@@ -10,6 +11,7 @@ type EmailConfirmationProps = {
 
 const EmailConfirmation = ({ querys }: EmailConfirmationProps): JSX.Element => (
   <LayoutApp title='GxAnime - email confirmation' verticallyCenterContent>
+    <Spacing size={80} />
     <Container style={{ textAlign: 'center' }}>
       <img src='/emailOpen.png' />
       <Typography as='h3' white>
@@ -26,6 +28,7 @@ const EmailConfirmation = ({ querys }: EmailConfirmationProps): JSX.Element => (
         Revise su correo electrónico para confirmar su cuenta.
       </Typography>
     </Container>
+    <Spacing size={30} />
   </LayoutApp>
 );
 

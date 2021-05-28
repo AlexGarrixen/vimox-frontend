@@ -10,7 +10,7 @@ type EpisodesGridProps = {
 };
 
 export const EpisodesGrid = ({ data }: EpisodesGridProps) => (
-  <Container style={{ marginTop: 80, marginBottom: 30 }}>
+  <Container>
     <Typography as='h4' margin='0 0 20px 0' white>
       Lista de episodeos
     </Typography>

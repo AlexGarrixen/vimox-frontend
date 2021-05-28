@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { Spacing } from '@components/Layout/Spacing';
 import { Play } from '@components/Icon/Play';
 import { AspectRatio } from '@components/Layout/AspectRatio';
 import { Context } from '../../Provider';
@@ -29,10 +30,10 @@ export const Episode = ({ id, name, thumbnail, order }: EpisodeProps) => {
           </ThumbnailBox>
         </a>
       </Link>
-      <Title white margin='12px 0 0 0'>
-        {name}
-      </Title>
-      <Title margin='2px 0 0 0'>Episodeo {order}</Title>
+      <Spacing size={12} />
+      <Title white>{name}</Title>
+      <Spacing size={2} />
+      <Title>Episodeo {order}</Title>
     </div>
   );
 };
