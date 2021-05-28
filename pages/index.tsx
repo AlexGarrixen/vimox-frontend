@@ -12,6 +12,7 @@ const Home = () => (
     <LatestEpisodes />
     <Spacing size={80} />
     <LatestMovies />
+    <Spacing size={30} />
   </LayoutApp>
 );
 
