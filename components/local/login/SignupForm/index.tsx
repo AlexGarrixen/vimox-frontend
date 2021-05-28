@@ -5,6 +5,7 @@ import { Input } from '@components/Form/Input';
 import { Button } from '@components/Form/Button';
 import { HelperText } from '@components/Form/HelperText';
 import { Grid } from '@components/Layout/Grid';
+import { Spacing } from '@components/Layout/Spacing';
 import { Typography } from '@components/DataDisplay/Typography';
 import { useForm } from '@hooks/useForm';
 import { signupSchema } from '@utils/yupSchemas';
@@ -42,12 +43,12 @@ export const SignupForm = (): JSX.Element => {
 
   return (
     <form onSubmit={handleSubmit} autoComplete='nope'>
-      <Typography as='h3' margin='0 0 8px 0' white>
+      <Typography as='h3' white>
         Inscríbase para una Cuenta Gratuita
       </Typography>
-      <Typography margin='0 0 28px 0'>
-        ¡Únete a GxAnime! ¡Se tarda un clic!
-      </Typography>
+      <Spacing size={8} />
+      <Typography>¡Únete a GxAnime! ¡Se tarda un clic!</Typography>
+      <Spacing size={28} />
       <Grid cols='1' gap={2}>
         <div>
           <Input

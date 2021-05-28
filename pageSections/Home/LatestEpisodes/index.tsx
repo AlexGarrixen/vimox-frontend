@@ -5,7 +5,6 @@ import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { EpisodesGrid } from '@localComponents/home/latestEpisodes/EpisodesGrid';
 import { Skeleton } from '@localComponents/home/latestEpisodes/Skeleton';
 import { getEpisodes } from '@services/episodes';
-import { Root } from './styled';
 
 export const LatestEpisodes = () => {
   const { data, isLoading, error, refetch } = useQuery(
@@ -23,10 +22,10 @@ export const LatestEpisodes = () => {
   if (isLoading) return <Skeleton />;
 
   return (
-    <Root>
+    <div>
       <Container>
         <EpisodesGrid episodes={data.data} />
       </Container>
-    </Root>
+    </div>
   );
 };

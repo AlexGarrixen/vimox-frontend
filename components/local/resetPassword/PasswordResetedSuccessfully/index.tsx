@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography } from '@components/DataDisplay/Typography';
+import { Spacing } from '@components/Layout/Spacing';
 
 export const PasswordResetedSuccessfully = (): JSX.Element => (
   <div style={{ textAlign: 'center' }}>
@@ -7,6 +8,7 @@ export const PasswordResetedSuccessfully = (): JSX.Element => (
     <Typography as='h3' white>
       ¡Tu contraseña ha sido restablecida!
     </Typography>
-    <Typography margin='12px 0 0 0'>Ahora puedes iniciar sesión</Typography>
+    <Spacing size={12} />
+    <Typography>Ahora puedes iniciar sesión</Typography>
   </div>
 );

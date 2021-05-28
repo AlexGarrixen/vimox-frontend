@@ -2,6 +2,7 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import { useQuery } from 'react-query';
 import { LayoutApp } from '@components/Layout/LayoutApp';
+import { Spacing } from '@components/Layout/Spacing';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { Provider } from '@localComponents/serie/Provider';
 import { Skeleton } from '@localComponents/serie/Skeleton';
@@ -42,7 +43,9 @@ const Serie = ({ querys }: SerieProps) => {
             geners={data.geners}
             duration={data.duration}
           />
+          <Spacing size={80} />
           <EpisodesGrid data={data.episodes} />
+          <Spacing size={30} />
         </Provider>
       )}
     </LayoutApp>

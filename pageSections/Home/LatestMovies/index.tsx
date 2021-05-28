@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Container } from '@components/Layout/Container';
+import { Spacing } from '@components/Layout/Spacing';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { getSeries } from '@services/series';
 import { Carousel } from '@localComponents/home/latestMovies/Carousel';
@@ -27,9 +28,10 @@ export const LatestMovies = () => {
   return (
     <Root>
       <Container>
-        <Typography as='h4' white margin='0 0 32px 0'>
+        <Typography as='h4' white>
           Ultimas peliculas
         </Typography>
+        <Spacing size={32} />
         <Carousel series={data.series} />
       </Container>
     </Root>
