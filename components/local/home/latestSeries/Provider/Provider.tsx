@@ -1,10 +1,10 @@
 import React from 'react';
 import { Context } from './Context';
 import { useCarousel } from './hook';
-import { GetSeriesResponse } from '@globalTypes/serieServices';
+import { ResponseGetSeries } from '@globalTypes/serieServices';
 
 type ProviderProps = {
-  series: GetSeriesResponse['series'];
+  series: ResponseGetSeries['series'];
 };
 
 export const Provider: React.FC<ProviderProps> = ({ children, series }) => {

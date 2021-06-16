@@ -1,30 +1,23 @@
 import { request } from '@utils/request';
-import { getError } from '@utils/getErrorAxios';
 import routes from '@config/apiRoutes';
-import type {
-  GetSeriesParams,
-  GetSeriesResponse,
-  Serie,
-} from '@globalTypes/serieServices';
+import { ResponseGetSeries, Serie } from '@globalTypes/serieServices';
 
-export const getSeries = async <T extends GetSeriesResponse>(
-  params: GetSeriesParams = {}
-) => {
-  try {
-    const { data } = await request<T>(routes.series.all, { params });
-    return data;
-  } catch (reason) {
-    const error = getError(reason);
-    throw error.payload.message;
-  }
-};
+export const getSeries = (
+  querys: {
+    page_index?: number;
+    limit_items?: number;
+    sort_createdAt?: 'asc' | 'desc';
+    sort_release?: 'asc' | 'desc';
+    release?: 'today' | 'last_premieres';
+    type?: string;
+    gener?: string;
+    name?: string;
+    title?: string;
+  } = {}
+) =>
+  request<ResponseGetSeries>(routes.series.all, { params: querys }).then(
+    ({ data }) => data
+  );
 
-export const getSerie = async (serieId: string) => {
-  try {
-    const { data } = await request<Serie>(routes.series.getOne(serieId));
-    return data;
-  } catch (reason) {
-    const error = getError(reason);
-    throw error.payload.message;
-  }
-};
+export const getSerie = (serieId: string) =>
+  request<Serie>(routes.series.getOne(serieId)).then(({ data }) => data);

@@ -4,11 +4,11 @@ import Slider from 'react-slick';
 import { Serie } from '@components/DataDisplay/Serie';
 import { ChevronLeft } from '@components/Icon/ChevronLeft';
 import { ChevronRight } from '@components/Icon/ChevronRight';
-import { GetSeriesResponse } from '@globalTypes/serieServices';
+import { ResponseGetSeries } from '@globalTypes/serieServices';
 import { Root, ArrowButton } from './styled';
 
 type CarouselProps = {
-  series: GetSeriesResponse['series'];
+  series: ResponseGetSeries['series'];
 };
 
 export const Carousel = ({ series }: CarouselProps) => {
@@ -51,14 +51,14 @@ export const Carousel = ({ series }: CarouselProps) => {
         ]}
       >
         {Array.isArray(series) &&
-          series.map(({ _id, name, imageMd, geners, episodes }) => (
+          series.map(({ _id, name, thumbnail, geners, episodes }) => (
             <Link key={_id} href={`/serie/${_id}`}>
               <a>
                 <Serie
                   name={name}
-                  thumbnail={imageMd}
+                  thumbnail={thumbnail}
                   geners={geners}
-                  countEpisodes={episodes.length}
+                  countEpisodes={episodes}
                 />
               </a>
             </Link>

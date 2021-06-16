@@ -2,11 +2,11 @@ import React from 'react';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Spacing } from '@components/Layout/Spacing';
 import { Grid } from '@components/Layout/Grid';
-import { GetEpisodesResponse } from '@globalTypes/episodeServices';
+import { ResponseGetEpisodes } from '@globalTypes/episodeServices';
 import { Episode } from '../Episode';
 
 type EpisodesListProps = {
-  episodes: GetEpisodesResponse['data'];
+  episodes: ResponseGetEpisodes['data'];
 };
 
 export const EpisodesGrid = ({ episodes }: EpisodesListProps) => (

@@ -8,7 +8,7 @@ import { Root, GenersBox } from './styled';
 
 type SerieSlideProps = {
   name: string;
-  geners: Gener[];
+  geners: string[];
   id: string;
   style?: React.CSSProperties;
   isActive?: boolean;
@@ -27,9 +27,9 @@ export const SerieSlide = ({
         {name}
       </Typography>
       <GenersBox>
-        {geners.map(({ _id, name }) => (
-          <Typography key={_id} white>
-            {name}
+        {geners.map((gener, idx) => (
+          <Typography key={`${gener}-${idx}`} white>
+            {gener}
           </Typography>
         ))}
       </GenersBox>

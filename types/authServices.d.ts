@@ -1,4 +1,4 @@
-export interface PostLoginResponse {
+export interface ResponsePostLogin {
   user: {
     username: string;
     email: string;

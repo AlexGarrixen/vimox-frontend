@@ -45,10 +45,10 @@ export const Carousel = () => {
         ]}
       >
         {Array.isArray(series) &&
-          series.map(({ _id, imageSm }, idx) => (
+          series.map(({ _id, thumbnail }, idx) => (
             <ThumbnailSlide
               key={_id}
-              img={imageSm}
+              img={thumbnail}
               isActive={idx === activeIndex}
               serieId={_id}
             />

@@ -8,9 +8,10 @@ export interface UserSerie {
   serie: Serie;
 }
 
-export type GetUserSeries = UserSerie[];
+export type ResponseGetUserSeries = UserSerie[];
 
-export interface PostUserSerie extends Omit<UserSerie, 'lastEpisodeWatched'> {
+export interface ResponsePostUserSerie
+  extends Omit<UserSerie, 'lastEpisodeWatched'> {
   lastEpisodeWatched: string;
 }
 

@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import { ResponseGetSession } from '@globalTypes/authServices';
 import routes from '@config/apiRoutes';
+import { getAxiosError } from '@utils/getAxiosError';
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_EXTERNAL_SERVER_API_URL,
@@ -43,7 +44,7 @@ axiosInstance.interceptors.request.use(async (req) => {
   return req;
 });
 
-const authenticationRoutesWithoutToken = [
+const restrictedAuthRoutes = [
   routes.auth.login,
   routes.auth.resetPassword,
   routes.auth.forgotPassword,
@@ -61,12 +62,12 @@ axiosInstance.interceptors.response.use(
     ) {
       await requestApiRoute(routes.auth.session, { method: 'delete' });
       window.location.replace('/login');
-      return Promise.reject(error);
+      return Promise.reject(getAxiosError(error));
     }
 
     if (
       error.response.status === 401 &&
-      !authenticationRoutesWithoutToken.includes(originalRequest.url)
+      !restrictedAuthRoutes.includes(originalRequest.url)
     ) {
       const { data: newCredentials } = await request(routes.auth.renewToken, {
         method: 'post',
@@ -80,6 +81,6 @@ axiosInstance.interceptors.response.use(
       return axiosInstance(originalRequest);
     }
 
-    return Promise.reject(error);
+    return Promise.reject(getAxiosError(error));
   }
 );

@@ -44,7 +44,7 @@ export const Serie = ({
         </Truncate>
         {Array.isArray(geners) && (
           <Truncate>
-            <Typography>{geners.map(({ name }) => name).join(', ')}</Typography>
+            <Typography>{geners.map((gener) => gener).join(', ')}</Typography>
           </Truncate>
         )}
         <Typography>{`${countEpisodes} ${
