@@ -3,7 +3,7 @@ import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Trash } from '@components/Icon/Trash';
-import { UserSerie } from '@globalTypes/userServices';
+import { UserSerie, ResponseGetUserSeries } from '@globalTypes/userServices';
 import { deleteSerieOfList } from '@services/user';
 import { queryClient } from '@utils/queryClient';
 import {
@@ -19,21 +19,37 @@ export const QueueSerie = ({
   lastEpisodeWatched,
   serie,
   userId,
+  _id,
 }: UserSerie): JSX.Element => {
   const mutation = useMutation((serieId: string) =>
     deleteSerieOfList(serieId, userId)
   );
 
-  const handleDeleteSerie = async (ev: React.MouseEvent<HTMLButtonElement>) => {
+  const handleDeleteSerie = (ev: React.MouseEvent<HTMLButtonElement>) => {
     ev.preventDefault();
 
-    try {
-      await mutation.mutateAsync(serie._id);
-      queryClient.invalidateQueries('user-series');
-      toast.info(`Removiste ${serie.name} de tu lista`);
-    } catch (reason) {
-      toast.error(reason);
-    }
+    mutation
+      .mutateAsync(serie._id)
+      .then(() => {
+        toast.info(`Removiste ${serie.name} de tu lista`);
+
+        const previousData = queryClient.getQueryData<ResponseGetUserSeries>([
+          'user-series',
+          userId,
+        ]);
+
+        if (previousData) {
+          queryClient.setQueryData(
+            ['user-series', userId],
+            previousData.filter((serie) => serie._id !== _id)
+          );
+        } else {
+          queryClient.invalidateQueries(['user-series', userId]);
+        }
+      })
+      .catch((reason) => {
+        toast.error(reason);
+      });
   };
 
   return (
@@ -50,7 +66,7 @@ export const QueueSerie = ({
         </Typography>
       </ContentBox>
       <ActionsBox>
-        <DeleteButton onClick={handleDeleteSerie}>
+        <DeleteButton onClick={handleDeleteSerie} disabled={mutation.isLoading}>
           <Trash />
         </DeleteButton>
       </ActionsBox>

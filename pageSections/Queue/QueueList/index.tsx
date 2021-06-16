@@ -15,9 +15,10 @@ export const QueueList = (): JSX.Element => {
   const [session] = useSession();
 
   const { data, isLoading, error, refetch } = useQuery(
-    ['user-series', session],
-    () => {
-      if (session) return getListOfSeries(session.user._id);
+    ['user-series', session.user._id],
+    () => getListOfSeries(session.user._id),
+    {
+      cacheTime: 900000,
     }
   );
 
