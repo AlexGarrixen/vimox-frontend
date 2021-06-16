@@ -21,13 +21,18 @@ export const RecentSeries = () => {
       {
         ...filterQuerys,
         page_index: page,
-        sort_createdAt: 'desc',
-        limit_items: 12,
       },
     ],
-    async ({ queryKey }) => getSeries(queryKey[1]),
+    async ({ queryKey }) =>
+      getSeries({
+        ...queryKey[1],
+        limit_items: 12,
+        release: 'last_premieres',
+        sort_release: 'desc',
+      }),
     {
       keepPreviousData: true,
+      cacheTime: 900000,
     }
   );
 

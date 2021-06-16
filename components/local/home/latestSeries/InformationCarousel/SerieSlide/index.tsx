@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { Play } from '@components/Icon/Play';
 import { Typography } from '@components/DataDisplay/Typography';
 import { TrailAnimation } from '@components/Animation/Trail';
-import { Gener } from '@globalTypes/generServices';
 import { Root, GenersBox } from './styled';
 
 type SerieSlideProps = {

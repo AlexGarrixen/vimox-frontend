@@ -9,11 +9,11 @@ export const useFilterQuery = () => {
   const setFilterQuery = (
     name: string,
     value: string | number,
-    opts: { matchingValueToRemove?: string | number } = {}
+    opts: { removeInMatchValue?: string | number } = {}
   ) => {
     const querys = recoverFilterQuerys();
 
-    if (value === opts?.matchingValueToRemove) {
+    if (value === opts?.removeInMatchValue) {
       delete querys[name];
       router.push(router.pathname, { query: querys });
     } else {

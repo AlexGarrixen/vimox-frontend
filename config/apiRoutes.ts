@@ -22,6 +22,9 @@ const apiRoutes = {
   geners: {
     all: '/geners',
   },
+  categories: {
+    all: '/types',
+  },
   user: {
     getSeries: (userId: string) => `/user/${userId}/series`,
     getOneSerie: (userId: string, serieId) =>
