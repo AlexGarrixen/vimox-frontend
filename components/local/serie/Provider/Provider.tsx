@@ -1,27 +1,22 @@
 import React from 'react';
 import { useSession } from '@contexts/Auth/hooks';
+import { ResponseGetOneSerie } from '@globalTypes/serieServices';
 import { Context } from './Context';
-import { ContextValue } from './types';
 
 type ProviderProps = {
   children?: React.ReactNode;
-  isInQueue: boolean;
-} & Omit<ContextValue, 'setAddedInQueue'>;
+  data?: ResponseGetOneSerie;
+};
 
-export const Provider = ({
-  children,
-  serieId,
-  serieName,
-  isInQueue,
-}: ProviderProps) => {
+export const Provider = ({ children, data }: ProviderProps) => {
   const [session] = useSession();
+  const { isInQueue, ...restData } = data || {};
   const contextValue = React.useMemo(
     () => ({
-      serieId,
-      serieName,
+      ...restData,
       isInQueue: !session ? false : isInQueue,
     }),
-    [serieId, serieName, isInQueue]
+    [data]
   );
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;

@@ -1,6 +1,10 @@
 import { request } from '@utils/request';
 import routes from '@config/apiRoutes';
-import { ResponseGetSeries, Serie } from '@globalTypes/serieServices';
+import {
+  Serie,
+  ResponseGetSeries,
+  ResponseGetOneSerie,
+} from '@globalTypes/serieServices';
 
 export const getSeries = (
   querys: {
@@ -20,4 +24,6 @@ export const getSeries = (
   );
 
 export const getSerie = (serieId: string) =>
-  request<Serie>(routes.series.getOne(serieId)).then(({ data }) => data);
+  request<ResponseGetOneSerie>(routes.series.getOne(serieId)).then(
+    ({ data }) => data
+  );

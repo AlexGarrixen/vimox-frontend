@@ -20,3 +20,18 @@ export interface ResponseGetSeries {
   nextPage: number | null;
   prevPage: number | null;
 }
+
+export interface ResponseGetOneSerie extends Serie {
+  episodes: {
+    _id: string;
+    createdAt: Date;
+    name: string;
+    sinopsis: string;
+    src: string;
+    thumbnail: string;
+    duration: number;
+    order: number;
+    release: Date;
+    serie: string;
+  }[];
+}
