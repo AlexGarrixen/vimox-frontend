@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Trash } from '@components/Icon/Trash';
 import { UserSerie, ResponseGetUserSeries } from '@globalTypes/userServices';
+import { ResponseGetSeries } from '@globalTypes/serieServices';
 import { deleteSerieOfList } from '@services/user';
 import { queryClient } from '@utils/queryClient';
 import {
@@ -37,6 +38,9 @@ export const QueueSerie = ({
           'user-series',
           userId,
         ]);
+        const previousDirectorySeries = queryClient.getQueryData<ResponseGetSeries>(
+          'series_directory'
+        );
 
         if (previousData) {
           queryClient.setQueryData(
@@ -45,6 +49,19 @@ export const QueueSerie = ({
           );
         } else {
           queryClient.invalidateQueries(['user-series', userId]);
+        }
+
+        if (previousDirectorySeries) {
+          previousDirectorySeries.series = previousDirectorySeries.series.map(
+            (item) => {
+              if (item._id === serie._id) {
+                item.isInQueue = false;
+                return item;
+              } else return item;
+            }
+          );
+
+          queryClient.setQueryData('series_directory', previousDirectorySeries);
         }
       })
       .catch((reason) => {
