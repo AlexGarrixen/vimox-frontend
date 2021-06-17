@@ -3,6 +3,7 @@ import {
   ResponseGetUserSeries,
   ResponsePostUserSerie,
   ResponseGetUserSerie,
+  UserSerie,
 } from '@globalTypes/userServices';
 import routes from '@config/apiRoutes';
 
@@ -31,14 +32,14 @@ export const updateLastEpisodeWatched = ({
   episodeId: string;
   userId: string;
 }) =>
-  request(routes.user.lastEpisodeWatched(userId, serieId), {
+  request<UserSerie>(routes.user.lastEpisodeWatched(userId, serieId), {
     method: 'put',
     data: {
       lastEpisodeWatched: episodeId,
     },
   }).then(({ data }) => data);
 
-export const getOneSerie = (serieId: string, userId: string) =>
+export const getUserSerie = (serieId: string, userId: string) =>
   request<ResponseGetUserSerie>(routes.user.getOneSerie(userId, serieId)).then(
     ({ data }) => data
   );

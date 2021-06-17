@@ -13,7 +13,7 @@ export type ResponseGetUserSeries = UserSerie[];
 export type ResponsePostUserSerie = UserSerie;
 
 export type ResponseGetUserSerie = {
-  lastEpisodeWatched: string;
+  lastEpisodeWatched: Omit<Episode, 'serie' & { serie: string }>;
   _id: string;
   userId: string;
   serie: string;

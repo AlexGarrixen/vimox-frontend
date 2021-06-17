@@ -14,7 +14,7 @@ type EpisodeProps = {
 };
 
 export const Episode = ({ id, name, thumbnail, order }: EpisodeProps) => {
-  const { serieId } = React.useContext(Context);
+  const { _id: serieId } = React.useContext(Context);
 
   return (
     <div>
