@@ -16,38 +16,57 @@ import {
 import { MediaContent } from '@pageSections/Watch/MediaContent';
 import { NextEpisodes } from '@pageSections/Watch/NextEpisodes';
 import { getEpisode, getNextEpisodes } from '@services/episodes';
-import { updateLastEpisodeWatched, getOneSerie } from '@services/user';
+import { updateLastEpisodeWatched, getUserSerie } from '@services/user';
 import { useSession } from '@contexts/Auth/hooks';
+import { queryClient } from '@utils/queryClient';
+import { ResponseGetUserSeries } from '@globalTypes/userServices';
 
 type WatchProps = {
-  querys: Record<string, string>;
+  episodeId: string;
+  serieId: string;
 };
 
-const Watch = ({ querys }: WatchProps) => {
+const Watch = ({ episodeId, serieId }: WatchProps) => {
   const [session] = useSession();
 
   const episodeQuery = useQuery(
-    ['episode_watch', querys.episodeId],
+    ['episode_watch', episodeId],
     ({ queryKey }) => getEpisode(queryKey[1]),
     { refetchIntervalInBackground: false }
   );
 
   const nextEpisodesQuery = useQuery(
-    ['next_episodes', querys.episodeId],
+    ['next_episodes', episodeId],
     ({ queryKey }) => getNextEpisodes(queryKey[1]),
     { refetchIntervalInBackground: false }
   );
 
   const shouldUpdateLastEpisodeWatched = async () => {
     try {
-      const serieInQueue = await getOneSerie(querys.serieId, session.user._id);
+      const serieInQueue = await getUserSerie(serieId, session.user._id);
 
-      if (serieInQueue)
-        await updateLastEpisodeWatched({
+      if (serieInQueue) {
+        const updatedQueueSerie = await updateLastEpisodeWatched({
           userId: session.user._id,
-          serieId: querys.serieId,
-          episodeId: querys.episodeId,
+          serieId,
+          episodeId,
         });
+        const previousUserSeries = queryClient.getQueryData<ResponseGetUserSeries>(
+          ['user-series', session.user._id]
+        );
+
+        if (previousUserSeries)
+          queryClient.setQueryData(
+            ['user-series', session.user._id],
+            previousUserSeries.map((queueSerie) => {
+              if (queueSerie.serie._id === serieId) {
+                queueSerie.lastEpisodeWatched =
+                  updatedQueueSerie.lastEpisodeWatched;
+                return queueSerie;
+              } else return queueSerie;
+            })
+          );
+      }
     } catch (reason) {
       toast.error(reason);
     }
@@ -55,7 +74,7 @@ const Watch = ({ querys }: WatchProps) => {
 
   React.useEffect(() => {
     if (session) shouldUpdateLastEpisodeWatched();
-  }, [session, episodeQuery.data]);
+  }, [session, episodeId]);
 
   return (
     <LayoutApp
@@ -69,7 +88,7 @@ const Watch = ({ querys }: WatchProps) => {
         <Skeleton />
       ) : (
         <Provider
-          serieId={querys.serieId}
+          serieId={serieId}
           episode={episodeQuery.data?.episode}
           nextEpisode={episodeQuery.data?.nextEpisode}
           prevEpisode={episodeQuery.data?.prevEpisode}
@@ -112,7 +131,8 @@ const Watch = ({ querys }: WatchProps) => {
 };
 
 Watch.getInitialProps = (ctx: NextPageContext) => ({
-  querys: ctx.query,
+  episodeId: ctx.query.episodeId,
+  serieId: ctx.query.serieId,
 });
 
 export default Watch;

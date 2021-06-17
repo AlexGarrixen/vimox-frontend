@@ -1,5 +1,3 @@
-export interface ContextValue {
-  serieId: string;
-  serieName: string;
-  isInQueue: boolean;
-}
+import { ResponseGetOneSerie } from '@globalTypes/serieServices';
+
+export type ContextValue = ResponseGetOneSerie;

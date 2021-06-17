@@ -5,6 +5,7 @@ import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { Typography } from '@components/DataDisplay/Typography';
 import { Spacing } from '@components/Layout/Spacing';
 import { useFilterQuery } from '@hooks/useFilterQuery';
+import { usePreviousValue } from '@hooks/usePreviousValue';
 import { Filter } from '@localComponents/directory/recentSeries/Filter';
 import { SeriesGrid } from '@localComponents/directory/recentSeries/SeriesGrid';
 import { PaginationControls } from '@localComponents/directory/recentSeries/PaginationControls';
@@ -14,20 +15,25 @@ export const RecentSeries = () => {
   const { recoverFilterQuerys } = useFilterQuery();
   const filterQuerys = recoverFilterQuerys();
   const [page, setPage] = React.useState(1);
+  const previousFilterQuerys = usePreviousValue(filterQuerys);
+  const previousPage = usePreviousValue(page);
 
   const { data, isLoading, error, refetch } = useQuery(
-    [
-      'series_directory',
-      {
+    'series_directory',
+    async () =>
+      getSeries({
         ...filterQuerys,
-        page_index: page,
-        sort_createdAt: 'desc',
         limit_items: 12,
-      },
-    ],
-    async ({ queryKey }) => getSeries(queryKey[1]),
+        release: 'last_premieres',
+        sort_release: 'desc',
+        page_index: page,
+      }),
     {
       keepPreviousData: true,
+      cacheTime: 900000,
+      enabled:
+        JSON.stringify(previousFilterQuerys) !== JSON.stringify(filterQuerys) ||
+        page !== previousPage,
     }
   );
 

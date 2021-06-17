@@ -1,4 +1,7 @@
 import React from 'react';
+import jsCache from 'js-cache';
+
+const cachedSearchs = new jsCache();
 
 interface UseSearchValues<T = unknown> {
   isLoading: boolean;
@@ -15,6 +18,7 @@ type RequestFn<T = unknown> = (args?: Record<string, unknown>) => Promise<T>;
 
 interface Opts {
   sendArgs?: SendArgs;
+  cacheDuration?: number;
 }
 
 export const useSearch = <T = unknown>(
@@ -25,7 +29,6 @@ export const useSearch = <T = unknown>(
   const [data, setData] = React.useState<T | null>(null);
   const [error, setError] = React.useState(null);
   const [value, setValue] = React.useState('');
-  const cached = React.useRef({});
   const firstRequestMade = React.useRef(false);
 
   const handleChange = React.useCallback(
@@ -33,13 +36,13 @@ export const useSearch = <T = unknown>(
     [value]
   );
 
-  const requestSearch = async () => {
+  const requestSearch = async (value: string) => {
     firstRequestMade.current = true;
     setLoading(true);
 
     try {
       const data = await requestFn(opts?.sendArgs ? opts.sendArgs(value) : {});
-      cached.current[value] = data;
+      cachedSearchs.set(value, data, opts?.cacheDuration || 900000);
       setData(data);
       setLoading(false);
     } catch (reason) {
@@ -50,12 +53,14 @@ export const useSearch = <T = unknown>(
 
   React.useEffect(() => {
     if (value.length > 2) {
-      if (!cached.current[value]) requestSearch();
-      else setData(cached.current[value]);
+      const cachedData = cachedSearchs.get(value);
+
+      if (!cachedData) requestSearch(value);
+      else setData(cachedData);
     }
 
     if (value.length < 2 && firstRequestMade.current) setData(null);
-  }, [value, cached]);
+  }, [value]);
 
   return {
     handleChange,

@@ -9,7 +9,15 @@ import { getEpisodes } from '@services/episodes';
 export const LatestEpisodes = () => {
   const { data, isLoading, error, refetch } = useQuery(
     'latestEpisodes_home',
-    () => getEpisodes({ sort_createdAt: 'desc', limit_items: 12 })
+    () =>
+      getEpisodes({
+        release: 'last_premieres',
+        sort_release: 'desc',
+        limit_items: 12,
+      }),
+    {
+      cacheTime: 900000,
+    }
   );
 
   if (error)

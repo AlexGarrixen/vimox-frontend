@@ -12,7 +12,16 @@ import { Root } from './styled';
 export const LatestSeries = () => {
   const { isLoading, data, error, refetch } = useQuery(
     'latestSeries_home',
-    () => getSeries({ sort_createdAt: 'desc', limit_items: 10, type: 'tv' })
+    () =>
+      getSeries({
+        release: 'last_premieres',
+        sort_release: 'desc',
+        limit_items: 10,
+        type: 'Tv',
+      }),
+    {
+      cacheTime: 900000,
+    }
   );
 
   if (error)

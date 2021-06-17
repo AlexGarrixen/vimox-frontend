@@ -5,19 +5,23 @@ import { Dropdown, DropdownOption } from '@components/Overlays/Dropdown';
 import { useFilterQuery } from '@hooks/useFilterQuery';
 import { Skeleton } from './Skeleton';
 import { getGeners } from '@services/geners';
+import { getCategories } from '@services/categories';
 import { Root } from './styled';
 
 const maxHeightOptions = 330;
 
 export const Filter = () => {
   const { setFilterQuery } = useFilterQuery();
-  const { data, isLoading, error } = useQuery(
-    'geners_directory',
-    async () => getGeners(),
-    {
-      refetchIntervalInBackground: false,
-    }
-  );
+  const genersQuery = useQuery('geners', () => getGeners(), {
+    refetchIntervalInBackground: false,
+    cacheTime: 900000,
+  });
+  const typesQuery = useQuery('types', () => getCategories(), {
+    cacheTime: 900000,
+    refetchIntervalInBackground: false,
+  });
+  const error = genersQuery.error || typesQuery.error;
+  const isLoading = genersQuery.isLoading || typesQuery.isLoading;
 
   if (error) return <p>{error}</p>;
 
@@ -36,26 +40,28 @@ export const Filter = () => {
           text='Tipo'
           getCustomText={(value, label) => `Tipo: ${label}`}
           onChange={(value) =>
-            setFilterQuery('type', value, { matchingValueToRemove: 'all' })
+            setFilterQuery('type', value, { removeInMatchValue: '' })
           }
           maxHeightOptions={maxHeightOptions}
         >
-          <DropdownOption value='all' label='Todos' />
-          <DropdownOption value='tv' label='Tv' />
-          <DropdownOption value='pelicula' label='Pelicula' />
+          <DropdownOption value='' label='Todos' />
+          {Array.isArray(typesQuery.data) &&
+            typesQuery.data.map(({ name }) => (
+              <DropdownOption key={name} value={name} label={name} />
+            ))}
         </Dropdown>
         <Dropdown
           text='Genero'
           getCustomText={(value, label) => `Genero: ${label}`}
           onChange={(value) =>
-            setFilterQuery('gener', value, { matchingValueToRemove: 'all' })
+            setFilterQuery('gener', value, { removeInMatchValue: '' })
           }
           maxHeightOptions={maxHeightOptions}
         >
-          <DropdownOption value='all' label='Todos' />
-          {Array.isArray(data) &&
-            data.map(({ _id, name }) => (
-              <DropdownOption key={_id} value={_id} label={name} />
+          <DropdownOption value='' label='Todos' />
+          {Array.isArray(genersQuery.data) &&
+            genersQuery.data.map(({ name }) => (
+              <DropdownOption key={name} value={name} label={name} />
             ))}
         </Dropdown>
       </Slider>

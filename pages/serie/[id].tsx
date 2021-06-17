@@ -11,13 +11,16 @@ import { EpisodesGrid } from '@pageSections/Serie/EpisodesGrid';
 import { getSerie } from '@services/series';
 
 type SerieProps = {
-  querys: Record<string, string>;
+  serieId: string;
 };
 
-const Serie = ({ querys }: SerieProps) => {
+const Serie = ({ serieId }: SerieProps) => {
   const { data, isLoading, error, refetch } = useQuery(
-    ['serie', querys.id],
-    ({ queryKey }) => getSerie(queryKey[1])
+    ['serie', serieId],
+    () => getSerie(serieId),
+    {
+      cacheTime: 900000,
+    }
   );
 
   return (
@@ -28,21 +31,9 @@ const Serie = ({ querys }: SerieProps) => {
         </ErrorMessage>
       ) : isLoading ? (
         <Skeleton />
-      ) : !data ? (
-        <div />
-      ) : (
-        <Provider
-          serieId={data._id}
-          serieName={data.name}
-          isInQueue={data.isInQueue}
-        >
-          <Hero
-            name={data.name}
-            sinopsis={data.sinopsis}
-            cover={data.imageLg}
-            geners={data.geners}
-            duration={data.duration}
-          />
+      ) : !data ? null : (
+        <Provider data={data}>
+          <Hero />
           <Spacing size={80} />
           <EpisodesGrid data={data.episodes} />
           <Spacing size={30} />
@@ -56,6 +47,6 @@ export default Serie;
 
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: {
-    querys: context.query,
+    serieId: context.query.id,
   },
 });

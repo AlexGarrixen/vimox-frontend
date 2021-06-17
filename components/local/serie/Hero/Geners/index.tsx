@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Typography } from '@components/DataDisplay/Typography';
-import { Gener } from '@globalTypes/generServices';
 
 const Root = styled.div`
   display: flex;
@@ -22,15 +21,15 @@ const Root = styled.div`
 `;
 
 type GenersProps = {
-  geners: Gener[];
+  geners: string[];
 };
 
 export const Geners = ({ geners }: GenersProps) => (
   <Root>
     {Array.isArray(geners) &&
-      geners.slice(0, 3).map(({ _id, name }) => (
-        <Typography key={_id} white>
-          {name}
+      geners.slice(0, 3).map((gener) => (
+        <Typography key={gener} white>
+          {gener}
         </Typography>
       ))}
   </Root>

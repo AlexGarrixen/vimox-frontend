@@ -13,7 +13,15 @@ export const LatestMovies = () => {
   const { data, isLoading, error, refetch } = useQuery(
     'latestMovies_home',
     () =>
-      getSeries({ limit_items: 10, type: 'pelicula', sort_createdAt: 'desc' })
+      getSeries({
+        limit_items: 10,
+        type: 'Pelicula',
+        sort_release: 'desc',
+        release: 'last_premieres',
+      }),
+    {
+      cacheTime: 900000,
+    }
   );
 
   if (error)

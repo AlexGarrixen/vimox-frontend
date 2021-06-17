@@ -26,7 +26,7 @@ export const BackgroundCover = () => {
 
   return transitions((styles, idx) => (
     <a.div style={styles}>
-      <ImageStyled src={series[idx].imageLg} />
+      <ImageStyled src={series[idx].bannerImage} />
     </a.div>
   ));
 };

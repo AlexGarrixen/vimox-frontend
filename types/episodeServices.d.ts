@@ -1,3 +1,5 @@
+import { Serie } from './serieServices';
+
 export interface Episode {
   _id: string;
   createdAt: string;
@@ -7,44 +9,21 @@ export interface Episode {
   thumbnail: string;
   duration: number;
   order: number;
-  previewImage: number;
-  serie: {
-    _id: string;
-    name: string;
-    createdAt: string;
-    episodes: string[];
-    geners: string[];
-    titles: string[];
-    sinopsis: string;
-    imageSm: string;
-    imageMd: string;
-    imageLg: string;
-    type: string;
-    addedByUsers: {
-      _id: string;
-      user: string;
-    }[];
-  };
+  serie: Serie;
+  release: Date;
 }
-
-export interface ResponseGetEpisode {
+export interface ResponseGetOneEpisode {
   episode: Episode;
   nextEpisode: Episode | null;
   prevEpisode: Episode | null;
 }
 
-export interface GetEpisodesResponse {
+export interface ResponseGetEpisodes {
   data: Episode[];
-  lastPage: string;
-  nextPage: string;
-  prevPage: string;
+  lastPage: string | null;
+  nextPage: string | null;
+  prevPage: string | null;
   count: number;
-}
-
-export interface GetEpisodesParams {
-  sort_createdAt?: 'asc' | 'desc';
-  of_serieId?: string;
-  limit_items?: ?number;
 }
 
 export type ResponseGetNextEpisodes = Episode[];
