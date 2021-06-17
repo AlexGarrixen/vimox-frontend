@@ -38,13 +38,13 @@ export const SeriesFinder = () => {
     return (
       <Grid gap={1.5} cols='1'>
         {Array.isArray(data) &&
-          data.map(({ _id, name, episodes, imageSm }) => (
+          data.map(({ _id, name, episodes, thumbnail }) => (
             <Link key={_id} href={`/serie/${_id}`}>
               <a onClick={hideSeriesFinder}>
                 <Result
                   name={name}
-                  totalEpisodes={episodes.length}
-                  thumbnail={imageSm}
+                  totalEpisodes={episodes}
+                  thumbnail={thumbnail}
                 />
               </a>
             </Link>

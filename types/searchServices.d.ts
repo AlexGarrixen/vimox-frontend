@@ -1,8 +1,3 @@
 import { Serie } from './serieServices';
 
-export type ResponseSearchSerie =
-  | (Omit<Serie, 'episodes' | 'geners'> & {
-      episodes: string[];
-      geners: string[];
-    })[]
-  | null;
+export type ResponseSearchSerie = (Serie & { episodes: number })[] | null;
