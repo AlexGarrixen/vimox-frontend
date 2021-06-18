@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { InputBase, InputBaseProps } from '@components/Form/InputBase';
-import { Eye } from '@components/Icon/Eye';
-import { EyeSlash } from '@components/Icon/EyeSlash';
+import { EyeOpenOutlined } from '@components/Icon/EyeOpenOutlined';
+import { EyeSlashOutlined } from '@components/Icon/EyeSlashOutlined';
 import { PasswordStrengthBar } from '@components/Feedback/PasswordStrengthBar';
 import { ComponentWithRef } from '@globalTypes/component';
 
@@ -33,9 +33,15 @@ export const InputPassword: ComponentWithRef<InputPasswordProps> = React.forward
           fullWidth={fullWidth}
           adornment={
             type === 'password' ? (
-              <Eye onClick={() => setType('text')} />
+              <EyeOpenOutlined
+                onClick={() => setType('text')}
+                style={{ cursor: 'pointer' }}
+              />
             ) : (
-              <EyeSlash onClick={() => setType('password')} />
+              <EyeSlashOutlined
+                onClick={() => setType('password')}
+                style={{ cursor: 'pointer' }}
+              />
             )
           }
           ref={ref}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from '@components/DataDisplay/Text';
-import { User as UserIcon } from '@components/Icon/User';
+import { UserOutlined } from '@components/Icon/UserOutlined';
 import { useAuthMethods } from '@contexts/Auth/hooks';
 import { useOutsideClick } from '@hooks/useOutsideClick';
 import { UserButton, MenuBox, Option } from './styled';
@@ -18,7 +18,7 @@ export const User = ({ username }: UserProps): JSX.Element => {
 
   return (
     <UserButton onClick={handleClick} ref={ref}>
-      <UserIcon color='#fff' xl />
+      <UserOutlined colorScheme='white' size={24} />
       {showMenu && (
         <MenuBox>
           <Option>

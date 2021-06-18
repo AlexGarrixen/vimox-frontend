@@ -1,8 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Container } from '@components/Layout/Container';
+import { Spacing } from '@components/Layout/Spacing';
 import { Grid } from '@components/Layout/Grid';
-import { Play } from '@components/Icon/Play';
+import { PlayOutlined } from '@components/Icon/PlayOutlined';
 
 type SkeletonRow = {
   width?: string;
@@ -47,7 +48,9 @@ export const Skeleton = () => (
         <SkeletonRow width='70%' />
         <SkeletonRow width='40%' />
       </Grid>
-      <Play xxxl margin='30px 0 50px 0' color='#2A2C34' />
+      <Spacing size={30} />
+      <PlayOutlined size={40} color='gray.300' />
+      <Spacing size={50} />
       <Grid cols={{ xs: 2, sm: 3, md: 4 }} gap={2}>
         <SkeletonSlide />
         <SkeletonSlide />

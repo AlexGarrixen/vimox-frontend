@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Spacing } from '@components/Layout/Spacing';
-import { Play } from '@components/Icon/Play';
+import { PlayOutlined } from '@components/Icon/PlayOutlined';
 import { Truncate } from '@components/DataDisplay/Truncate';
 import { Title } from '@components/DataDisplay/Title';
 import { Text } from '@components/DataDisplay/Text';
@@ -28,7 +28,7 @@ export const Episode = ({ id, name, thumbnail, order }: EpisodeProps) => {
               <Thumbnail src={thumbnail} />
             </AspectRatio>
             <PlayButton>
-              <Play color='#fff' xxxl />
+              <PlayOutlined colorScheme='white' size='3x' />
             </PlayButton>
           </ThumbnailBox>
         </a>

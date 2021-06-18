@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Search } from '@components/Icon/Search';
+import { SearchOutlined } from '@components/Icon/SearchOutlined';
 import { Grid } from '@components/Layout/Grid';
 import { Text } from '@components/DataDisplay/Text';
 import { useSeriesFinder } from '@hooks/useSeriesFinder';
@@ -64,7 +64,7 @@ export const SeriesFinder = () => {
   return (
     <SeriesFinderBox>
       <HeaderBox>
-        <Search xl />
+        <SearchOutlined colorScheme='white' />
         <TextBox
           placeholder='Buscar serie'
           onChange={handleChange}

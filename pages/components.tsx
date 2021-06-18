@@ -7,10 +7,9 @@ import { Text } from '@components/DataDisplay/Text';
 import { ButtonBase } from '@components/Form/ButtonBase';
 import { Button } from '@components/Form/Button';
 import { IconButton } from '@components/Form/IconButton';
-import { Play } from '@components/Icon/Play';
 import { Input } from '@components/Form/Input';
 import { Grid } from '@components/Layout/Grid';
-import { PlayOutlined } from '@components/Iconv2/PlayOutlined';
+import { PlayOutlined } from '@components/Icon/PlayOutlined';
 
 const Components = () => (
   <LayoutApp>
@@ -27,10 +26,6 @@ const Components = () => (
         paragraph
       </Text>
       <ButtonBase colorScheme='primary'>Button</ButtonBase>
-      <Button startIcon={<Play />}>Button</Button>
-      <IconButton>
-        <Play />
-      </IconButton>
       <Input placeholder='placeholder' type='text' />
       <Input placeholder='placeholder' type='number' />
       <Input placeholder='placeholder' type='date' />

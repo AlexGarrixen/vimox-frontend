@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { Title } from '@components/DataDisplay/Title';
 import { Text } from '@components/DataDisplay/Text';
 import { IconButton } from '@components/Form/IconButton';
-import { Trash } from '@components/Icon/Trash';
+import { TrashOutlined } from '@components/Icon/TrashOutlined';
 import { UserSerie, ResponseGetUserSeries } from '@globalTypes/userServices';
 import { ResponseGetSeries } from '@globalTypes/serieServices';
 import { deleteSerieOfList } from '@services/user';
@@ -89,7 +89,7 @@ export const QueueSerie = ({
           onClick={handleDeleteSerie}
           disabled={mutation.isLoading}
         >
-          <Trash />
+          <TrashOutlined />
         </IconButton>
       </ActionsBox>
     </QueueSerieBox>

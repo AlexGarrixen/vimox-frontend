@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Play } from '@components/Icon/Play';
+import { PlayOutlined } from '@components/Icon/PlayOutlined';
 import { Title } from '@components/DataDisplay/Title';
 import { Text } from '@components/DataDisplay/Text';
 import { TrailAnimation } from '@components/Animation/Trail';
@@ -40,7 +40,11 @@ export const SerieSlide = ({
       </GenersBox>
       <Link href={`/serie/${id}`}>
         <a>
-          <Play color='#fff' xxl margin='10px 0 0 0' />
+          <PlayOutlined
+            colorScheme='white'
+            size={40}
+            style={{ marginTop: 10 }}
+          />
         </a>
       </Link>
     </TrailAnimation>

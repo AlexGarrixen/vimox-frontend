@@ -3,7 +3,7 @@ import { Image } from '@components/DataDisplay/Image';
 import { Title } from '@components/DataDisplay/Title';
 import { Text } from '@components/DataDisplay/Text';
 import { Spacing } from '@components/Layout/Spacing';
-import { Bookmark } from '@components/Icon/Bookmark';
+import { BookmarkOutlined } from '@components/Icon/BookmarkOutlined';
 import { AspectRatio } from '@components/Layout/AspectRatio';
 import { Truncate } from '../Truncate';
 import { Serie as ISerie } from '@globalTypes/serieServices';
@@ -28,7 +28,7 @@ export const Serie = ({
     <SerieBox>
       {isInQueue && (
         <BookmarkBox>
-          <Bookmark sm />
+          <BookmarkOutlined colorScheme='white' />
         </BookmarkBox>
       )}
       <ThumbnailBox>
