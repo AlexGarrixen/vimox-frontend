@@ -65,6 +65,7 @@ export const Form = ({ onSuccess }: FormProps): JSX.Element => {
           value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
+          error={Boolean(errors.email)}
         />
         {errors.email && <HelperText error>{errors.email}</HelperText>}
         <Spacing size={18} />

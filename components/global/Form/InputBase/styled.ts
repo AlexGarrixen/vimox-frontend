@@ -25,7 +25,7 @@ export const InputBaseBox = styled.div<
   ${({ size, theme }) =>
     size === 'md' &&
     `
-    font-size: ${theme.fontSize.base[0]};
+    font-size: ${theme.fontSize.sm[0]};
     min-height: 42px;
     padding: 8px 16px;
   `}
@@ -65,6 +65,11 @@ export const Input = styled.input`
   ::-webkit-inner-spin-button {
     appearance: none;
     margin: 0;
+  }
+  :-webkit-autofill {
+    -webkit-text-fill-color: ${({ theme }) => theme.colors.gray[200]};
+    box-shadow: 0 0 0px 1000px ${({ theme }) => theme.colors.gray[400]} inset;
+    border-radius: 0;
   }
 `;
 
