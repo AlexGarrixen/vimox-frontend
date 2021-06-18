@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Text } from '@components/DataDisplay/Text';
 import { useReadMore } from '@hooks/useReadMore';
 
 type SinopsisProps = {
@@ -13,18 +13,18 @@ export const Sinopsis = ({ text: textProp }: SinopsisProps) => {
   );
 
   return (
-    <Typography>
+    <Text colorScheme='secondary'>
       {text}
       {showReadMore && (
-        <Typography
+        <Text
           as='span'
-          white
+          colorScheme='white'
           onClick={handleToggle}
           style={{ cursor: 'pointer' }}
         >
           {showFullText ? ' menos' : ' ...más'}
-        </Typography>
+        </Text>
       )}
-    </Typography>
+    </Text>
   );
 };

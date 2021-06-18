@@ -1,8 +1,8 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { Context } from '../../Provider';
-import { ChevronLeft } from '@components/Icon/ChevronLeft';
-import { ChevronRight } from '@components/Icon/ChevronRight';
+import { ChevronLeftFilled } from '@components/Icon/ChevronLeftFilled';
+import { ChevronRightFilled } from '@components/Icon/ChevronRightFilled';
 import { ThumbnailSlide } from '../ThumbnailSlide';
 import { Root, ArrowButton } from './styled';
 
@@ -20,7 +20,7 @@ export const Carousel = () => {
   return (
     <Root>
       <ArrowButton onClick={prev}>
-        <ChevronLeft lg />
+        <ChevronLeftFilled />
       </ArrowButton>
       <Slider
         slidesToShow={4}
@@ -55,7 +55,7 @@ export const Carousel = () => {
           ))}
       </Slider>
       <ArrowButton toRight onClick={next}>
-        <ChevronRight lg />
+        <ChevronRightFilled />
       </ArrowButton>
     </Root>
   );

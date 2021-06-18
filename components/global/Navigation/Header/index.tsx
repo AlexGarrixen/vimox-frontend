@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Search } from '@components/Icon/Search';
+import { SearchOutlined } from '@components/Icon/SearchOutlined';
 import { Container } from '@components/Layout/Container';
 import { User } from '@components/Overlays/User';
 import { Button } from '@components/Form/Button';
@@ -75,13 +75,13 @@ export const Header = () => {
               </Nav>
               <ActionsBox>
                 {!isAuth && (
-                  <Button primary small onClick={() => router.push('/login')}>
+                  <Button size='sm' onClick={() => router.push('/login')}>
                     Inicia sesion
                   </Button>
                 )}
                 {isAuth && <User username={session.user.username} />}
                 <IconButton onClick={showSeriesFinder}>
-                  <Search color='#fff' xl />
+                  <SearchOutlined colorScheme='white' size={24} />
                 </IconButton>
               </ActionsBox>
             </>

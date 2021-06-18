@@ -5,7 +5,8 @@ import { Button } from '@components/Form/Button';
 import { Input } from '@components/Form/Input';
 import { Spacing } from '@components/Layout/Spacing';
 import { HelperText } from '@components/Form/HelperText';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
 import { useForm } from '@hooks/useForm';
 import { forgotPassword } from '@services/auth';
 
@@ -47,14 +48,14 @@ export const Form = ({ onSuccess }: FormProps): JSX.Element => {
   return (
     <div style={{ textAlign: 'center' }}>
       <img src='/forgot-password.png' />
-      <Typography as='h3' white>
+      <Title level='3' colorScheme='white'>
         ¿Olvidaste tu contraseña?
-      </Typography>
+      </Title>
       <Spacing size={12} />
-      <Typography>
+      <Text colorScheme='secondary'>
         Ingrese el correo electrónico asociado a su cuenta y le enviaremos un
         correo electrónico con instrucciones para restablecer su contraseña
-      </Typography>
+      </Text>
       <Spacing size={24} />
       <form onSubmit={handleSubmit}>
         <Input
@@ -64,15 +65,11 @@ export const Form = ({ onSuccess }: FormProps): JSX.Element => {
           value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
+          error={Boolean(errors.email)}
         />
         {errors.email && <HelperText error>{errors.email}</HelperText>}
         <Spacing size={18} />
-        <Button
-          primary
-          fullWidth
-          type='submit'
-          disabled={!isValidForm || isSubmitting}
-        >
+        <Button fullWidth type='submit' disabled={!isValidForm || isSubmitting}>
           Enviar instrucciones
         </Button>
       </form>

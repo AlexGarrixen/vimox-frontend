@@ -2,8 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import Slider from 'react-slick';
 import { Serie } from '@components/DataDisplay/Serie';
-import { ChevronLeft } from '@components/Icon/ChevronLeft';
-import { ChevronRight } from '@components/Icon/ChevronRight';
+import { ChevronLeftFilled } from '@components/Icon/ChevronLeftFilled';
+import { ChevronRightFilled } from '@components/Icon/ChevronRightFilled';
 import { ResponseGetSeries } from '@globalTypes/serieServices';
 import { Root, ArrowButton } from './styled';
 
@@ -21,7 +21,7 @@ export const Carousel = ({ series }: CarouselProps) => {
   return (
     <Root>
       <ArrowButton onClick={prev}>
-        <ChevronLeft color='#fff' xl />
+        <ChevronLeftFilled colorScheme='white' />
       </ArrowButton>
       <Slider
         ref={setSlider}
@@ -65,7 +65,7 @@ export const Carousel = ({ series }: CarouselProps) => {
           ))}
       </Slider>
       <ArrowButton toRight onClick={next}>
-        <ChevronRight color='#fff' xl />
+        <ChevronRightFilled colorScheme='white' />
       </ArrowButton>
     </Root>
   );

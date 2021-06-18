@@ -1,54 +1,30 @@
 import React from 'react';
-import { StyledButton, StartIcon, EndIcon, LabelText } from './styled';
+import { ButtonBaseProps } from '@components/Form/ButtonBase';
+import { ComponentWithRef } from '@globalTypes/component';
+import { ButtonRoot, Label, StartIcon, EndIcon } from './styled';
 
 export type ButtonProps = {
-  primary?: boolean;
-  startIcon?: React.ReactNode;
-  endIcon?: React.ReactNode;
-  children?: React.ReactNode;
-  margin?: string;
-  onClick?: (e: React.MouseEvent) => void;
-  fullWidth?: boolean;
-  disabled?: boolean;
-  type?: 'button' | 'submit' | 'reset';
-  small?: boolean;
+  props: {
+    size?: 'sm' | 'md';
+    fullWidth?: boolean;
+    startIcon?: React.ReactNode;
+    endIcon?: React.ReactNode;
+  } & ButtonBaseProps['props'];
+  element: 'button';
 };
 
-export const Button = React.forwardRef(
-  (
-    {
-      children,
-      startIcon,
-      endIcon,
-      margin,
-      primary,
-      onClick,
-      fullWidth,
-      disabled,
-      type = 'button',
-      small,
-    }: ButtonProps,
-    ref: React.Ref<HTMLButtonElement>
-  ) => {
-    return (
-      <StyledButton
-        ref={ref}
-        primary={primary}
-        margin={margin}
-        onClick={onClick}
-        fullWidth={fullWidth}
-        disabled={disabled}
-        type={type}
-        small={small}
-      >
-        {startIcon && <StartIcon>{startIcon}</StartIcon>}
-        <LabelText primary={primary} disabled={disabled}>
-          {children}
-        </LabelText>
-        {endIcon && <EndIcon>{endIcon}</EndIcon>}
-      </StyledButton>
-    );
-  }
+export const Button: ComponentWithRef<ButtonProps> = React.forwardRef(
+  ({ size, children, startIcon, endIcon, fullWidth, ...rest }, ref) => (
+    <ButtonRoot {...rest} size={size} fullWidth={fullWidth} ref={ref}>
+      {startIcon && <StartIcon>{startIcon}</StartIcon>}
+      <Label>{children}</Label>
+      {endIcon && <EndIcon>{endIcon}</EndIcon>}
+    </ButtonRoot>
+  )
 );
 
 Button.displayName = 'Button';
+Button.defaultProps = {
+  size: 'md',
+  colorScheme: 'primary',
+};

@@ -36,7 +36,7 @@ const SkeletonItem = styled.div`
 export const Skeleton = () => (
   <SkeletonBox>
     <SkeletonRow width='40%' />
-    <Grid xs='2' sm='3' md='4' gap={2} style={{ marginTop: 30 }}>
+    <Grid cols={{ xs: 2, sm: 2, md: 4 }} gap={2} style={{ marginTop: 30 }}>
       <SkeletonItem />
       <SkeletonItem />
       <SkeletonItem />

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Typography } from '@components/DataDisplay/Typography';
-import { User as UserIcon } from '@components/Icon/User';
+import { Text } from '@components/DataDisplay/Text';
+import { UserOutlined } from '@components/Icon/UserOutlined';
 import { useAuthMethods } from '@contexts/Auth/hooks';
 import { useOutsideClick } from '@hooks/useOutsideClick';
 import { UserButton, MenuBox, Option } from './styled';
@@ -18,14 +18,18 @@ export const User = ({ username }: UserProps): JSX.Element => {
 
   return (
     <UserButton onClick={handleClick} ref={ref}>
-      <UserIcon color='#fff' xl />
+      <UserOutlined colorScheme='white' size={24} />
       {showMenu && (
         <MenuBox>
           <Option>
-            <Typography size='sm'>{username}</Typography>
+            <Text size='sm' colorScheme='secondary'>
+              {username}
+            </Text>
           </Option>
           <Option onClick={logOut}>
-            <Typography size='sm'>Cerrar sesion</Typography>
+            <Text size='sm' colorScheme='secondary'>
+              Cerrar sesion
+            </Text>
           </Option>
         </MenuBox>
       )}

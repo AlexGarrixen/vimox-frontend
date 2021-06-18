@@ -7,6 +7,7 @@ declare module 'styled-components' {
       warning: string;
       danger: string;
       success: string;
+      white: string;
       gray: {
         100: string;
         200: string;

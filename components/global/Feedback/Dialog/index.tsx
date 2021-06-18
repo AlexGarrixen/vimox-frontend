@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { Close } from '@components/Icon/Close';
+import { CloseFilled } from '@components/Icon/CloseFilled';
 import { ContentBox, CloseButton } from './styled';
 
 Modal.setAppElement('#__next');
@@ -25,7 +25,7 @@ export const Dialog = ({
     overlayClassName='OverlayModal'
   >
     <CloseButton onClick={onRequestClose}>
-      <Close color='#fff' xxl />
+      <CloseFilled colorScheme='white' size='2x' />
     </CloseButton>
     <ContentBox maxWidth={maxWidth}>{children}</ContentBox>
   </Modal>

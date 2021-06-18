@@ -1,5 +1,6 @@
 import React from 'react';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
 import { Truncate } from '@components/DataDisplay/Truncate';
 import { ResultBox, Thumbnail, ContentBox } from './styled';
 
@@ -14,11 +15,11 @@ export const Result = ({ name, thumbnail, totalEpisodes }: ResultProps) => (
     <Thumbnail src={thumbnail} />
     <ContentBox>
       <Truncate>
-        <Typography as='h6' size='sm' white>
+        <Title level='6' size='sm' colorScheme='white'>
           {name.toUpperCase()}
-        </Typography>
+        </Title>
       </Truncate>
-      <Typography>{totalEpisodes} episodeos</Typography>
+      <Text colorScheme='secondary'>{totalEpisodes} episodeos</Text>
     </ContentBox>
   </ResultBox>
 );

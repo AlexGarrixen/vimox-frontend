@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image } from '@components/DataDisplay/Image';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
 import { Truncate } from '@components/DataDisplay/Truncate';
 import { AspectRatio } from '@components/Layout/AspectRatio';
 import { Spacing } from '@components/Layout/Spacing';
@@ -21,11 +22,11 @@ export const Episode = ({ name, thumbnail, order }: EpisodeProps) => (
     </ThumbnailBox>
     <Spacing size={12} />
     <Truncate>
-      <Typography as='h6' white>
+      <Title level='6' colorScheme='white'>
         {name}
-      </Typography>
+      </Title>
     </Truncate>
     <Spacing size={2} />
-    <Typography>Episodio {order}</Typography>
+    <Text colorScheme='secondary'>Episodio {order}</Text>
   </div>
 );

@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Grid } from '@components/Layout/Grid';
 import { Spacing } from '@components/Layout/Spacing';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
 import { Episode } from '@localComponents/watch/NextEpisodes/Episode';
 import { Context } from '@localComponents/watch/Provider';
 
@@ -11,12 +11,12 @@ export const NextEpisodes = () => {
 
   return (
     <div>
-      <Typography as='h3' size='lg' white>
+      <Title level='3' size='lg' colorScheme='white'>
         Proximos episodios
-      </Typography>
+      </Title>
       <Spacing size={16} />
       {Array.isArray(nextEpisodes) && (
-        <Grid gap={1.5} xs='2' md='1'>
+        <Grid gap={1.5} cols={{ xs: 2, md: 1 }}>
           {nextEpisodes.map(({ thumbnail, name, order, _id }) => (
             <Link key={_id} href={`/watch?serieId=${serieId}&episodeId=${_id}`}>
               <a>

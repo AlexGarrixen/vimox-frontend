@@ -6,7 +6,8 @@ import { Spacing } from '@components/Layout/Spacing';
 import { Button } from '@components/Form/Button';
 import { Input } from '@components/Form/Input';
 import { HelperText } from '@components/Form/HelperText';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
 import { useForm } from '@hooks/useForm';
 import { resetPasswordSchema } from '@utils/yupSchemas';
 import { resetPassword } from '@services/auth';
@@ -45,17 +46,17 @@ export const Form = ({ onSuccess }: FormProps): JSX.Element => {
 
   return (
     <div>
-      <Typography as='h3' white>
+      <Title level='3' colorScheme='white'>
         Crea una nueva contraseña
-      </Typography>
+      </Title>
       <Spacing size={12} />
-      <Typography>
+      <Text colorScheme='secondary'>
         Su nueva contraseña debe ser diferente de las contraseñas de uso
         anterior
-      </Typography>
+      </Text>
       <Spacing size={24} />
       <form onSubmit={handleSubmit}>
-        <Grid cols='1' gap={1.5}>
+        <Grid cols={1} gap={1.5}>
           <div>
             <Input
               placeholder='Tu nueva contraseña'
@@ -86,7 +87,6 @@ export const Form = ({ onSuccess }: FormProps): JSX.Element => {
             )}
           </div>
           <Button
-            primary
             fullWidth
             type='submit'
             disabled={!isValidForm || isSubmitting}

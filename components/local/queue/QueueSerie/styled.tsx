@@ -47,14 +47,3 @@ export const ActionsBox = styled.div`
   justify-content: flex-end;
   margin-top: 14px;
 `;
-
-export const DeleteButton = styled.button`
-  width: 33px;
-  height: 33px;
-  background-color: ${({ theme }) => theme.colors.danger};
-  color: #fff;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-`;

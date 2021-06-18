@@ -33,7 +33,7 @@ const SkeletonRow = styled.div<SkeletonRow>`
 export const Skeleton = () => (
   <SkeletonBox>
     <Container>
-      <Grid cols='1' gap={2}>
+      <Grid cols={1} gap={2}>
         <SkeletonPlayer />
         <SkeletonRow width='60%' />
         <SkeletonRow width='40%' />

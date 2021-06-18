@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { Play } from '@components/Icon/Play';
-import { Typography } from '@components/DataDisplay/Typography';
+import { PlayOutlined } from '@components/Icon/PlayOutlined';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
 import { TrailAnimation } from '@components/Animation/Trail';
 import { Root, GenersBox } from './styled';
 
@@ -22,19 +23,28 @@ export const SerieSlide = ({
 }: SerieSlideProps) => (
   <Root style={style} isActive={isActive}>
     <TrailAnimation animation='fadeSlideUp' show={isActive} delay={700}>
-      <Typography as='h2' xs='3xl' md='4xl' lg='5xl' margin='0 0 10px 0' white>
+      <Title
+        level='2'
+        colorScheme='white'
+        size={{ xs: '3xl', md: '4xl', lg: '5xl' }}
+        style={{ marginBottom: 10 }}
+      >
         {name}
-      </Typography>
+      </Title>
       <GenersBox>
         {geners.map((gener, idx) => (
-          <Typography key={`${gener}-${idx}`} white>
+          <Text key={`${gener}-${idx}`} colorScheme='white'>
             {gener}
-          </Typography>
+          </Text>
         ))}
       </GenersBox>
       <Link href={`/serie/${id}`}>
         <a>
-          <Play color='#fff' xxl margin='10px 0 0 0' />
+          <PlayOutlined
+            colorScheme='white'
+            size={40}
+            style={{ marginTop: 10 }}
+          />
         </a>
       </Link>
     </TrailAnimation>

@@ -2,9 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Container } from '@components/Layout/Container';
-import { Home } from '@components/Icon/Home';
-import { Directory } from '@components/Icon/Directory';
-import { Bookmark } from '@components/Icon/Bookmark';
+import { HomeOutlined } from '@components/Icon/HomeOutlined';
+import { DirectoryOutlined } from '@components/Icon/DirectoryOutlined';
+import { BookmarkOutlined } from '@components/Icon/BookmarkOutlined';
 import { Skeleton } from './Skeleton';
 import { useMatchMedia } from '@hooks/useMatchMedia';
 import { useSession } from '@contexts/Auth/hooks';
@@ -20,17 +20,17 @@ type LinkProps = {
 const links: LinkProps[] = [
   {
     href: '/',
-    Icon: Home,
+    Icon: HomeOutlined,
     isPrivate: false,
   },
   {
     href: '/directory',
-    Icon: Directory,
+    Icon: DirectoryOutlined,
     isPrivate: false,
   },
   {
     href: '/queue',
-    Icon: Bookmark,
+    Icon: BookmarkOutlined,
     isPrivate: true,
   },
 ];
@@ -57,7 +57,7 @@ export const TabBottomNav = () => {
                 <Link href={href}>
                   <a>
                     <IconBox isActive={isActive}>
-                      <Icon lg color={isActive ? '#FFF' : '#377DFF'} />
+                      <Icon colorScheme={isActive ? 'white' : 'primary'} />
                     </IconBox>
                   </a>
                 </Link>

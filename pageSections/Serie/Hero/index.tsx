@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
 import { Container } from '@components/Layout/Container';
 import { TrailAnimation } from '@components/Animation/Trail';
 import { ButtonAddQueue } from '@localComponents/serie/Hero/ButtonAddQueue';
@@ -25,16 +25,14 @@ export const Hero = () => {
       <CoverImage src={bannerImage} />
       <Container>
         <TrailAnimation animation='fadeSlideUp' show delay={700}>
-          <Typography
-            as='h2'
-            xs='3xl'
-            md='4xl'
-            lg='5xl'
-            white
-            margin='0 0 18px 0'
+          <Title
+            level='2'
+            colorScheme='white'
+            size={{ xs: '3xl', md: '4xl', lg: '5xl' }}
+            style={{ marginBottom: 18 }}
           >
             {name?.toUpperCase()}
-          </Typography>
+          </Title>
           <InformationBox>
             <Geners geners={geners} />
             <Duration duration={duration} />

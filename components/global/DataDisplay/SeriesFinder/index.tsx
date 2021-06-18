@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { Search } from '@components/Icon/Search';
+import { SearchOutlined } from '@components/Icon/SearchOutlined';
 import { Grid } from '@components/Layout/Grid';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Text } from '@components/DataDisplay/Text';
 import { useSeriesFinder } from '@hooks/useSeriesFinder';
 import { useSearch } from '@hooks/useSearch';
 import { searchSerie } from '@services/search';
@@ -21,22 +21,30 @@ export const SeriesFinder = () => {
   const renderResults = () => {
     if (error)
       return (
-        <Typography size='sm'>
+        <Text size='sm' colorScheme='danger'>
           Hubo un problema al recuperar las series
-        </Typography>
+        </Text>
       );
 
     if (!data && !firstRequestMade)
-      return <Typography size='sm'>Encuentra tu serie favorita</Typography>;
+      return (
+        <Text size='sm' colorScheme='secondary'>
+          Encuentra tu serie favorita
+        </Text>
+      );
 
     if (
       (!data || (Array.isArray(data) && data.length === 0)) &&
       firstRequestMade
     )
-      return <Typography size='sm'>Sin resultados</Typography>;
+      return (
+        <Text size='sm' colorScheme='secondary'>
+          Sin resultados
+        </Text>
+      );
 
     return (
-      <Grid gap={1.5} cols='1'>
+      <Grid gap={1.5} cols={1}>
         {Array.isArray(data) &&
           data.map(({ _id, name, episodes, thumbnail }) => (
             <Link key={_id} href={`/serie/${_id}`}>
@@ -56,7 +64,7 @@ export const SeriesFinder = () => {
   return (
     <SeriesFinderBox>
       <HeaderBox>
-        <Search xl />
+        <SearchOutlined colorScheme='white' />
         <TextBox
           placeholder='Buscar serie'
           onChange={handleChange}

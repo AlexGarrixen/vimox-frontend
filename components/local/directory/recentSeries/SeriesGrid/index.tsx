@@ -11,7 +11,7 @@ type SeriesGridProps = {
 export const SeriesGrid = ({ series }: SeriesGridProps) => {
   return (
     <div style={{ marginBottom: 40 }}>
-      <Grid xs='2' sm='3' md='4' lg='5' gap={1.5}>
+      <Grid cols={{ xs: 2, sm: 3, md: 4, lg: 5 }} gap={1.5}>
         {Array.isArray(series) &&
           series.map(
             ({ _id, name, thumbnail, episodes, geners, isInQueue }) => (

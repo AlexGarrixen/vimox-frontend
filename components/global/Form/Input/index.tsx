@@ -1,79 +1,35 @@
 import React from 'react';
+import { InputBase, InputBaseProps } from '@components/Form/InputBase';
 import { InputPassword } from './Password';
-import { InputBox, InputStyled } from './styled';
+import { ComponentWithRef } from '@globalTypes/component';
 
-export type OwnProps = {
-  fullWidth?: boolean;
-  type?: string;
-  onChange?: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
-  onBlur?: (
-    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
-  onFocus?: (
-    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
-  placeholder?: string;
-  value?: string | number | readonly string[];
-  name?: string;
-  showPasswordStrengthBar?: boolean;
-  error?: boolean;
+const inputTypes = {
+  text: InputBase,
+  number: InputBase,
+  password: InputPassword,
 };
 
-export type InputProps = OwnProps & {
-  inputProps?: Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    keyof OwnProps
-  >;
+type InputProps = {
+  props: {
+    showPasswordStrengthBar?: boolean;
+  } & InputBaseProps['props'];
+  element: 'input';
 };
 
-export const Input = ({
-  fullWidth,
-  type = 'text',
-  value,
-  name,
-  placeholder,
-  error,
-  onBlur,
-  onChange,
-  onFocus,
-  showPasswordStrengthBar,
-  inputProps,
-}: InputProps): JSX.Element => {
-  const props = {
-    fullWidth,
-    type,
-    value,
-    name,
-    placeholder,
-    error,
-    onBlur,
-    onChange,
-    onFocus,
-  };
+export const Input: ComponentWithRef<InputProps> = React.forwardRef(
+  ({ type, ...rest }, ref) => {
+    const FallbackInput = inputTypes.text;
+    const Component = inputTypes[type as string];
 
-  if (type === 'password')
-    return (
-      <InputPassword
-        {...inputProps}
-        {...props}
-        showPasswordStrengthBar={showPasswordStrengthBar}
-      />
+    return Component ? (
+      <Component {...rest} type={type} ref={ref} />
+    ) : (
+      <FallbackInput {...rest} type={type} ref={ref} />
     );
+  }
+);
 
-  return (
-    <InputBox fullWidth={fullWidth} error={error}>
-      <InputStyled
-        type={type}
-        value={value}
-        name={name}
-        placeholder={placeholder}
-        onBlur={onBlur}
-        onChange={onChange}
-        onFocus={onFocus}
-        {...inputProps}
-      />
-    </InputBox>
-  );
+Input.displayName = 'Input';
+Input.defaultProps = {
+  type: 'text',
 };

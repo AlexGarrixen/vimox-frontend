@@ -1,10 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
 import { Spacing } from '@components/Layout/Spacing';
-import { Play } from '@components/Icon/Play';
+import { PlayOutlined } from '@components/Icon/PlayOutlined';
+import { Truncate } from '@components/DataDisplay/Truncate';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
 import { AspectRatio } from '@components/Layout/AspectRatio';
 import { Context } from '../../Provider';
-import { ThumbnailBox, Thumbnail, PlayButton, Title } from './styled';
+import { ThumbnailBox, Thumbnail, PlayButton } from './styled';
 
 type EpisodeProps = {
   id: string;
@@ -25,15 +28,21 @@ export const Episode = ({ id, name, thumbnail, order }: EpisodeProps) => {
               <Thumbnail src={thumbnail} />
             </AspectRatio>
             <PlayButton>
-              <Play color='#fff' xxxl />
+              <PlayOutlined colorScheme='white' size='3x' />
             </PlayButton>
           </ThumbnailBox>
         </a>
       </Link>
       <Spacing size={12} />
-      <Title white>{name}</Title>
+      <Truncate>
+        <Title size='base' colorScheme='white'>
+          {name}
+        </Title>
+      </Truncate>
       <Spacing size={2} />
-      <Title>Episodeo {order}</Title>
+      <Truncate>
+        <Text colorScheme='secondary'>Episodeo {order}</Text>
+      </Truncate>
     </div>
   );
 };

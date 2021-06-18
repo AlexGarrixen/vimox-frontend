@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { Grid } from '@components/Layout/Grid';
 import { Container } from '@components/Layout/Container';
 import { Spacing } from '@components/Layout/Spacing';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
 import { useSession } from '@contexts/Auth/hooks';
 import { Skeleton } from '@localComponents/queue/Skeleton';
@@ -31,11 +31,11 @@ export const QueueList = (): JSX.Element => {
           <Skeleton />
         ) : (
           <>
-            <Typography as='h4' white>
+            <Title level='4' colorScheme='white'>
               Sigue mirando
-            </Typography>
+            </Title>
             <Spacing size={32} />
-            <Grid xs='1' sm='2' md='3' lg='4' gap={2}>
+            <Grid cols={{ xs: 1, sm: 2, md: 3, lg: 4 }} gap={2}>
               {Array.isArray(data) &&
                 data.map((item) => (
                   <Link

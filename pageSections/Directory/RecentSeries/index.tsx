@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { getSeries } from '@services/series';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
 import { Spacing } from '@components/Layout/Spacing';
 import { useFilterQuery } from '@hooks/useFilterQuery';
 import { usePreviousValue } from '@hooks/usePreviousValue';
@@ -39,9 +39,9 @@ export const RecentSeries = () => {
 
   return (
     <section>
-      <Typography as='h4' white>
+      <Title level='4' colorScheme='white'>
         Series recientes
-      </Typography>
+      </Title>
       <Spacing size={32} />
       <Filter />
       {error ? (

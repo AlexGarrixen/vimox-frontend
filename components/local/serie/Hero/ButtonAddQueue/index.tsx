@@ -8,13 +8,23 @@ export const ButtonAddQueue = ({ isInQueue }: { isInQueue?: boolean }) => {
 
   if (!isInQueue)
     return (
-      <Button margin='14px 0 0 0' onClick={add} disabled={loadingAddQueue}>
+      <Button
+        colorScheme='secondary'
+        style={{ marginTop: 14 }}
+        onClick={add}
+        disabled={loadingAddQueue}
+      >
         Añadir a mi lista
       </Button>
     );
 
   return (
-    <Button margin='14px 0 0 0' onClick={remove} disabled={loadingRemoveQueue}>
+    <Button
+      colorScheme='secondary'
+      style={{ marginTop: 14 }}
+      onClick={remove}
+      disabled={loadingRemoveQueue}
+    >
       Quitar de mi lista
     </Button>
   );

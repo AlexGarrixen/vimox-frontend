@@ -1,5 +1,7 @@
 import React from 'react';
-import { Typography } from '../../DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
+import { Spacing } from '@components/Layout/Spacing';
 import styled from 'styled-components';
 
 const AccessDeniedBox = styled.div`
@@ -7,16 +9,15 @@ const AccessDeniedBox = styled.div`
   text-align: center;
 `;
 
-const Title = styled(Typography)`
-  color: ${({ theme }) => theme.colors.danger};
-`;
-
 export const AccessDenied = (): JSX.Element => (
   <AccessDeniedBox>
     <img src='/accessDenied.png' />
-    <Title as='h3' margin='0 0 6px 0'>
+    <Title level='3' colorScheme='danger'>
       Accesso Denegado
     </Title>
-    <Typography>No tienes permiso para acceder a este recurso</Typography>
+    <Spacing size={6} />
+    <Text colorScheme='secondary'>
+      No tienes permiso para acceder a este recurso
+    </Text>
   </AccessDeniedBox>
 );

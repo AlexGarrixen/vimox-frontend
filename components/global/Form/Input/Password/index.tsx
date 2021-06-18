@@ -1,40 +1,57 @@
 import React from 'react';
-import { Adornment } from '../Adornment';
-import { Eye } from '@components/Icon/Eye';
-import { EyeSlash } from '@components/Icon/EyeSlash';
+import styled from 'styled-components';
+import { InputBase, InputBaseProps } from '@components/Form/InputBase';
+import { EyeOpenOutlined } from '@components/Icon/EyeOpenOutlined';
+import { EyeSlashOutlined } from '@components/Icon/EyeSlashOutlined';
 import { PasswordStrengthBar } from '@components/Feedback/PasswordStrengthBar';
-import type { InputProps } from '../index';
-import { InputBox, InputStyled } from '../styled';
+import { ComponentWithRef } from '@globalTypes/component';
 
-export const InputPassword = ({
-  fullWidth,
-  type: typeProp,
-  showPasswordStrengthBar,
-  value,
-  error,
-  ...rest
-}: InputProps): JSX.Element => {
-  const [type, setType] = React.useState('password');
+const InputPasswordBox = styled.div<{ fullWidth?: boolean }>`
+  display: inline-block;
+  ${({ fullWidth }) => fullWidth && 'width: 100%;'};
+`;
 
-  const handleClickAdornment = React.useCallback(() => {
-    if (type === 'password') setType('text');
-    else if (type === 'text') setType('password');
-  }, [type]);
-
-  return (
-    <InputBox fullWidth={fullWidth}>
-      <InputBox fullWidth={fullWidth} error={error}>
-        <InputStyled {...rest} type={type} value={value} />
-        <Adornment onClick={handleClickAdornment}>
-          {type === 'password' ? <Eye lg /> : <EyeSlash lg />}
-        </Adornment>
-      </InputBox>
-      {showPasswordStrengthBar && (
-        <PasswordStrengthBar
-          style={{ marginTop: 10 }}
-          password={value as string}
-        />
-      )}
-    </InputBox>
-  );
+type InputPasswordProps = {
+  props: {
+    showPasswordStrengthBar?: boolean;
+  } & InputBaseProps['props'];
+  element: 'input';
 };
+
+export const InputPassword: ComponentWithRef<InputPasswordProps> = React.forwardRef(
+  (
+    { type: typeProp, value, showPasswordStrengthBar, fullWidth, ...rest },
+    ref
+  ) => {
+    const [type, setType] = React.useState(typeProp);
+
+    return (
+      <InputPasswordBox fullWidth={fullWidth}>
+        <InputBase
+          {...rest}
+          type={type}
+          fullWidth={fullWidth}
+          adornment={
+            type === 'password' ? (
+              <EyeOpenOutlined
+                onClick={() => setType('text')}
+                style={{ cursor: 'pointer' }}
+              />
+            ) : (
+              <EyeSlashOutlined
+                onClick={() => setType('password')}
+                style={{ cursor: 'pointer' }}
+              />
+            )
+          }
+          ref={ref}
+        />
+        {showPasswordStrengthBar && (
+          <PasswordStrengthBar password={value} style={{ marginTop: 10 }} />
+        )}
+      </InputPasswordBox>
+    );
+  }
+);
+
+InputPassword.displayName = 'InputPassword';
