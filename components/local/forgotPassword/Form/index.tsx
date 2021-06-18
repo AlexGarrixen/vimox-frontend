@@ -69,12 +69,7 @@ export const Form = ({ onSuccess }: FormProps): JSX.Element => {
         />
         {errors.email && <HelperText error>{errors.email}</HelperText>}
         <Spacing size={18} />
-        <Button
-          primary
-          fullWidth
-          type='submit'
-          disabled={!isValidForm || isSubmitting}
-        >
+        <Button fullWidth type='submit' disabled={!isValidForm || isSubmitting}>
           Enviar instrucciones
         </Button>
       </form>

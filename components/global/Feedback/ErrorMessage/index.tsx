@@ -29,9 +29,7 @@ export const ErrorMessage = ({
       <Spacing size={10} />
       <Text colorScheme='white'>{children}</Text>
       <Spacing size={16} />
-      <Button primary onClick={onClickRetry}>
-        Reintentar
-      </Button>
+      <Button onClick={onClickRetry}>Reintentar</Button>
     </Container>
   </ErrorMessageBox>
 );

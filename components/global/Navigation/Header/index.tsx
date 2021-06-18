@@ -75,7 +75,7 @@ export const Header = () => {
               </Nav>
               <ActionsBox>
                 {!isAuth && (
-                  <Button primary small onClick={() => router.push('/login')}>
+                  <Button size='sm' onClick={() => router.push('/login')}>
                     Inicia sesion
                   </Button>
                 )}

@@ -106,7 +106,7 @@ export const SignupForm = (): JSX.Element => {
             <HelperText error>{errors.passwordConfirmation}</HelperText>
           )}
         </div>
-        <Button primary type='submit' disabled={!isValidForm || isSubmitting}>
+        <Button type='submit' disabled={!isValidForm || isSubmitting}>
           Crear una cuenta
         </Button>
       </Grid>

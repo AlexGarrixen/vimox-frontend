@@ -10,13 +10,14 @@ export const NavButtons = () => {
   return (
     <div>
       <Button
-        margin='0 12px 0 0'
+        colorScheme='secondary'
+        style={{ marginRight: 12 }}
         disabled={!prevEpisode}
         onClick={handlePrevEpisode}
       >
         Anterior
       </Button>
-      <Button primary disabled={!nextEpisode} onClick={handleNextEpisode}>
+      <Button disabled={!nextEpisode} onClick={handleNextEpisode}>
         Siguiente
       </Button>
     </div>

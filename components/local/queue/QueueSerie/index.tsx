@@ -3,6 +3,7 @@ import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import { Title } from '@components/DataDisplay/Title';
 import { Text } from '@components/DataDisplay/Text';
+import { IconButton } from '@components/Form/IconButton';
 import { Trash } from '@components/Icon/Trash';
 import { UserSerie, ResponseGetUserSeries } from '@globalTypes/userServices';
 import { ResponseGetSeries } from '@globalTypes/serieServices';
@@ -14,7 +15,6 @@ import {
   ImageStyled,
   ContentBox,
   ActionsBox,
-  DeleteButton,
 } from './styled';
 
 export const QueueSerie = ({
@@ -84,9 +84,13 @@ export const QueueSerie = ({
         </Text>
       </ContentBox>
       <ActionsBox>
-        <DeleteButton onClick={handleDeleteSerie} disabled={mutation.isLoading}>
+        <IconButton
+          colorScheme='danger'
+          onClick={handleDeleteSerie}
+          disabled={mutation.isLoading}
+        >
           <Trash />
-        </DeleteButton>
+        </IconButton>
       </ActionsBox>
     </QueueSerieBox>
   );

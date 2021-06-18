@@ -87,7 +87,6 @@ export const Form = ({ onSuccess }: FormProps): JSX.Element => {
             )}
           </div>
           <Button
-            primary
             fullWidth
             type='submit'
             disabled={!isValidForm || isSubmitting}

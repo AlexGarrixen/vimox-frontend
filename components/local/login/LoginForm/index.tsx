@@ -86,7 +86,7 @@ export const LoginForm = (): JSX.Element => {
           </Link>
           {errors.password && <HelperText error>{errors.password}</HelperText>}
         </div>
-        <Button primary type='submit' disabled={!isValidForm || isSubmitting}>
+        <Button type='submit' disabled={!isValidForm || isSubmitting}>
           Iniciar sesion
         </Button>
       </Grid>

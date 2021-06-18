@@ -5,11 +5,11 @@ import { ComponentWithRef } from '@globalTypes/component';
 export const ButtonRoot = styled<
   ComponentWithRef<ButtonBaseProps<{ size?: 'sm' | 'md'; fullWidth?: boolean }>>
 >(ButtonBase)`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  ${({ fullWidth }) => fullWidth && 'width: 100%'}
+  ${({ fullWidth }) => fullWidth && 'width: 100%;'}
 
   ${({ size }) =>
     size === 'md' &&

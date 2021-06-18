@@ -20,7 +20,7 @@ export const ButtonBaseRoot = styled.button<ButtonBaseProps['props']>`
     colorScheme === 'secondary' &&
     `
     background-color: ${theme.colors.gray[400]};
-    color: ${theme.colors.white};
+    color: ${theme.colors.gray[200]};
   `}
 
   ${({ colorScheme, theme }) =>

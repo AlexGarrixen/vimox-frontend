@@ -17,10 +17,15 @@ export const PaginationControls = ({
 }: PaginationControlsProps) => {
   return (
     <Root>
-      <Button disabled={page === 1} onClick={onClickPrev} margin='0 12px 0 0'>
+      <Button
+        colorScheme='secondary'
+        disabled={page === 1}
+        onClick={onClickPrev}
+        style={{ marginRight: 12 }}
+      >
         Anterior
       </Button>
-      <Button primary disabled={page === lastPage} onClick={onClickNext}>
+      <Button disabled={page === lastPage} onClick={onClickNext}>
         Siguiente
       </Button>
     </Root>
