@@ -9,6 +9,7 @@ import { Button } from '@components/Form/Buttonv2';
 import { IconButton } from '@components/Form/IconButton';
 import { Play } from '@components/Icon/Play';
 import { Input } from '@components/Form/Inputv2';
+import { Grid } from '@components/Layout/Gridv2';
 
 const Components = () => (
   <LayoutApp>
@@ -33,6 +34,12 @@ const Components = () => (
       <Input placeholder='placeholder' type='number' />
       <Input placeholder='placeholder' type='date' />
       <Input placeholder='placeholder' type='password' />
+      <Grid cols={{ xs: 2, md: 3, lg: 4 }} gap={1} justifyItems='center'>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+      </Grid>
     </Container>
   </LayoutApp>
 );
