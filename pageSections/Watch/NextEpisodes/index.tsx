@@ -16,7 +16,7 @@ export const NextEpisodes = () => {
       </Title>
       <Spacing size={16} />
       {Array.isArray(nextEpisodes) && (
-        <Grid gap={1.5} xs='2' md='1'>
+        <Grid gap={1.5} cols={{ xs: 2, md: 1 }}>
           {nextEpisodes.map(({ thumbnail, name, order, _id }) => (
             <Link key={_id} href={`/watch?serieId=${serieId}&episodeId=${_id}`}>
               <a>

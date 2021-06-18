@@ -52,7 +52,7 @@ export const LoginForm = (): JSX.Element => {
         ¿Ya tienes una cuenta? Inicia sesión más abajo.
       </Text>
       <Spacing size={28} />
-      <Grid cols='1' gap={2}>
+      <Grid cols={1} gap={2}>
         <div>
           <Input
             type='email'

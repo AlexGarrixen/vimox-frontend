@@ -49,7 +49,7 @@ export const Skeleton = () => (
           <SkeletonRow width='30%' />
           <SkeletonRow width='30%' />
         </Grid>
-        <Grid gap={2} xs='2' sm='3' md='4' style={{ marginTop: 60 }}>
+        <Grid gap={2} cols={{ xs: 2, sm: 3, md: 4 }} style={{ marginTop: 60 }}>
           <SkeletonSerie />
           <SkeletonSerie />
         </Grid>

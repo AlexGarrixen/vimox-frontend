@@ -48,7 +48,7 @@ export const Skeleton = () => (
         <SkeletonRow width='40%' />
       </Grid>
       <Play xxxl margin='30px 0 50px 0' color='#2A2C34' />
-      <Grid xs='2' sm='3' md='4' gap={2}>
+      <Grid cols={{ xs: 2, sm: 3, md: 4 }} gap={2}>
         <SkeletonSlide />
         <SkeletonSlide />
       </Grid>

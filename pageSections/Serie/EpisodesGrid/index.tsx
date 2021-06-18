@@ -16,7 +16,7 @@ export const EpisodesGrid = ({ data }: EpisodesGridProps) => (
       Lista de episodeos
     </Title>
     <Spacing size={20} />
-    <Grid xs='2' sm='3' md='4' gap={1.5}>
+    <Grid cols={{ xs: 2, sm: 3, md: 4 }} gap={1.5}>
       {Array.isArray(data) &&
         data
           .sort((curr, prev) => curr.order - prev.order)

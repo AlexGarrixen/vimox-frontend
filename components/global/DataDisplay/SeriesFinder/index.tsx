@@ -44,7 +44,7 @@ export const SeriesFinder = () => {
       );
 
     return (
-      <Grid gap={1.5} cols='1'>
+      <Grid gap={1.5} cols={1}>
         {Array.isArray(data) &&
           data.map(({ _id, name, episodes, thumbnail }) => (
             <Link key={_id} href={`/serie/${_id}`}>

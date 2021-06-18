@@ -9,7 +9,7 @@ import { Button } from '@components/Form/Button';
 import { IconButton } from '@components/Form/IconButton';
 import { Play } from '@components/Icon/Play';
 import { Input } from '@components/Form/Input';
-import { Grid } from '@components/Layout/Gridv2';
+import { Grid } from '@components/Layout/Grid';
 
 const Components = () => (
   <LayoutApp>

@@ -35,7 +35,7 @@ export const QueueList = (): JSX.Element => {
               Sigue mirando
             </Title>
             <Spacing size={32} />
-            <Grid xs='1' sm='2' md='3' lg='4' gap={2}>
+            <Grid cols={{ xs: 1, sm: 2, md: 3, lg: 4 }} gap={2}>
               {Array.isArray(data) &&
                 data.map((item) => (
                   <Link

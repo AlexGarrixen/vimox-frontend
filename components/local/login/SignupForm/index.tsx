@@ -50,7 +50,7 @@ export const SignupForm = (): JSX.Element => {
       <Spacing size={8} />
       <Text colorScheme='secondary'>¡Únete a GxAnime! ¡Se tarda un clic!</Text>
       <Spacing size={28} />
-      <Grid cols='1' gap={2}>
+      <Grid cols={1} gap={2}>
         <div>
           <Input
             type='text'

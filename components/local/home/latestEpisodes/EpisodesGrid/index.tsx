@@ -15,7 +15,7 @@ export const EpisodesGrid = ({ episodes }: EpisodesListProps) => (
       Ultimos Episodios
     </Title>
     <Spacing size={32} />
-    <Grid as='ul' gap={2} xs='1' sm='2' md='3' lg='4'>
+    <Grid as='ul' gap={2} cols={{ xs: 1, sm: 2, md: 3, lg: 4 }}>
       {Array.isArray(episodes) &&
         episodes.map(({ _id, name, thumbnail, serie }) => (
           <li key={_id}>

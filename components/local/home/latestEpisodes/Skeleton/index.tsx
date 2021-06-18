@@ -30,7 +30,7 @@ export const Skeleton = () => (
   <div>
     <Container>
       <SkeletonRow width='30%' />
-      <Grid xs='1' sm='2' md='4' gap={2} style={{ marginTop: 30 }}>
+      <Grid cols={{ xs: 1, sm: 2, md: 4 }} gap={2} style={{ marginTop: 30 }}>
         <SkeletonItem />
         <SkeletonItem />
         <SkeletonItem />

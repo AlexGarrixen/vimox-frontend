@@ -56,7 +56,7 @@ export const Form = ({ onSuccess }: FormProps): JSX.Element => {
       </Text>
       <Spacing size={24} />
       <form onSubmit={handleSubmit}>
-        <Grid cols='1' gap={1.5}>
+        <Grid cols={1} gap={1.5}>
           <div>
             <Input
               placeholder='Tu nueva contraseña'
