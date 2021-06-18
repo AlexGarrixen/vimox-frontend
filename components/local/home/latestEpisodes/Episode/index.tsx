@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
+import { Spacing } from '@components/Layout/Spacing';
 import { Truncate } from '@components/DataDisplay/Truncate';
 import { Image } from '@components/DataDisplay/Image';
 import { Root, ThumbnailBox } from './styled';
@@ -28,12 +30,13 @@ export const Episode = ({
         </ThumbnailBox>
         <div>
           <Truncate>
-            <Typography as='h6' white margin='0 0 2px 0'>
+            <Title level='6' colorScheme='white'>
               {serie.toUpperCase()}
-            </Typography>
+            </Title>
           </Truncate>
+          <Spacing size={2} />
           <Truncate>
-            <Typography>{name}</Typography>
+            <Text colorScheme='secondary'>{name}</Text>
           </Truncate>
         </div>
       </Root>

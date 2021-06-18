@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Typography } from '@components/DataDisplay/Typography';
 import { Image } from '@components/DataDisplay/Image';
 
 export const ThumbnailBox = styled.div`
@@ -37,10 +36,4 @@ export const PlayButton = styled.button`
   opacity: 0;
   transition: opacity 250ms;
   cursor: pointer;
-`;
-
-export const Title = styled(Typography)`
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
 `;

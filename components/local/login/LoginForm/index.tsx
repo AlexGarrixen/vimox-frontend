@@ -8,7 +8,8 @@ import { Button } from '@components/Form/Button';
 import { HelperText } from '@components/Form/HelperText';
 import { Grid } from '@components/Layout/Grid';
 import { Spacing } from '@components/Layout/Spacing';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
 import { useForm } from '@hooks/useForm';
 import { loginSchema } from '@utils/yupSchemas';
 
@@ -43,11 +44,13 @@ export const LoginForm = (): JSX.Element => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Typography as='h3' white>
+      <Title level='3' colorScheme='white'>
         Iniciar Sesión
-      </Typography>
+      </Title>
       <Spacing size={8} />
-      <Typography>¿Ya tienes una cuenta? Inicia sesión más abajo.</Typography>
+      <Text colorScheme='secondary'>
+        ¿Ya tienes una cuenta? Inicia sesión más abajo.
+      </Text>
       <Spacing size={28} />
       <Grid cols='1' gap={2}>
         <div>
@@ -76,7 +79,7 @@ export const LoginForm = (): JSX.Element => {
           />
           <Link href='/forgot-password'>
             <a>
-              <HelperText style={{ textAlign: 'right', color: '#fff' }}>
+              <HelperText colorScheme='white' style={{ textAlign: 'right' }}>
                 ¿Olvidaste tu contraseña?
               </HelperText>
             </a>

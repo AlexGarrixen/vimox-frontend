@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Text } from '@components/DataDisplay/Text';
 import {
   convertToHoursAndMinutes,
   formatHoursAndMinutes,
@@ -9,5 +9,5 @@ export const Duration = ({ duration }: { duration: number }) => {
   const [hours, minutes] = convertToHoursAndMinutes(duration);
   const formatedDur = formatHoursAndMinutes(hours, minutes);
 
-  return <Typography white>{formatedDur}</Typography>;
+  return <Text colorScheme='white'>{formatedDur}</Text>;
 };

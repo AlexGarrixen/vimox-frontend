@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Context } from '../../Provider';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
 import { Spacing } from '@components/Layout/Spacing';
 
 const AboutBox = styled.div`
@@ -13,15 +14,19 @@ export const About = () => {
 
   return (
     <AboutBox>
-      <Typography as='h3' xs='lg' sm='xl' md='2xl' white>
+      <Title
+        level='3'
+        colorScheme='white'
+        size={{ xs: 'lg', sm: 'xl', md: '2xl' }}
+      >
         {episode.name.toUpperCase()}
-      </Typography>
+      </Title>
       <Spacing size={12} />
-      <Typography as='h5' white>
-        Episodeo {episode.order}
-      </Typography>
+      <Title level='5' colorScheme='white'>
+        Episodio {episode.order}
+      </Title>
       <Spacing size={16} />
-      <Typography>{episode.sinopsis}</Typography>
+      <Text colorScheme='secondary'>{episode.sinopsis}</Text>
     </AboutBox>
   );
 };

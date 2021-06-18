@@ -3,7 +3,8 @@ import { NextPageContext } from 'next';
 import { LayoutApp } from '@components/Layout/LayoutApp';
 import { Container } from '@components/Layout/Container';
 import { Spacing } from '@components/Layout/Spacing';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
 
 type EmailConfirmationProps = {
   querys: NextPageContext['query'];
@@ -14,19 +15,21 @@ const EmailConfirmation = ({ querys }: EmailConfirmationProps): JSX.Element => (
     <Spacing size={80} />
     <Container style={{ textAlign: 'center' }}>
       <img src='/emailOpen.png' />
-      <Typography as='h3' white>
+      <Title level='3' colorScheme='white'>
         ¡Enlace de verificación enviado!
-      </Typography>
-      <Typography margin='12px 0 3px 0'>
+      </Title>
+      <Spacing size={12} />
+      <Text colorScheme='secondary'>
         Enviamos un enlace de confirmación por correo electrónico a
-        <Typography as='span' white>
+        <Text as='span' colorScheme='white'>
           {' '}
           {querys.email}
-        </Typography>
-      </Typography>
-      <Typography>
+        </Text>
+      </Text>
+      <Spacing size={3} />
+      <Text colorScheme='secondary'>
         Revise su correo electrónico para confirmar su cuenta.
-      </Typography>
+      </Text>
     </Container>
     <Spacing size={30} />
   </LayoutApp>

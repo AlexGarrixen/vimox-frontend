@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
 import { Container } from '@components/Layout/Container';
 import { Spacing } from '@components/Layout/Spacing';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
@@ -36,9 +36,9 @@ export const LatestMovies = () => {
   return (
     <Root>
       <Container>
-        <Typography as='h4' white>
+        <Title level='4' colorScheme='white'>
           Ultimas peliculas
-        </Typography>
+        </Title>
         <Spacing size={32} />
         <Carousel series={data.series} />
       </Container>

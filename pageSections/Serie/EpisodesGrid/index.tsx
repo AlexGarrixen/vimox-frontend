@@ -1,7 +1,8 @@
 import React from 'react';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
 import { Grid } from '@components/Layout/Grid';
 import { Container } from '@components/Layout/Container';
+import { Spacing } from '@components/Layout/Spacing';
 import { Episode } from '@localComponents/serie/EpisodesGrid/Episode';
 import { ResponseGetOneSerie } from '@globalTypes/serieServices';
 
@@ -11,9 +12,10 @@ type EpisodesGridProps = {
 
 export const EpisodesGrid = ({ data }: EpisodesGridProps) => (
   <Container>
-    <Typography as='h4' margin='0 0 20px 0' white>
+    <Title level='4' colorScheme='white'>
       Lista de episodeos
-    </Typography>
+    </Title>
+    <Spacing size={20} />
     <Grid xs='2' sm='3' md='4' gap={1.5}>
       {Array.isArray(data) &&
         data

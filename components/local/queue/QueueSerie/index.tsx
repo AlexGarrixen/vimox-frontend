@@ -1,7 +1,8 @@
 import React from 'react';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
 import { Trash } from '@components/Icon/Trash';
 import { UserSerie, ResponseGetUserSeries } from '@globalTypes/userServices';
 import { ResponseGetSeries } from '@globalTypes/serieServices';
@@ -75,12 +76,12 @@ export const QueueSerie = ({
         <ImageStyled src={lastEpisodeWatched.thumbnail} />
       </ImageBox>
       <ContentBox>
-        <Typography as='h5' white>
+        <Title level='5' colorScheme='white'>
           {serie.name}
-        </Typography>
-        <Typography>
+        </Title>
+        <Text colorScheme='secondary'>
           Episodio {lastEpisodeWatched.order} - {lastEpisodeWatched.name}
-        </Typography>
+        </Text>
       </ContentBox>
       <ActionsBox>
         <DeleteButton onClick={handleDeleteSerie} disabled={mutation.isLoading}>

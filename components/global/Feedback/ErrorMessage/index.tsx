@@ -1,7 +1,9 @@
 import React from 'react';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
 import { Button } from '@components/Form/Button';
 import { Container } from '@components/Layout/Container';
+import { Spacing } from '@components/Layout/Spacing';
 import { ErrorMessageBox } from './styled';
 
 export type ErrorMessageProps = {
@@ -20,12 +22,13 @@ export const ErrorMessage = ({
   <ErrorMessageBox margin={margin} center={center}>
     <Container>
       <img src='/errorLogo.png' height={120} />
-      <Typography as='h3' white margin='16px 0 0 0'>
+      <Spacing size={16} />
+      <Title level='3' colorScheme='white'>
         Oops!
-      </Typography>
-      <Typography white margin='10px 0 16px 0'>
-        {children}
-      </Typography>
+      </Title>
+      <Spacing size={10} />
+      <Text colorScheme='white'>{children}</Text>
+      <Spacing size={16} />
       <Button primary onClick={onClickRetry}>
         Reintentar
       </Button>

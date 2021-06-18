@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Text } from '@components/DataDisplay/Text';
 import { User as UserIcon } from '@components/Icon/User';
 import { useAuthMethods } from '@contexts/Auth/hooks';
 import { useOutsideClick } from '@hooks/useOutsideClick';
@@ -22,10 +22,14 @@ export const User = ({ username }: UserProps): JSX.Element => {
       {showMenu && (
         <MenuBox>
           <Option>
-            <Typography size='sm'>{username}</Typography>
+            <Text size='sm' colorScheme='secondary'>
+              {username}
+            </Text>
           </Option>
           <Option onClick={logOut}>
-            <Typography size='sm'>Cerrar sesion</Typography>
+            <Text size='sm' colorScheme='secondary'>
+              Cerrar sesion
+            </Text>
           </Option>
         </MenuBox>
       )}

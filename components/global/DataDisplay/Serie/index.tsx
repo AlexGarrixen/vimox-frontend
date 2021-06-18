@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image } from '@components/DataDisplay/Image';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
 import { Spacing } from '@components/Layout/Spacing';
 import { Bookmark } from '@components/Icon/Bookmark';
 import { AspectRatio } from '@components/Layout/AspectRatio';
@@ -38,18 +39,20 @@ export const Serie = ({
       <Spacing size={16} />
       <div>
         <Truncate>
-          <Typography as='h6' white>
+          <Title level='6' colorScheme='white'>
             {name.toUpperCase()}
-          </Typography>
+          </Title>
         </Truncate>
         {Array.isArray(geners) && (
           <Truncate>
-            <Typography>{geners.map((gener) => gener).join(', ')}</Typography>
+            <Text colorScheme='secondary'>
+              {geners.map((gener) => gener).join(', ')}
+            </Text>
           </Truncate>
         )}
-        <Typography>{`${countEpisodes} ${
-          countEpisodes === 1 ? 'Video' : 'Videos'
-        }`}</Typography>
+        <Text colorScheme='secondary'>
+          {`${countEpisodes} ${countEpisodes === 1 ? 'Video' : 'Videos'}`}
+        </Text>
       </div>
     </SerieBox>
   );

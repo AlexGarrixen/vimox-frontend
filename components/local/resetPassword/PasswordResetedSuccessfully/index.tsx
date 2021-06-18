@@ -1,14 +1,15 @@
 import React from 'react';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
 import { Spacing } from '@components/Layout/Spacing';
 
 export const PasswordResetedSuccessfully = (): JSX.Element => (
   <div style={{ textAlign: 'center' }}>
     <img src='/verifiedBadge.png' />
-    <Typography as='h3' white>
+    <Title level='3' colorScheme='white'>
       ¡Tu contraseña ha sido restablecida!
-    </Typography>
+    </Title>
     <Spacing size={12} />
-    <Typography>Ahora puedes iniciar sesión</Typography>
+    <Text colorScheme='secondary'>Ahora puedes iniciar sesión</Text>
   </div>
 );

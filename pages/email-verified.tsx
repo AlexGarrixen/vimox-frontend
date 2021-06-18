@@ -3,7 +3,9 @@ import { NextPageContext } from 'next';
 import { LayoutApp } from '@components/Layout/LayoutApp';
 import { Container } from '@components/Layout/Container';
 import { Spacing } from '@components/Layout/Spacing';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
+
 import { emailConfirmation } from '@services/auth';
 
 type EmailVerifiedProps = {
@@ -31,27 +33,28 @@ const EmailVerified = ({ querys }: EmailVerifiedProps): JSX.Element => {
   const renderContent = () => {
     if (loading)
       return (
-        <Typography as='h3' white>
+        <Title level='3' colorScheme='white'>
           Verificando...
-        </Typography>
+        </Title>
       );
 
     if (error)
       return (
-        <Typography as='h3' white>
+        <Title level='3' colorScheme='danger'>
           {error}
-        </Typography>
+        </Title>
       );
 
     return (
       <>
         <img src='/verifiedBadge.png' />
-        <Typography as='h3' white>
+        <Title level='3' colorScheme='white'>
           ¡Tu correo ha sido confirmado!
-        </Typography>
-        <Typography margin='12px 0 0 0'>
+        </Title>
+        <Spacing size={12} />
+        <Text colorScheme='secondary'>
           Ahora puedes iniciar sesión con tu nueva cuenta
-        </Typography>
+        </Text>
       </>
     );
   };

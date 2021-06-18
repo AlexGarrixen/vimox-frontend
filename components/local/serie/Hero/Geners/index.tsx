@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Text } from '@components/DataDisplay/Text';
 
 const Root = styled.div`
   display: flex;
@@ -28,9 +28,9 @@ export const Geners = ({ geners }: GenersProps) => (
   <Root>
     {Array.isArray(geners) &&
       geners.slice(0, 3).map((gener) => (
-        <Typography key={gener} white>
+        <Text key={gener} colorScheme='white'>
           {gener}
-        </Typography>
+        </Text>
       ))}
   </Root>
 );

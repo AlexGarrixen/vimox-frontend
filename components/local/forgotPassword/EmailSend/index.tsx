@@ -1,17 +1,18 @@
 import React from 'react';
-import { Typography } from '@components/DataDisplay/Typography';
+import { Title } from '@components/DataDisplay/Title';
+import { Text } from '@components/DataDisplay/Text';
 import { Spacing } from '@components/Layout/Spacing';
 
 export const EmailSend = (): JSX.Element => (
   <div style={{ textAlign: 'center' }}>
     <img src='/emailOpen.png' />
-    <Typography as='h3' white>
+    <Title level='3' colorScheme='white'>
       Revisa tu email
-    </Typography>
+    </Title>
     <Spacing size={12} />
-    <Typography>
+    <Text colorScheme='secondary'>
       Hemos enviado instrucciones de recuperación de contraseña a su correo
       electrónico
-    </Typography>
+    </Text>
   </div>
 );
