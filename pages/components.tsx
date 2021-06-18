@@ -8,6 +8,7 @@ import { ButtonBase } from '@components/Form/ButtonBase';
 import { Button } from '@components/Form/Buttonv2';
 import { IconButton } from '@components/Form/IconButton';
 import { Play } from '@components/Icon/Play';
+import { Input } from '@components/Form/Inputv2';
 
 const Components = () => (
   <LayoutApp>
@@ -28,6 +29,10 @@ const Components = () => (
       <IconButton>
         <Play />
       </IconButton>
+      <Input placeholder='placeholder' type='text' />
+      <Input placeholder='placeholder' type='number' />
+      <Input placeholder='placeholder' type='date' />
+      <Input placeholder='placeholder' type='password' />
     </Container>
   </LayoutApp>
 );

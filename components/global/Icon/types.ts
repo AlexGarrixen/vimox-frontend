@@ -6,4 +6,5 @@ export type SvgProps = {
   xxl?: boolean;
   xxxl?: boolean;
   color?: string;
+  onClick?: (ev: React.MouseEvent) => void;
 };
