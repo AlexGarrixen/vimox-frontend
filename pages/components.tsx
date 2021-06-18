@@ -10,6 +10,7 @@ import { IconButton } from '@components/Form/IconButton';
 import { Play } from '@components/Icon/Play';
 import { Input } from '@components/Form/Input';
 import { Grid } from '@components/Layout/Grid';
+import { PlayOutlined } from '@components/Iconv2/PlayOutlined';
 
 const Components = () => (
   <LayoutApp>
@@ -40,6 +41,7 @@ const Components = () => (
         <span>3</span>
         <span>4</span>
       </Grid>
+      <PlayOutlined colorScheme='white' size='3x' />
     </Container>
   </LayoutApp>
 );
