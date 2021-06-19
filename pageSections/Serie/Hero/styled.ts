@@ -7,6 +7,7 @@ export const Root = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding: 80px 0;
+  margin-top: calc(var(--heightSidebar) * -1);
 
   ::before {
     content: '';

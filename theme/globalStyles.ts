@@ -7,11 +7,15 @@ const joinArrayOfString = (arrayStrings: string[]) =>
 export const GlobalStyle = createGlobalStyle`
   *,
   *::before,
-  *::after { 
+  *::after {
 	  box-sizing: border-box;
     outline: none;
   }
-  
+
+  :root {
+    --heightSidebar: 58px;
+  }
+
   body {
     margin: 0;
     padding: 0;
@@ -21,11 +25,11 @@ export const GlobalStyle = createGlobalStyle`
   h1, h2, h3, h4, h5, h6, p, a {
     margin: 0;
   }
-  
+
   h1 {
     font-size: ${theme.fontSize['4xl'][0]};
     line-height: ${theme.fontSize['4xl'][1]};
-  } 
+  }
 
   h2 {
     font-size: ${theme.fontSize['3xl'][0]};
@@ -41,7 +45,7 @@ export const GlobalStyle = createGlobalStyle`
     font-size: ${theme.fontSize.xl[0]};
     line-height: ${theme.fontSize.xl[1]};
   }
-  
+
   h5 {
     font-size: ${theme.fontSize.lg[0]};
     line-height: ${theme.fontSize.lg[1]};
@@ -69,7 +73,7 @@ export const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
-    
+
   button,
   input,
   optgroup,

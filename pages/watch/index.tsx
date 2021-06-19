@@ -94,7 +94,7 @@ const Watch = ({ episodeId, serieId }: WatchProps) => {
           prevEpisode={episodeQuery.data?.prevEpisode}
           nextEpisodes={nextEpisodesQuery.data}
         >
-          <Spacing size={80} />
+          <Spacing size={40} />
           <Container>
             <LayoutBox>
               <ContentMainBox>

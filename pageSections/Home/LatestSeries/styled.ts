@@ -8,6 +8,7 @@ export const Root = styled.section`
   padding: 80px 0;
   position: relative;
   overflow: hidden;
+  margin-top: calc(var(--heightSidebar) * -1);
 
   ::after {
     content: '';
