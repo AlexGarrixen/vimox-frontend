@@ -4,7 +4,7 @@ import { Image } from '@components/DataDisplay/Image';
 export const QueueSerieBox = styled.div`
   padding: 16px;
   background-color: ${({ theme }) => theme.colors.gray[400]};
-  border-radius: 6px;
+  border-radius: ${({ theme }) => theme.borderRadius.base};
   transition: box-shadow 250ms linear;
 
   :hover {

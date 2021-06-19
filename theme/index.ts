@@ -34,4 +34,7 @@ export const theme = {
   fontFamily: {
     sans: ['Rubik', 'sans-serif'],
   },
+  borderRadius: {
+    base: '8.7px',
+  },
 };

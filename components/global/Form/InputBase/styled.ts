@@ -8,7 +8,7 @@ export const InputBaseBox = styled.div<
   align-items: stretch;
   background-color: ${({ theme }) => theme.colors.gray[400]};
   color: ${({ theme }) => theme.colors.gray[200]};
-  border-radius: 8.7px;
+  border-radius: ${({ theme }) => theme.borderRadius.base};
   transition-property: box-shadow;
   transition-duration: 250ms;
 

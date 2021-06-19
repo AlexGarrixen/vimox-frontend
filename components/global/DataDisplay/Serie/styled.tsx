@@ -6,7 +6,7 @@ export const SerieBox = styled.div`
 
 export const ThumbnailBox = styled.div`
   position: relative;
-  border-radius: 6px;
+  border-radius: ${({ theme }) => theme.borderRadius.base};
   overflow: hidden;
   transition: box-shadow 250ms linear;
   background-color: ${({ theme }) => theme.colors.gray[300]};

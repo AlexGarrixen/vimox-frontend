@@ -12,7 +12,8 @@ export const MenuBox = styled.div`
   top: calc(100% + 8px);
   min-width: 230px;
   background-color: ${({ theme }) => theme.colors.gray[300]};
-  border-radius: 8.7px;
+  border-radius: ${({ theme }) => theme.borderRadius.base};
+  overflow: hidden;
 `;
 
 export const HeaderInfoBox = styled.div`

@@ -7,7 +7,7 @@ export const Root = styled.div`
   background-color: ${({ theme }) => theme.colors.gray[400]};
   font-weight: 600;
   padding: 10px 24px;
-  border-radius: 6px;
+  border-radius: ${({ theme }) => theme.borderRadius.base};
   font-size: ${({ theme }) => theme.fontSize.sm[0]};
   min-width: 150px;
   cursor: pointer;
@@ -19,7 +19,7 @@ export const ListOptionsBox = styled.ul<{ maxHeight?: number }>`
   top: calc(100% + 3px);
   left: 0;
   min-width: 100%;
-  border-radius: 6px;
+  border-radius: ${({ theme }) => theme.borderRadius.base};
   overflow: hidden;
   z-index: 3;
 

@@ -7,7 +7,7 @@ export const ButtonBaseRoot = styled.button<ButtonBaseProps['props']>`
   transition-property: transform;
   transition-duration: 250ms;
   font-weight: 600;
-  border-radius: 8.7px;
+  border-radius: ${({ theme }) => theme.borderRadius.base};
 
   ${({ colorScheme, theme }) =>
     colorScheme === 'primary' &&

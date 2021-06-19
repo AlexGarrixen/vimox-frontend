@@ -37,5 +37,8 @@ declare module 'styled-components' {
     fontFamily: {
       sans: string[];
     };
+    borderRadius: {
+      base: string;
+    };
   }
 }
