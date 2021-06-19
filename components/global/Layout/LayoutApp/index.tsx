@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import { Header } from '../../Navigation/Header';
 import { LayoutAppStyled, ContentBox } from './styled';
-import { Dialog } from '../../Feedback/Dialog';
+import { Modal } from '@components/Overlays/Modal';
 import { TabBottomNav } from '../../Navigation/TabBottomNav';
 import { SeriesFinder } from '../../DataDisplay/SeriesFinder';
 import { useSeriesFinder } from '@hooks/useSeriesFinder';
@@ -48,13 +48,14 @@ export const LayoutApp = ({
       </ContentBox>
       <footer />
       <TabBottomNav />
-      <Dialog
+      <Modal
         isOpen={isVisible}
         onRequestClose={hideSeriesFinder}
-        maxWidth={768}
+        maxW={768}
+        verticalScroll={false}
       >
         <SeriesFinder />
-      </Dialog>
+      </Modal>
     </LayoutAppStyled>
   );
 };

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const SeriesFinderBox = styled.div`
-  background-color: ${({ theme }) => theme.colors.gray[400]};
   display: flex;
   flex-direction: column;
   max-height: 100%;
