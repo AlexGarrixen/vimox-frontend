@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { SearchOutlined } from '@components/Icon/SearchOutlined';
 import { Container } from '@components/Layout/Container';
-import { User } from '@components/Overlays/User';
+import { AvatarDropdown } from '@components/Overlays/AvatarDropdown';
 import { Button } from '@components/Form/Button';
 import { Skeleton } from './Skeleton';
 import { useSession } from '@contexts/Auth/hooks';
@@ -79,7 +79,7 @@ export const Header = () => {
                     Inicia sesion
                   </Button>
                 )}
-                {isAuth && <User username={session.user.username} />}
+                {isAuth && <AvatarDropdown username={session.user.username} />}
                 <IconButton onClick={showSeriesFinder}>
                   <SearchOutlined colorScheme='white' size={24} />
                 </IconButton>
