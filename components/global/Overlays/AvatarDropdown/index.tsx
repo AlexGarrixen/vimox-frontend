@@ -1,15 +1,15 @@
 import React from 'react';
 import { Text } from '@components/DataDisplay/Text';
-import { UserOutlined } from '@components/Icon/UserOutlined';
+import { Avatar } from '@components/Media/Avatar';
 import { useAuthMethods } from '@contexts/Auth/hooks';
 import { useOutsideClick } from '@hooks/useOutsideClick';
-import { UserButton, MenuBox, Option } from './styled';
+import { UserButton, HeaderInfoBox, MenuBox, Option } from './styled';
 
 type UserProps = {
   username: string;
 };
 
-export const User = ({ username }: UserProps): JSX.Element => {
+export const AvatarDropdown = ({ username }: UserProps): JSX.Element => {
   const { logOut } = useAuthMethods();
   const [showMenu, setShowMenu] = React.useState(false);
   const { ref } = useOutsideClick({ onOutsideClick: () => setShowMenu(false) });
@@ -18,19 +18,20 @@ export const User = ({ username }: UserProps): JSX.Element => {
 
   return (
     <UserButton onClick={handleClick} ref={ref}>
-      <UserOutlined colorScheme='white' size={24} />
+      <Avatar size={30}>{username}</Avatar>
       {showMenu && (
         <MenuBox>
-          <Option>
-            <Text size='sm' colorScheme='secondary'>
-              {username}
-            </Text>
-          </Option>
-          <Option onClick={logOut}>
-            <Text size='sm' colorScheme='secondary'>
-              Cerrar sesion
-            </Text>
-          </Option>
+          <HeaderInfoBox>
+            <Avatar>{username}</Avatar>
+            <Text colorScheme='white'>{username}</Text>
+          </HeaderInfoBox>
+          <ul>
+            <Option onClick={logOut}>
+              <Text size='sm' colorScheme='secondary'>
+                Cerrar sesion
+              </Text>
+            </Option>
+          </ul>
         </MenuBox>
       )}
     </UserButton>
