@@ -23,7 +23,8 @@ export const QueueList = (): JSX.Element => {
   );
 
   return (
-    <section style={{ marginTop: 80, marginBottom: 40 }}>
+    <section>
+      <Spacing size={40} />
       <Container>
         {error ? (
           <ErrorMessage onClickRetry={refetch}>{error}</ErrorMessage>
@@ -51,6 +52,7 @@ export const QueueList = (): JSX.Element => {
           </>
         )}
       </Container>
+      <Spacing size={40} />
     </section>
   );
 };

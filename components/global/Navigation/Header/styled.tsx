@@ -5,14 +5,12 @@ type LinkProps = {
 };
 
 export const HeaderBox = styled.header`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   z-index: 5;
-  padding: 12px 0;
+  height: 58px;
 
   & > div {
+    height: inherit;
     display: flex;
     align-items: center;
     justify-content: space-between;

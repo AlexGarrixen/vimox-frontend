@@ -7,7 +7,7 @@ import { RecentSeries } from '@pageSections/Directory/RecentSeries';
 const Directory = () => (
   <LayoutApp title='Directorio - GxAnime'>
     <Container>
-      <Spacing size={80} />
+      <Spacing size={40} />
       <RecentSeries />
     </Container>
   </LayoutApp>
