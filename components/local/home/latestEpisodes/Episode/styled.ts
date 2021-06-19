@@ -17,7 +17,7 @@ export const ThumbnailBox = styled.div`
   width: 130px;
   height: inherit;
   background-color: ${({ theme }) => theme.colors.gray[300]};
-  border-radius: 6px;
+  border-radius: ${({ theme }) => theme.borderRadius.base};
   overflow: hidden;
   flex-shrink: 0;
   position: absolute;

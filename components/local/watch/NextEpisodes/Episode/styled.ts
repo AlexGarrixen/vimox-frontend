@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ThumbnailBox = styled.div`
   background-color: ${({ theme }) => theme.colors.gray[300]};
-  border-radius: 6px;
+  border-radius: ${({ theme }) => theme.borderRadius.base};
   overflow: hidden;
   transition: box-shadow 250ms linear;
   cursor: pointer;

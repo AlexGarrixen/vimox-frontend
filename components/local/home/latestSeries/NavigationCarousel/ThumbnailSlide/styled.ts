@@ -6,7 +6,7 @@ type SlideProps = {
 
 export const Root = styled.div<SlideProps>`
   background-color: ${({ theme }) => theme.colors.gray[300]};
-  border-radius: 6px;
+  border-radius: ${({ theme }) => theme.borderRadius.base};
   overflow: hidden;
 
   img {

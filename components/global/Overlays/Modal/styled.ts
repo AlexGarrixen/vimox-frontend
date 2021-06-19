@@ -18,7 +18,7 @@ export const ModalContent = styled.div<
   width: 100%;
   max-width: ${({ theme }) => theme.screens.md};
   background-color: ${({ theme }) => theme.colors.gray[400]};
-  border-radius: 8.7px;
+  border-radius: ${({ theme }) => theme.borderRadius.base};
   overflow-x: hidden;
   overflow-y: auto;
   max-height: 100%;
