@@ -16,9 +16,8 @@ const setSize = (size: keyof DefaultTheme['fontSize'], theme: DefaultTheme) => {
 };
 
 const setBreakpointsSize = (
-  breakpoints: Record<
-    keyof DefaultTheme['screens'],
-    keyof DefaultTheme['fontSize']
+  breakpoints: Partial<
+    Record<keyof DefaultTheme['screens'], keyof DefaultTheme['fontSize']>
   >,
   theme: DefaultTheme
 ) => {
