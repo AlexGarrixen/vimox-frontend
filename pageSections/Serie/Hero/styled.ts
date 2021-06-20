@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
 export const Root = styled.div`
-  min-height: 100vh;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 80px 0;
+  padding: 24vw 0;
   margin-top: calc(var(--heightSidebar) * -1);
 
   ::before {
@@ -34,6 +33,18 @@ export const Root = styled.div`
   h2,
   p {
     max-width: 600px;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.screens.sm}) {
+    min-height: 400px;
+    padding: 10vw 0;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.screens.md}) {
+    min-height: 480px;
+    padding: 8vw 0;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.screens.lg}) {
+    min-height: 600px;
   }
 `;
 

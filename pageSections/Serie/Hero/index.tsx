@@ -28,7 +28,7 @@ export const Hero = () => {
           <Title
             level='2'
             colorScheme='white'
-            size={{ xs: '3xl', md: '4xl', lg: '5xl' }}
+            size={{ xs: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
             style={{ marginBottom: 18 }}
           >
             {name?.toUpperCase()}
