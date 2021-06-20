@@ -5,6 +5,7 @@ export const LayoutAppStyled = styled.div`
   background-color: ${({ theme }) => theme.colors.gray[500]};
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 `;
 
 type ContentBoxProps = {

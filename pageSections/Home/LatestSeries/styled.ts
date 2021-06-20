@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 export const Root = styled.section`
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 80px 0;
+  padding: 24vw 0;
   position: relative;
   overflow: hidden;
   margin-top: calc(var(--heightSidebar) * -1);
@@ -24,5 +23,24 @@ export const Root = styled.section`
       ${theme.colors.gray[500]} 55.09%
     );
     `};
+  }
+
+  h2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.screens.sm}) {
+    min-height: 400px;
+    padding: 10vw 0;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.screens.md}) {
+    min-height: 480px;
+    padding: 8vw 0;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.screens.lg}) {
+    min-height: 600px;
   }
 `;
