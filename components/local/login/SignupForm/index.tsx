@@ -45,7 +45,7 @@ export const SignupForm = (): JSX.Element => {
   return (
     <form onSubmit={handleSubmit} autoComplete='nope'>
       <Title level='3' colorScheme='white'>
-        Inscríbase para empezar a distrutar
+        Inscríbase para empezar a disfrutar
       </Title>
       <Spacing size={8} />
       <Text colorScheme='secondary'>¡Únete a Vimox! ¡Se tarda un clic!</Text>
