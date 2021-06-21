@@ -5,7 +5,7 @@ import { AuthForms } from '@pageSections/Login/AuthForms';
 import { getSession } from '@contexts/Auth/server';
 
 const Login = (): JSX.Element => (
-  <LayoutApp title='GxAnime - Login' verticallyCenterContent>
+  <LayoutApp title='Vimox - Login' verticallyCenterContent>
     <Container>
       <AuthForms />
     </Container>

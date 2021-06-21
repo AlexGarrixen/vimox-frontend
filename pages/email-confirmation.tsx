@@ -11,7 +11,7 @@ type EmailConfirmationProps = {
 };
 
 const EmailConfirmation = ({ querys }: EmailConfirmationProps): JSX.Element => (
-  <LayoutApp title='GxAnime - email confirmation' verticallyCenterContent>
+  <LayoutApp title='Vimox - email confirmation' verticallyCenterContent>
     <Spacing size={80} />
     <Container style={{ textAlign: 'center' }}>
       <img src='/emailOpen.png' />

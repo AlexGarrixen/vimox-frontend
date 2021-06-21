@@ -45,10 +45,10 @@ export const SignupForm = (): JSX.Element => {
   return (
     <form onSubmit={handleSubmit} autoComplete='nope'>
       <Title level='3' colorScheme='white'>
-        Inscríbase para una Cuenta Gratuita
+        Inscríbase para empezar a distrutar
       </Title>
       <Spacing size={8} />
-      <Text colorScheme='secondary'>¡Únete a GxAnime! ¡Se tarda un clic!</Text>
+      <Text colorScheme='secondary'>¡Únete a Vimox! ¡Se tarda un clic!</Text>
       <Spacing size={28} />
       <Grid cols={1} gap={2}>
         <div>

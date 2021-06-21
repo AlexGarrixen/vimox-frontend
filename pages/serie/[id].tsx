@@ -24,7 +24,7 @@ const Serie = ({ serieId }: SerieProps) => {
   );
 
   return (
-    <LayoutApp title={data?.name || 'GxAnime - Serie'}>
+    <LayoutApp title={data?.name || 'Vimox - Serie'}>
       {error ? (
         <ErrorMessage margin='80px 0 0 0' onClickRetry={refetch}>
           {error}

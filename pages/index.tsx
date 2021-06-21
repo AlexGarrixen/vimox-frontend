@@ -6,7 +6,7 @@ import { LatestEpisodes } from '@pageSections/Home/LatestEpisodes';
 import { LatestMovies } from '@pageSections/Home/LatestMovies';
 
 const Home = () => (
-  <LayoutApp title='Anime Online - GxAnime'>
+  <LayoutApp title='Anime Online - Vimox'>
     <LatestSeries />
     <Spacing size={80} />
     <LatestEpisodes />
