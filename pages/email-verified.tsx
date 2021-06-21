@@ -60,7 +60,7 @@ const EmailVerified = ({ querys }: EmailVerifiedProps): JSX.Element => {
   };
 
   return (
-    <LayoutApp title='GxAnime - email confirmation' verticallyCenterContent>
+    <LayoutApp title='Vimox - email confirmation' verticallyCenterContent>
       <Spacing size={80} />
       <Container style={{ textAlign: 'center' }}>{renderContent()}</Container>
       <Spacing size={30} />

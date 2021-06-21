@@ -81,7 +81,7 @@ const Watch = ({ episodeId, serieId }: WatchProps) => {
       title={
         episodeQuery.data?.episode?.name
           ? `Mirando: ${episodeQuery.data.episode.name}`
-          : 'GxAnime - mirar'
+          : 'Vimox - mirar'
       }
     >
       {episodeQuery.isFetching || nextEpisodesQuery.isFetching ? (

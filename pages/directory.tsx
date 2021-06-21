@@ -5,7 +5,7 @@ import { Spacing } from '@components/Layout/Spacing';
 import { RecentSeries } from '@pageSections/Directory/RecentSeries';
 
 const Directory = () => (
-  <LayoutApp title='Directorio - GxAnime'>
+  <LayoutApp title='Directorio - Vimox'>
     <Container>
       <Spacing size={40} />
       <RecentSeries />
