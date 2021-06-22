@@ -13,6 +13,7 @@ import {
   Nav,
   LinksBox,
   AnchorStyled,
+  AnchorBrand,
   ActionsBox,
   IconButton,
 } from './styled';
@@ -43,9 +44,9 @@ export const Header = () => {
     <HeaderBox>
       <Container>
         <Link href='/'>
-          <a>
-            <img src='/logo.png' height={30} />
-          </a>
+          <AnchorBrand>
+            <img src='/vimox-brand.svg' height={26} />
+          </AnchorBrand>
         </Link>
         {!isLoginRoute &&
           (loading ? (

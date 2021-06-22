@@ -24,6 +24,11 @@ export const Nav = styled.nav`
   }
 `;
 
+export const AnchorBrand = styled.a`
+  display: inline-flex;
+  align-items: center;
+`;
+
 export const LinksBox = styled.ul`
   display: none;
 
