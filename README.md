@@ -1,9 +1,13 @@
+<p align="center">
+  <img src="https://res.cloudinary.com/djiqx3siw/image/upload/v1624480890/Group_17_yk32tr.svg" />
+</p>
+
 # Branches
 - **develop**  ->  any pull request of changes this branch
 - **main** -> don´t modify, this is what is running in production
 
 # Structure
-![Image of Yaktocat](https://res.cloudinary.com/dxarbtyux/image/upload/v1621176475/Vimox_file_structure_azjgha.png) 
+![File strcuture](https://res.cloudinary.com/djiqx3siw/image/upload/v1624481066/Vimox_file_structure_azjgha_jyinlp.png) 
 
 # How to run locally
 ```bash
