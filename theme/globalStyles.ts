@@ -16,6 +16,23 @@ export const GlobalStyle = createGlobalStyle`
     --heightSidebar: 58px;
   }
 
+  * {
+    scrollbar-width: thin;
+    scrollbar-color:  ${theme.colors.gray[500]} ${theme.colors.gray[300]};
+  }
+
+  *::-webkit-scrollbar-track {
+    background: ${theme.colors.gray[500]};
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: ${theme.colors.gray[300]};
+  }
+
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+
   body {
     margin: 0;
     padding: 0;
@@ -88,30 +105,13 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
-  .simplebar-scrollbar::before {
-    background-color: ${theme.colors.gray[100]};
+  #nprogress .bar {
+    height: 5px;
+    background-color: ${theme.colors.primary};
   }
 
-  .OverlayModal {
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 58px 16px;
-    z-index: 10;
-  }
-
-  @media (min-width: ${theme.screens.sm}) {
-    .OverlayModal {
-      padding-top: 10vh;
-      padding-bottom: 10vh;
-    }
-  }
-
-  .ContentModal {
-    width: 100%;
-    height: 100%;
+  #nprogress .spinner-icon {
+    border-top-color: ${theme.colors.primary};
+    border-left-color: ${theme.colors.primary};
   }
 `;
