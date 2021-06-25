@@ -22,6 +22,8 @@ NEXT_PUBLIC_EXTERNAL_SERVER_API_URL=http://api.com
 # Api reference
 [Vimox api documentation](https://vimox-api-doc.vercel.app/)
 
+[Api Repository](https://github.com/AlexGarrixen/vimox-api)
+
 
 # Contributions
 
