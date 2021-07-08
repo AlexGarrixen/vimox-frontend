@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { ButtonBase, ButtonBaseProps } from '@components/Form/ButtonBase';
+import { ButtonBase, ButtonBaseTypeMap } from '@components/Form/ButtonBase';
 import { ComponentWithRef } from '@globalTypes/component';
 
 export const IconButtonRoot = styled<
-  ComponentWithRef<ButtonBaseProps<{ size?: 'sm' | 'md' | 'lg' }>>
+  ComponentWithRef<ButtonBaseTypeMap<{ size?: 'sm' | 'md' | 'lg' }>>
 >(ButtonBase)`
   border-radius: 999px;
   display: inline-flex;

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { InputBaseProps } from './';
+import { InputBaseTypeMap } from './';
 
 export const InputBaseBox = styled.div<
-  Omit<InputBaseProps['props'], 'adornment'>
+  Omit<InputBaseTypeMap['props'], 'adornment'>
 >`
   display: inline-flex;
   align-items: stretch;

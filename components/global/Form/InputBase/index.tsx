@@ -1,22 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { ComponentWithRef } from '@globalTypes/component';
 import { InputBaseBox, Input, Adornment } from './styled';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type InputBaseProps<P = {}> = {
-  props: {
-    as?: React.ElementType | string;
-    size?: 'sm' | 'md';
-    error?: boolean;
-    disabled?: boolean;
-    adornment?: React.ReactNode;
-    fullWidth?: boolean;
-    bottomComponent?: React.ReactNode;
-  } & P;
-  element: 'input';
-};
-
-export const InputBase: ComponentWithRef<InputBaseProps> = React.forwardRef(
+export const InputBase: ComponentWithRef<InputBaseTypeMap> = forwardRef(
   (
     {
       as,
@@ -41,6 +27,20 @@ export const InputBase: ComponentWithRef<InputBaseProps> = React.forwardRef(
     </InputBaseBox>
   )
 );
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type InputBaseTypeMap<P = {}> = {
+  props: {
+    as?: React.ElementType | string;
+    size?: 'sm' | 'md';
+    error?: boolean;
+    disabled?: boolean;
+    adornment?: React.ReactNode;
+    fullWidth?: boolean;
+    bottomComponent?: React.ReactNode;
+  } & P;
+  element: 'input';
+};
 
 InputBase.displayName = 'InputBase';
 InputBase.defaultProps = {

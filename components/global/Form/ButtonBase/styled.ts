@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import _get from 'lodash.get';
-import { ButtonBaseProps } from './';
+import { ButtonBaseTypeMap } from './';
 
-export const ButtonBaseRoot = styled.button<ButtonBaseProps['props']>`
+export const ButtonBaseRoot = styled.button<ButtonBaseTypeMap['props']>`
   border: none;
   transition-property: transform;
   transition-duration: 250ms;

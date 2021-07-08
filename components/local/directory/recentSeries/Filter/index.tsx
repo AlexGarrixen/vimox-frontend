@@ -39,7 +39,7 @@ export const Filter = () => {
         <Dropdown
           text='Tipo'
           getCustomText={(value, label) => `Tipo: ${label}`}
-          onChange={(value) =>
+          onChangeOption={(value) =>
             setFilterQuery('type', value, { removeInMatchValue: '' })
           }
           maxHeightOptions={maxHeightOptions}
@@ -53,7 +53,7 @@ export const Filter = () => {
         <Dropdown
           text='Genero'
           getCustomText={(value, label) => `Genero: ${label}`}
-          onChange={(value) =>
+          onChangeOption={(value) =>
             setFilterQuery('gener', value, { removeInMatchValue: '' })
           }
           maxHeightOptions={maxHeightOptions}

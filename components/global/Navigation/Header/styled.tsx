@@ -1,8 +1,4 @@
-import styled, { css } from 'styled-components';
-
-type LinkProps = {
-  isActive?: boolean;
-};
+import styled from 'styled-components';
 
 export const HeaderBox = styled.header`
   position: relative;
@@ -40,17 +36,6 @@ export const LinksBox = styled.ul`
       margin-right: 20px;
     }
   }
-`;
-
-export const AnchorStyled = styled.a<LinkProps>`
-  color: #fff;
-  cursor: pointer;
-
-  ${({ isActive }) =>
-    isActive &&
-    css`
-      color: ${({ theme }) => theme.colors.primary};
-    `}
 `;
 
 export const ActionsBox = styled.div`

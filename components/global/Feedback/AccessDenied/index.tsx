@@ -2,14 +2,9 @@ import React from 'react';
 import { Title } from '@components/DataDisplay/Title';
 import { Text } from '@components/DataDisplay/Text';
 import { Spacing } from '@components/Layout/Spacing';
-import styled from 'styled-components';
+import { AccessDeniedBox } from './styled';
 
-const AccessDeniedBox = styled.div`
-  margin: 80px 0;
-  text-align: center;
-`;
-
-export const AccessDenied = (): JSX.Element => (
+export const AccessDenied = () => (
   <AccessDeniedBox>
     <img src='/accessDenied.png' />
     <Title level='3' colorScheme='danger'>

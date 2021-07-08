@@ -5,6 +5,7 @@ import { SearchOutlined } from '@components/Icon/SearchOutlined';
 import { Container } from '@components/Layout/Container';
 import { AvatarDropdown } from '@components/Overlays/AvatarDropdown';
 import { Button } from '@components/Form/Button';
+import LinkItem from './LinkItem';
 import { Skeleton } from './Skeleton';
 import { useSession } from '@contexts/Auth/hooks';
 import { useSeriesFinder } from '@hooks/useSeriesFinder';
@@ -12,33 +13,16 @@ import {
   HeaderBox,
   Nav,
   LinksBox,
-  AnchorStyled,
   AnchorBrand,
   ActionsBox,
   IconButton,
 } from './styled';
 
-type LinkItemProps = {
-  title: string;
-  isActive: boolean;
-  href: string;
-};
-
-const LinkItem = ({ href, isActive, title }: LinkItemProps) => (
-  <li>
-    <Link href={href}>
-      <AnchorStyled isActive={isActive}>{title}</AnchorStyled>
-    </Link>
-  </li>
-);
-
 export const Header = () => {
   const router = useRouter();
   const [session, loading] = useSession();
   const { showSeriesFinder } = useSeriesFinder();
-
   const isLoginRoute = router.pathname === '/login';
-  const isAuth = session && session.token;
 
   return (
     <HeaderBox>
@@ -65,7 +49,7 @@ export const Header = () => {
                     href='/directory'
                     isActive={router.pathname === '/directory'}
                   />
-                  {isAuth && (
+                  {session && (
                     <LinkItem
                       title='Mi lista'
                       href='/queue'
@@ -75,12 +59,12 @@ export const Header = () => {
                 </LinksBox>
               </Nav>
               <ActionsBox>
-                {!isAuth && (
+                {!session && (
                   <Button size='sm' onClick={() => router.push('/login')}>
                     Inicia sesion
                   </Button>
                 )}
-                {isAuth && <AvatarDropdown username={session.user.username} />}
+                {session && <AvatarDropdown username={session.user.username} />}
                 <IconButton onClick={showSeriesFinder}>
                   <SearchOutlined colorScheme='white' size={24} />
                 </IconButton>

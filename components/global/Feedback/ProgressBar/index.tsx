@@ -1,13 +1,5 @@
 import styled, { css } from 'styled-components';
 
-type ProgressBarProps = {
-  value?: number;
-  success?: boolean;
-  danger?: boolean;
-  warning?: boolean;
-  className?: string;
-};
-
 export const ProgressBar = styled.div<ProgressBarProps>`
   height: 6px;
   background-color: ${({ theme }) => theme.colors.gray[300]};
@@ -51,3 +43,11 @@ export const ProgressBar = styled.div<ProgressBarProps>`
       }
     `}
 `;
+
+type ProgressBarProps = {
+  value?: number;
+  success?: boolean;
+  danger?: boolean;
+  warning?: boolean;
+  className?: string;
+};

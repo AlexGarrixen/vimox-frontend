@@ -1,24 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
-import { InputBase, InputBaseProps } from '@components/Form/InputBase';
+import React, { forwardRef } from 'react';
+import { InputBase, InputBaseTypeMap } from '@components/Form/InputBase';
 import { EyeOpenOutlined } from '@components/Icon/EyeOpenOutlined';
 import { EyeSlashOutlined } from '@components/Icon/EyeSlashOutlined';
 import { PasswordStrengthBar } from '@components/Feedback/PasswordStrengthBar';
 import { ComponentWithRef } from '@globalTypes/component';
+import { InputPasswordBox } from './styled';
 
-const InputPasswordBox = styled.div<{ fullWidth?: boolean }>`
-  display: inline-block;
-  ${({ fullWidth }) => fullWidth && 'width: 100%;'};
-`;
-
-type InputPasswordProps = {
-  props: {
-    showPasswordStrengthBar?: boolean;
-  } & InputBaseProps['props'];
-  element: 'input';
-};
-
-export const InputPassword: ComponentWithRef<InputPasswordProps> = React.forwardRef(
+export const InputPassword: ComponentWithRef<InputPasswordTypeMap> = forwardRef(
   (
     { type: typeProp, value, showPasswordStrengthBar, fullWidth, ...rest },
     ref
@@ -53,5 +41,12 @@ export const InputPassword: ComponentWithRef<InputPasswordProps> = React.forward
     );
   }
 );
+
+type InputPasswordTypeMap = {
+  props: {
+    showPasswordStrengthBar?: boolean;
+  } & InputBaseTypeMap['props'];
+  element: 'input';
+};
 
 InputPassword.displayName = 'InputPassword';

@@ -1,69 +1,9 @@
-import styled, { DefaultTheme } from 'styled-components';
+import styled from 'styled-components';
 import _get from 'lodash.get';
-import { TypographyProps } from '.';
+import { setSize, setBreakpointsSize, setColorScheme } from './helpers';
+import { TypographyTypeMap } from '.';
 
-const setSize = (size: keyof DefaultTheme['fontSize'], theme: DefaultTheme) => {
-  const fontSizes = theme.fontSize;
-  const fontSize = fontSizes[size];
-
-  if (fontSize)
-    return `
-   font-size: ${fontSize[0]};
-   line-height: ${fontSize[1]};
-  `;
-
-  return '';
-};
-
-const setBreakpointsSize = (
-  breakpoints: Partial<
-    Record<keyof DefaultTheme['screens'], keyof DefaultTheme['fontSize']>
-  >,
-  theme: DefaultTheme
-) => {
-  const { screens } = theme;
-  const fontSizes = theme.fontSize;
-  const rules: string[] = [];
-
-  for (const breakpoint of Object.keys(breakpoints)) {
-    const screen = screens[breakpoint];
-    const fontSize = fontSizes[breakpoints[breakpoint]];
-
-    if (screen && fontSize) {
-      rules.push(`
-       @media screen and (min-width: ${screen}) {
-         font-size: ${fontSize[0]};
-         line-height: ${fontSize[1]};
-       }
-      `);
-    }
-  }
-
-  return rules.join(' ');
-};
-
-const setColorScheme = (
-  colorScheme: TypographyProps['props']['colorScheme'],
-  theme: DefaultTheme
-) => {
-  const { colors } = theme;
-  const colorsMap = {
-    primary: colors.primary,
-    secondary: colors.gray[200],
-    danger: colors.danger,
-    white: colors.white,
-  };
-  const color = colorsMap[colorScheme];
-
-  if (color)
-    return `
-    color: ${color};
-  `;
-
-  return '';
-};
-
-export const TitleRoot = styled.p<TypographyProps['props']>`
+export const TitleRoot = styled.p<TypographyTypeMap['props']>`
   ${({ size, theme }) =>
     size !== undefined
       ? typeof size === 'string'

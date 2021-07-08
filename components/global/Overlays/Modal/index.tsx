@@ -5,14 +5,6 @@ import { CloseFilled } from '@components/Icon/CloseFilled';
 import { useOutsideClick } from '@hooks/useOutsideClick';
 import { ModalContent, CloseButton } from './styled';
 
-export type ModalProps = {
-  children?: React.ReactNode;
-  onRequestClose?: () => void;
-  isOpen?: boolean;
-  maxW?: 'sm' | 'md' | 'lg' | number;
-  verticalScroll?: boolean;
-};
-
 export const Modal = ({
   children,
   onRequestClose,
@@ -34,4 +26,12 @@ export const Modal = ({
       </Overlay>
     </Portal>
   ) : null;
+};
+
+export type ModalProps = {
+  children?: React.ReactNode;
+  onRequestClose?: () => void;
+  isOpen?: boolean;
+  maxW?: 'sm' | 'md' | 'lg' | number;
+  verticalScroll?: boolean;
 };

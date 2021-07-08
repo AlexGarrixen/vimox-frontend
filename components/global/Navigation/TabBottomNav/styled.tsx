@@ -1,10 +1,6 @@
 import styled, { css } from 'styled-components';
 import { animated } from 'react-spring';
 
-type IconBoxProps = {
-  isActive?: boolean;
-};
-
 export const TabBottonNavBox = styled.nav`
   position: fixed;
   bottom: 14px;
@@ -46,7 +42,9 @@ export const Tab = styled.li`
   }
 `;
 
-export const IconBox = styled.div<IconBoxProps>`
+export const IconBox = styled.div<{
+  isActive?: boolean;
+}>`
   width: 34px;
   height: 34px;
   border: 1px solid ${({ theme }) => theme.colors.primary};
