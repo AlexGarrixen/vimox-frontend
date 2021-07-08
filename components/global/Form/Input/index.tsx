@@ -1,5 +1,5 @@
-import React from 'react';
-import { InputBase, InputBaseProps } from '@components/Form/InputBase';
+import React, { forwardRef } from 'react';
+import { InputBase, InputBaseTypeMap } from '@components/Form/InputBase';
 import { InputPassword } from './Password';
 import { ComponentWithRef } from '@globalTypes/component';
 
@@ -9,14 +9,7 @@ const inputTypes = {
   password: InputPassword,
 };
 
-type InputProps = {
-  props: {
-    showPasswordStrengthBar?: boolean;
-  } & InputBaseProps['props'];
-  element: 'input';
-};
-
-export const Input: ComponentWithRef<InputProps> = React.forwardRef(
+export const Input: ComponentWithRef<InputTypeMap> = forwardRef(
   ({ type, ...rest }, ref) => {
     const FallbackInput = inputTypes.text;
     const Component = inputTypes[type as string];
@@ -28,6 +21,13 @@ export const Input: ComponentWithRef<InputProps> = React.forwardRef(
     );
   }
 );
+
+type InputTypeMap = {
+  props: {
+    showPasswordStrengthBar?: boolean;
+  } & InputBaseTypeMap['props'];
+  element: 'input';
+};
 
 Input.displayName = 'Input';
 Input.defaultProps = {

@@ -1,18 +1,13 @@
 import React from 'react';
 import { ProgressBar } from '../ProgressBar';
 import { usePasswordStrength } from './hook';
+import { Component } from '@globalTypes/component';
 
-type PasswordStrengthBarProps = {
-  password?: string;
-  className?: string;
-  style?: React.CSSProperties;
-};
-
-export const PasswordStrengthBar = ({
+export const PasswordStrengthBar: Component<PasswordStrengthTypeMap> = ({
   password,
   className,
   style,
-}: PasswordStrengthBarProps): JSX.Element => {
+}) => {
   const { value, isSuccess, isWarning, isDanger } = usePasswordStrength(
     password
   );
@@ -27,6 +22,13 @@ export const PasswordStrengthBar = ({
       warning={isWarning}
     />
   );
+};
+
+type PasswordStrengthTypeMap = {
+  props: {
+    password?: string;
+  };
+  element: 'div';
 };
 
 export default PasswordStrengthBar;

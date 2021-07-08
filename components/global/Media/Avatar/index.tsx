@@ -1,21 +1,9 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { ComponentWithRef } from '@globalTypes/component';
+import { extractFirstLetter } from './helpers';
 import { AvatarRoot, Media, Letter } from './styled';
 
-export type AvatarProps = {
-  props: {
-    bgColor?: string;
-    children?: React.ReactNode | string;
-    size?: 'sm' | 'md' | 'lg' | number;
-    src?: string;
-    imgProps?: Omit<React.ComponentPropsWithRef<'img'>, 'src'>;
-  };
-  element: 'div';
-};
-
-const extractFirstLetter = (str: string) => str.charAt(0);
-
-export const Avatar: ComponentWithRef<AvatarProps> = React.forwardRef(
+export const Avatar: ComponentWithRef<AvatarTypeMap> = forwardRef(
   ({ children, bgColor, src, size, imgProps = {}, ...rest }, ref) => (
     <AvatarRoot ref={ref} bgColor={bgColor} size={size} {...rest}>
       {src ? (
@@ -30,6 +18,17 @@ export const Avatar: ComponentWithRef<AvatarProps> = React.forwardRef(
     </AvatarRoot>
   )
 );
+
+export type AvatarTypeMap = {
+  props: {
+    bgColor?: string;
+    children?: React.ReactNode | string;
+    size?: 'sm' | 'md' | 'lg' | number;
+    src?: string;
+    imgProps?: Omit<React.ComponentPropsWithRef<'img'>, 'src'>;
+  };
+  element: 'div';
+};
 
 Avatar.displayName = 'Avatar';
 Avatar.defaultProps = {

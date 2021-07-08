@@ -7,25 +7,19 @@ import { BookmarkOutlined } from '@components/Icon/BookmarkOutlined';
 import { AspectRatio } from '@components/Layout/AspectRatio';
 import { Truncate } from '../Truncate';
 import { Serie as ISerie } from '@globalTypes/serieServices';
+import { Component } from '@globalTypes/component';
 import { SerieBox, ThumbnailBox, BookmarkBox } from './styled';
 
-type SerieProps = {
-  name: string;
-  thumbnail: string;
-  countEpisodes: number;
-  geners: ISerie['geners'];
-  isInQueue?: boolean;
-};
-
-export const Serie = ({
+export const Serie: Component<SerieTypeMap> = ({
   name,
   thumbnail,
   geners,
   countEpisodes,
   isInQueue,
-}: SerieProps) => {
+  ...rest
+}) => {
   return (
-    <SerieBox>
+    <SerieBox {...rest}>
       {isInQueue && (
         <BookmarkBox>
           <BookmarkOutlined colorScheme='white' />
@@ -56,4 +50,15 @@ export const Serie = ({
       </div>
     </SerieBox>
   );
+};
+
+type SerieTypeMap = {
+  props: {
+    name: string;
+    thumbnail: string;
+    countEpisodes: number;
+    geners: ISerie['geners'];
+    isInQueue?: boolean;
+  };
+  element: 'div';
 };

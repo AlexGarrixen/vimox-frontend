@@ -1,19 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { ComponentWithRef } from '@globalTypes/component';
 import { ButtonBaseRoot } from './styled';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type ButtonBaseProps<P = {}> = {
-  props: {
-    as?: React.ElementType | string;
-    colorScheme?: 'primary' | 'secondary' | 'danger';
-    color?: string;
-    bgColor?: string;
-  } & P;
-  element: 'button';
-};
-
-export const ButtonBase: ComponentWithRef<ButtonBaseProps> = React.forwardRef(
+export const ButtonBase: ComponentWithRef<ButtonBaseTypeMap> = forwardRef(
   ({ as, colorScheme, color, bgColor, ...rest }, ref) => {
     return (
       <ButtonBaseRoot
@@ -27,5 +16,16 @@ export const ButtonBase: ComponentWithRef<ButtonBaseProps> = React.forwardRef(
     );
   }
 );
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type ButtonBaseTypeMap<P = {}> = {
+  props: {
+    as?: React.ElementType | string;
+    colorScheme?: 'primary' | 'secondary' | 'danger';
+    color?: string;
+    bgColor?: string;
+  } & P;
+  element: 'button';
+};
 
 ButtonBase.displayName = 'ButtonBase';

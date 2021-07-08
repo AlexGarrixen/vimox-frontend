@@ -1,16 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Title } from '@components/DataDisplay/Title';
 import { Text } from '@components/DataDisplay/Text';
 import { Truncate } from '@components/DataDisplay/Truncate';
 import { ResultBox, Thumbnail, ContentBox } from './styled';
 
-type ResultProps = {
-  name: string;
-  thumbnail: string;
-  totalEpisodes: number;
-};
-
-export const Result = ({ name, thumbnail, totalEpisodes }: ResultProps) => (
+export const Result: FC<ResultProps> = ({ name, thumbnail, totalEpisodes }) => (
   <ResultBox>
     <Thumbnail src={thumbnail} />
     <ContentBox>
@@ -23,3 +17,9 @@ export const Result = ({ name, thumbnail, totalEpisodes }: ResultProps) => (
     </ContentBox>
   </ResultBox>
 );
+
+type ResultProps = {
+  name: string;
+  thumbnail: string;
+  totalEpisodes: number;
+};

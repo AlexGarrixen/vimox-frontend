@@ -1,4 +1,4 @@
-import React from 'react';
+import { useMemo } from 'react';
 
 const withUpperCaseAndLowerCase = /^(?=.*[a-z])(?=.*[A-Z])/;
 const minimumLength = /(?=.{8,}$)/;
@@ -15,7 +15,7 @@ const regexs = [
 const totalScore = regexs.length;
 
 export const usePasswordStrength = (password = '') => {
-  const score = React.useMemo(
+  const score = useMemo(
     () =>
       regexs.reduce(
         (count, regex) => (regex.test(password) ? count + 1 : count),
@@ -23,14 +23,10 @@ export const usePasswordStrength = (password = '') => {
       ),
     [password]
   );
-
-  const value = React.useMemo(() => (score / totalScore) * 100, [score]);
-
-  const isSuccess = React.useMemo(() => value === 100, [value]);
-
-  const isWarning = React.useMemo(() => value < 100 && value > 50, [value]);
-
-  const isDanger = React.useMemo(() => value <= 50, [value]);
+  const value = useMemo(() => (score / totalScore) * 100, [score]);
+  const isSuccess = useMemo(() => value === 100, [value]);
+  const isWarning = useMemo(() => value < 100 && value > 50, [value]);
+  const isDanger = useMemo(() => value <= 50, [value]);
 
   return {
     value,

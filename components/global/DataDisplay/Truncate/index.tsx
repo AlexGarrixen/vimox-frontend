@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 const styles: React.CSSProperties = {
   textOverflow: 'ellipsis',
@@ -6,11 +6,7 @@ const styles: React.CSSProperties = {
   whiteSpace: 'nowrap',
 };
 
-export const Truncate = ({
-  children: childrenProp,
-}: {
-  children?: React.ReactNode;
-}) => {
+export const Truncate: FC = ({ children: childrenProp }) => {
   const children = React.Children.map(childrenProp, (child) =>
     React.cloneElement(child as JSX.Element, { style: styles })
   );

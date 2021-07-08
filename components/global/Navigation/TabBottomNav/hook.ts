@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSpring } from 'react-spring';
 
 export const useAnimationScroll = (isMdScreen: boolean) => {
@@ -19,7 +19,7 @@ export const useAnimationScroll = (isMdScreen: boolean) => {
     latestScroll.current = currentScroll;
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isMdScreen) {
       window.addEventListener('scroll', handleScroll);
     } else {
@@ -27,7 +27,7 @@ export const useAnimationScroll = (isMdScreen: boolean) => {
     }
   }, [isMdScreen]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

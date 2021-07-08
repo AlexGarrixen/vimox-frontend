@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Title } from '@components/DataDisplay/Title';
 import { Text } from '@components/DataDisplay/Text';
 import { Button } from '@components/Form/Button';
@@ -6,19 +6,12 @@ import { Container } from '@components/Layout/Container';
 import { Spacing } from '@components/Layout/Spacing';
 import { ErrorMessageBox } from './styled';
 
-export type ErrorMessageProps = {
-  margin?: string;
-  children?: React.ReactNode;
-  center?: boolean;
-  onClickRetry?: (e: any) => void;
-};
-
-export const ErrorMessage = ({
+export const ErrorMessage: FC<ErrorMessageProps> = ({
   margin,
   center = true,
   children,
   onClickRetry,
-}: ErrorMessageProps) => (
+}) => (
   <ErrorMessageBox margin={margin} center={center}>
     <Container>
       <img src='/errorLogo.png' height={120} />
@@ -33,3 +26,9 @@ export const ErrorMessage = ({
     </Container>
   </ErrorMessageBox>
 );
+
+export type ErrorMessageProps = {
+  margin?: string;
+  center?: boolean;
+  onClickRetry?: (e: any) => void;
+};

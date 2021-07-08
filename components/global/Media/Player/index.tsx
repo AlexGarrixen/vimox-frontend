@@ -1,19 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { FC } from 'react';
 import { AspectRatio } from '@components/Layout/AspectRatio';
+import { PlayerBox } from './styled';
 
-const PlayerBox = styled.div`
-  position: relative;
-  border-radius: 6px;
-  overflow: hidden;
-  background-color: ${({ theme }) => theme.colors.gray[300]};
-`;
-
-type PlayerProps = {
-  src: string;
-};
-
-export const Player = ({ src: srcProp }: PlayerProps) => {
+export const Player: FC<PlayerProps> = ({ src: srcProp }) => {
   const [src, setSrc] = React.useState(srcProp);
 
   React.useEffect(() => {
@@ -27,4 +16,8 @@ export const Player = ({ src: srcProp }: PlayerProps) => {
       </AspectRatio>
     </PlayerBox>
   );
+};
+
+type PlayerProps = {
+  src: string;
 };

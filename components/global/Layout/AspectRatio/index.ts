@@ -6,11 +6,6 @@ const calculateRatio = (ratio: string) => {
   return aspectRatio;
 };
 
-type AspectRatioProps = {
-  ratio?: string;
-  className?: string;
-};
-
 export const AspectRatio = styled.div<AspectRatioProps>`
   position: relative;
   overflow: hidden;
@@ -29,3 +24,8 @@ export const AspectRatio = styled.div<AspectRatioProps>`
     height: 100%;
   }
 `;
+
+type AspectRatioProps = {
+  ratio?: string;
+  className?: string;
+};

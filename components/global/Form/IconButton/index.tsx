@@ -1,23 +1,23 @@
-import React from 'react';
-import { ButtonBaseProps } from '@components/Form/ButtonBase';
+import React, { forwardRef } from 'react';
+import { ButtonBaseTypeMap } from '@components/Form/ButtonBase';
 import { ComponentWithRef } from '@globalTypes/component';
 import { IconButtonRoot } from './styled';
 
-type IconButtonProps = {
-  props: {
-    as?: React.ElementType | string;
-    size?: 'sm' | 'md' | 'lg';
-  } & ButtonBaseProps['props'];
-  element: 'button';
-};
-
-export const IconButton: ComponentWithRef<IconButtonProps> = React.forwardRef(
+export const IconButton: ComponentWithRef<IconButtonTypeMap> = forwardRef(
   ({ size, children, ...rest }, ref) => (
     <IconButtonRoot {...rest} size={size} ref={ref}>
       {children}
     </IconButtonRoot>
   )
 );
+
+type IconButtonTypeMap = {
+  props: {
+    as?: React.ElementType | string;
+    size?: 'sm' | 'md' | 'lg';
+  } & ButtonBaseTypeMap['props'];
+  element: 'button';
+};
 
 IconButton.displayName = 'IconButton';
 IconButton.defaultProps = {

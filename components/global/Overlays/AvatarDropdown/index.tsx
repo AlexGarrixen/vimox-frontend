@@ -9,11 +9,10 @@ type UserProps = {
   username: string;
 };
 
-export const AvatarDropdown = ({ username }: UserProps): JSX.Element => {
+export const AvatarDropdown = ({ username }: UserProps) => {
   const { logOut } = useAuthMethods();
   const [showMenu, setShowMenu] = React.useState(false);
   const { ref } = useOutsideClick({ onOutsideClick: () => setShowMenu(false) });
-
   const handleClick = () => setShowMenu(!showMenu);
 
   return (
