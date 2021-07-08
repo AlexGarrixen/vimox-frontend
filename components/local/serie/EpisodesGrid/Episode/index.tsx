@@ -41,7 +41,7 @@ export const Episode = ({ id, name, thumbnail, order }: EpisodeProps) => {
       </Truncate>
       <Spacing size={2} />
       <Truncate>
-        <Text colorScheme='secondary'>Episodeo {order}</Text>
+        <Text colorScheme='secondary'>Episodio {order}</Text>
       </Truncate>
     </div>
   );
