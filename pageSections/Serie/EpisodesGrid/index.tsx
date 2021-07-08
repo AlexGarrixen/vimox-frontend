@@ -13,7 +13,7 @@ type EpisodesGridProps = {
 export const EpisodesGrid = ({ data }: EpisodesGridProps) => (
   <Container>
     <Title level='4' colorScheme='white'>
-      Lista de episodeos
+      Lista de episodios
     </Title>
     <Spacing size={20} />
     <Grid cols={{ xs: 2, sm: 3, md: 4 }} gap={1.5}>
