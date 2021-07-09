@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import slugify from 'slugify';
 import Slider from 'react-slick';
 import { Serie } from '@components/DataDisplay/Serie';
 import { ChevronLeftFilled } from '@components/Icon/ChevronLeftFilled';
@@ -45,7 +46,7 @@ const MoviesCarousel = () => {
       >
         {Array.isArray(data.series) &&
           data.series.map(({ _id, name, thumbnail, geners, episodes }) => (
-            <Link key={_id} href={`/serie/${_id}`}>
+            <Link key={_id} href={`/serie/${slugify(name)}/${_id}`}>
               <a>
                 <Serie
                   name={name}

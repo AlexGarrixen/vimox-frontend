@@ -39,12 +39,13 @@ const LatestSeriesNavCarousel = () => {
         ]}
       >
         {Array.isArray(data.series) &&
-          data.series.map(({ _id, thumbnail }, idx) => (
+          data.series.map(({ _id, thumbnail, name }, idx) => (
             <ThumbnailSlide
               key={_id}
               img={thumbnail}
               isActive={idx === activeSlide}
               serieId={_id}
+              name={name}
             />
           ))}
       </Slider>

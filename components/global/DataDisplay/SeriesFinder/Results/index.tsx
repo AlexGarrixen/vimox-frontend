@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
+import slugify from 'slugify';
 import { ResponseSearchSerie } from '@globalTypes/searchServices';
 import { Grid } from '@components/Layout/Grid';
 import { Text } from '@components/DataDisplay/Text';
@@ -38,7 +39,7 @@ export const Results: FC<ResultsProps> = ({
     <Grid gap={1.5} cols={1}>
       {Array.isArray(data) &&
         data.map(({ _id, name, episodes, thumbnail }) => (
-          <Link key={_id} href={`/serie/${_id}`}>
+          <Link key={_id} href={`/serie/${slugify(name)}/${_id}`}>
             <a onClick={hideSeriesFinder}>
               <Result
                 name={name}

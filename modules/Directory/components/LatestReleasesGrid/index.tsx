@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import slugify from 'slugify';
 import { Grid } from '@components/Layout/Grid';
 import { Serie } from '@components/DataDisplay/Serie';
 import { ErrorMessage } from '@components/Feedback/ErrorMessage';
@@ -16,7 +17,7 @@ const LatestReleasesGrid = () => {
       {Array.isArray(data.series) &&
         data.series.map(
           ({ _id, name, thumbnail, episodes, geners, isInQueue }) => (
-            <Link key={_id} href={`/serie/${_id}`}>
+            <Link key={_id} href={`/serie/${slugify(name)}/${_id}`}>
               <a>
                 <Serie
                   name={name}
