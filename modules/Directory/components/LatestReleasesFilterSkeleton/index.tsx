@@ -1,15 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-type SkeletonRow = {
-  width?: string;
-};
-
-const SkeletonBox = styled.div`
-  margin: 40px 0 80px 0;
-`;
-
-const SkeletonRow = styled.div<SkeletonRow>`
+const SkeletonRow = styled.div<{ width?: string }>`
   height: 30px;
   background-color: ${({ theme }) => theme.colors.gray[300]};
   width: 100%;
@@ -22,8 +14,10 @@ const SkeletonRow = styled.div<SkeletonRow>`
     `};
 `;
 
-export const Skeleton = () => (
-  <SkeletonBox>
-    <SkeletonRow width='40%' />
-  </SkeletonBox>
+const Skeleton = () => (
+  <div>
+    <SkeletonRow width='160px' />
+  </div>
 );
+
+export default Skeleton;

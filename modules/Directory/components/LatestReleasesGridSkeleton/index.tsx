@@ -12,10 +12,12 @@ const SkeletonSlide = styled.div`
   }
 `;
 
-export const Skeleton = () => (
+const Skeleton = () => (
   <Grid cols={{ xs: 2, sm: 3, md: 4, lg: 5 }} gap={2}>
     <SkeletonSlide />
     <SkeletonSlide />
     <SkeletonSlide />
   </Grid>
 );
+
+export default Skeleton;

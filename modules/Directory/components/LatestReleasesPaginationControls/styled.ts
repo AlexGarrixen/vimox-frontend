@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-export const Root = styled.div`
-  margin-top: 40px;
-  margin-bottom: 40px;
+export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
