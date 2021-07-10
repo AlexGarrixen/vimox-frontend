@@ -29,7 +29,7 @@ const links: LinkProps[] = [
     isPrivate: false,
   },
   {
-    href: '/queue',
+    href: '/me/library',
     Icon: BookmarkOutlined,
     isPrivate: true,
   },
