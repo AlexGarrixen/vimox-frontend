@@ -1,13 +1,10 @@
 import React from 'react';
 import { LayoutApp } from '@components/Layout/LayoutApp';
-import { Container } from '@components/Layout/Container';
-import { FormReset } from '@pageSections/ResetPassword/FormReset';
+import ResetPasswordModule from '@modules/ResetPassword';
 
 const ResetPassword = (): JSX.Element => (
-  <LayoutApp verticallyCenterContent>
-    <Container maxWidth='sm'>
-      <FormReset />
-    </Container>
+  <LayoutApp title='Restablecer contraseña'>
+    <ResetPasswordModule />
   </LayoutApp>
 );
 

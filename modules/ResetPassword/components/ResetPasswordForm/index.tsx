@@ -1,6 +1,4 @@
 import React from 'react';
-import { useRouter } from 'next/router';
-import { toast } from 'react-toastify';
 import { Grid } from '@components/Layout/Grid';
 import { Spacing } from '@components/Layout/Spacing';
 import { Button } from '@components/Form/Button';
@@ -8,17 +6,9 @@ import { Input } from '@components/Form/Input';
 import { HelperText } from '@components/Form/HelperText';
 import { Title } from '@components/DataDisplay/Title';
 import { Text } from '@components/DataDisplay/Text';
-import { useForm } from '@hooks/useForm';
-import { resetPasswordSchema } from '@utils/yupSchemas';
-import { resetPassword } from '@services/auth';
+import useResetPasswordForm from '@modules/ResetPassword/hooks/useResetPassword';
 
-type FormProps = {
-  onSuccess?: () => void;
-};
-
-export const Form = ({ onSuccess }: FormProps): JSX.Element => {
-  const router = useRouter();
-
+const ResetPasswordForm = ({ onSuccess }: FormProps) => {
   const {
     values,
     errors,
@@ -27,22 +17,7 @@ export const Form = ({ onSuccess }: FormProps): JSX.Element => {
     handleSubmit,
     isValidForm,
     isSubmitting,
-  } = useForm({
-    initialValues: {
-      password: '',
-      passwordConfirmation: '',
-    },
-    validationSchema: resetPasswordSchema,
-    onSubmit: async (values, helpers) => {
-      try {
-        await resetPassword(values.password, router.query.token as string);
-        helpers.setSubmitting(false);
-        onSuccess && onSuccess();
-      } catch (reason) {
-        toast.error(reason);
-      }
-    },
-  });
+  } = useResetPasswordForm({ onSuccess });
 
   return (
     <div>
@@ -98,3 +73,9 @@ export const Form = ({ onSuccess }: FormProps): JSX.Element => {
     </div>
   );
 };
+
+type FormProps = {
+  onSuccess?: () => void;
+};
+
+export default ResetPasswordForm;

@@ -3,7 +3,7 @@ import { Title } from '@components/DataDisplay/Title';
 import { Text } from '@components/DataDisplay/Text';
 import { Spacing } from '@components/Layout/Spacing';
 
-export const PasswordResetedSuccessfully = (): JSX.Element => (
+const PasswordResetedSuccess = () => (
   <div style={{ textAlign: 'center' }}>
     <img src='/verifiedBadge.png' />
     <Title level='3' colorScheme='white'>
@@ -13,3 +13,5 @@ export const PasswordResetedSuccessfully = (): JSX.Element => (
     <Text colorScheme='secondary'>Ahora puedes iniciar sesión</Text>
   </div>
 );
+
+export default PasswordResetedSuccess;
