@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import slugify from 'slugify';
 import { Spacing } from '@components/Layout/Spacing';
 import { PlayOutlined } from '@components/Icon/PlayOutlined';
 import { Truncate } from '@components/DataDisplay/Truncate';
@@ -9,12 +10,14 @@ import { AspectRatio } from '@components/Layout/AspectRatio';
 import useSerie from '@modules/Serie/hooks/useSerie';
 import { ThumbnailBox, Thumbnail, PlayButton } from './styled';
 
-export const Episode = ({ id, name, thumbnail, order }: EpisodeProps) => {
+const Episode = ({ id, name, thumbnail, order }: EpisodeProps) => {
   const { data: serie } = useSerie();
 
   return (
     <div>
-      <Link href={`/watch?serieId=${serie._id}&episodeId=${id}`}>
+      <Link
+        href={`/watch/${slugify(name)}?serieId=${serie._id}&episodeId=${id}`}
+      >
         <a>
           <ThumbnailBox>
             <AspectRatio ratio='16:9'>
@@ -46,3 +49,5 @@ type EpisodeProps = {
   name: string;
   order: number;
 };
+
+export default Episode;

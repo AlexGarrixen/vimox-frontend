@@ -7,13 +7,7 @@ import { AspectRatio } from '@components/Layout/AspectRatio';
 import { Spacing } from '@components/Layout/Spacing';
 import { ThumbnailBox } from './styled';
 
-type EpisodeProps = {
-  name: string;
-  thumbnail: string;
-  order: number;
-};
-
-export const Episode = ({ name, thumbnail, order }: EpisodeProps) => (
+const Episode = ({ name, thumbnail, order }: EpisodeProps) => (
   <div>
     <ThumbnailBox>
       <AspectRatio ratio='16:9'>
@@ -30,3 +24,11 @@ export const Episode = ({ name, thumbnail, order }: EpisodeProps) => (
     <Text colorScheme='secondary'>Episodio {order}</Text>
   </div>
 );
+
+type EpisodeProps = {
+  name: string;
+  thumbnail: string;
+  order: number;
+};
+
+export default Episode;

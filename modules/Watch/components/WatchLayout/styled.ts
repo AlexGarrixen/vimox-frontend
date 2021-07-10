@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LayoutBox = styled.section`
+export const LayoutWrapper = styled.section`
   display: grid;
   gap: 3rem;
   grid-template-columns: 1fr;
@@ -18,6 +18,6 @@ export const ContentMainBox = styled.div`
   grid-area: contentMain;
 `;
 
-export const SidebarBox = styled.div`
+export const SidebarBox = styled.aside`
   grid-area: sidebar;
 `;

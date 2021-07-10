@@ -1,19 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Context } from '../../Provider';
 import { Title } from '@components/DataDisplay/Title';
 import { Text } from '@components/DataDisplay/Text';
 import { Spacing } from '@components/Layout/Spacing';
+import useEpisode from '@modules/Watch/hooks/useEpisode';
+import { Wrapper } from './styled';
 
-const AboutBox = styled.div`
-  max-width: ${({ theme }) => theme.screens.md};
-`;
-
-export const About = () => {
-  const { episode } = React.useContext(Context);
+const EpisodeAbout = () => {
+  const {
+    data: { episode },
+  } = useEpisode();
 
   return (
-    <AboutBox>
+    <Wrapper>
       <Title
         level='3'
         colorScheme='white'
@@ -27,6 +25,8 @@ export const About = () => {
       </Title>
       <Spacing size={16} />
       <Text colorScheme='secondary'>{episode.sinopsis}</Text>
-    </AboutBox>
+    </Wrapper>
   );
 };
+
+export default EpisodeAbout;

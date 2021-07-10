@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '@components/Layout/Grid';
-import { Episode } from '@localComponents/serie/EpisodesGrid/Episode';
+import Episode from '@modules/Serie/components/EpisodesCardEpisode';
 import { ResponseGetOneSerie } from '@globalTypes/serieServices';
 
 const EpisodesGrid = ({ data }: EpisodesGridProps) => (
