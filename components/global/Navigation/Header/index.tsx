@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { SearchOutlined } from '@components/Icon/SearchOutlined';
@@ -22,7 +22,10 @@ export const Header = () => {
   const router = useRouter();
   const [session, loading] = useSession();
   const { showSeriesFinder } = useSeriesFinder();
-  const isLoginRoute = router.pathname === '/login';
+  const shouldShowContent = useMemo(
+    () => !['/login', '/signup', '/forgot-password'].includes(router.pathname),
+    [router.pathname]
+  );
 
   return (
     <HeaderBox>
@@ -32,7 +35,7 @@ export const Header = () => {
             <img src='/vimox-brand.svg' height={26} />
           </AnchorBrand>
         </Link>
-        {!isLoginRoute &&
+        {shouldShowContent &&
           (loading ? (
             <Skeleton />
           ) : (
@@ -52,8 +55,8 @@ export const Header = () => {
                   {session && (
                     <LinkItem
                       title='Mi lista'
-                      href='/queue'
-                      isActive={router.pathname === '/queue'}
+                      href='/me/library'
+                      isActive={router.pathname === '/me/library'}
                     />
                   )}
                 </LinksBox>

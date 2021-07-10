@@ -1,14 +1,11 @@
 import React from 'react';
 import { LayoutApp } from '@components/Layout/LayoutApp';
-import { Container } from '@components/Layout/Container';
-import { AuthForms } from '@pageSections/Login/AuthForms';
+import LoginModule from '@modules/Login';
 import { getSession } from '@contexts/Auth/server';
 
-const Login = (): JSX.Element => (
-  <LayoutApp title='Vimox - Login' verticallyCenterContent>
-    <Container>
-      <AuthForms />
-    </Container>
+const Login = () => (
+  <LayoutApp title='Vimox - Login'>
+    <LoginModule />
   </LayoutApp>
 );
 
