@@ -1,28 +1,20 @@
-import React from 'react';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
-import { Title } from '@components/DataDisplay/Title';
-import { Text } from '@components/DataDisplay/Text';
-import { IconButton } from '@components/Form/IconButton';
-import { TrashOutlined } from '@components/Icon/TrashOutlined';
-import { UserSerie, ResponseGetUserSeries } from '@globalTypes/userServices';
+import { useSession } from '@contexts/Auth/hooks';
 import { ResponseGetSeries } from '@globalTypes/serieServices';
+import { ResponseGetUserSeries } from '@globalTypes/userServices';
 import { deleteSerieOfList } from '@services/user';
 import { queryClient } from '@utils/queryClient';
-import {
-  QueueSerieBox,
-  ImageBox,
-  ImageStyled,
-  ContentBox,
-  ActionsBox,
-} from './styled';
 
-export const QueueSerie = ({
-  lastEpisodeWatched,
-  serie,
-  userId,
-  _id,
-}: UserSerie): JSX.Element => {
+const useRemoveSerieOfQueue = ({
+  serieId,
+  serieName,
+}: {
+  serieId: string;
+  serieName: string;
+}) => {
+  const [session] = useSession();
+  const userId = session.user._id;
   const mutation = useMutation((serieId: string) =>
     deleteSerieOfList(serieId, userId)
   );
@@ -31,9 +23,9 @@ export const QueueSerie = ({
     ev.preventDefault();
 
     mutation
-      .mutateAsync(serie._id)
+      .mutateAsync(serieId)
       .then(() => {
-        toast.info(`Removiste ${serie.name} de tu lista`);
+        toast.info(`Removiste ${serieName} de tu lista`);
 
         const previousData = queryClient.getQueryData<ResponseGetUserSeries>([
           'user-series',
@@ -46,7 +38,9 @@ export const QueueSerie = ({
         if (previousData) {
           queryClient.setQueryData(
             ['user-series', userId],
-            previousData.filter((serie) => serie._id !== _id)
+            previousData.filter(
+              (queueSerie) => queueSerie.serie._id !== serieId
+            )
           );
         } else {
           queryClient.invalidateQueries(['user-series', userId]);
@@ -55,7 +49,7 @@ export const QueueSerie = ({
         if (previousDirectorySeries) {
           previousDirectorySeries.series = previousDirectorySeries.series.map(
             (item) => {
-              if (item._id === serie._id) {
+              if (item._id === serieId) {
                 item.isInQueue = false;
                 return item;
               } else return item;
@@ -70,28 +64,10 @@ export const QueueSerie = ({
       });
   };
 
-  return (
-    <QueueSerieBox>
-      <ImageBox>
-        <ImageStyled src={lastEpisodeWatched.thumbnail} />
-      </ImageBox>
-      <ContentBox>
-        <Title level='5' colorScheme='white'>
-          {serie.name}
-        </Title>
-        <Text colorScheme='secondary'>
-          Episodio {lastEpisodeWatched.order} - {lastEpisodeWatched.name}
-        </Text>
-      </ContentBox>
-      <ActionsBox>
-        <IconButton
-          colorScheme='danger'
-          onClick={handleDeleteSerie}
-          disabled={mutation.isLoading}
-        >
-          <TrashOutlined />
-        </IconButton>
-      </ActionsBox>
-    </QueueSerieBox>
-  );
+  return {
+    handleDeleteSerie,
+    isLoading: mutation.isLoading,
+  };
 };
+
+export default useRemoveSerieOfQueue;

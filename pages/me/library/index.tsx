@@ -1,17 +1,17 @@
 import React from 'react';
-import { QueueList } from '@pageSections/Queue/QueueList';
 import { LayoutApp } from '@components/Layout/LayoutApp';
 import { AccessDenied } from '@components/Feedback/AccessDenied';
+import UserLibModule from '@modules/UserLib';
 import { useSession } from '@contexts/Auth/hooks';
 
-const MyList = (): JSX.Element => {
+const UserLibrary = (): JSX.Element => {
   const [session, loading] = useSession();
 
   return (
-    <LayoutApp title='Mi lista' verticallyCenterContent={!session}>
-      {loading ? <div /> : !session ? <AccessDenied /> : <QueueList />}
+    <LayoutApp title='Mi biblioteca' verticallyCenterContent={!session}>
+      {loading ? <div /> : !session ? <AccessDenied /> : <UserLibModule />}
     </LayoutApp>
   );
 };
 
-export default MyList;
+export default UserLibrary;

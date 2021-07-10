@@ -52,8 +52,8 @@ export const Header = () => {
                   {session && (
                     <LinkItem
                       title='Mi lista'
-                      href='/queue'
-                      isActive={router.pathname === '/queue'}
+                      href='/me/library'
+                      isActive={router.pathname === '/me/library'}
                     />
                   )}
                 </LinksBox>
