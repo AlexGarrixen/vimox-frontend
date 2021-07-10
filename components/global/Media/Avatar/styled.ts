@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import _get from 'lodash.get';
-import { AvatarProps } from './';
+import { AvatarTypeMap } from './';
 
 const sizes = {
   sm: 24,
@@ -8,7 +8,7 @@ const sizes = {
   lg: 56,
 };
 
-export const AvatarRoot = styled.div<AvatarProps['props']>`
+export const AvatarRoot = styled.div<AvatarTypeMap['props']>`
   width: 30px;
   height: 30px;
   position: relative;

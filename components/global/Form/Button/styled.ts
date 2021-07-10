@@ -1,9 +1,11 @@
 import styled from 'styled-components';
-import { ButtonBase, ButtonBaseProps } from '@components/Form/ButtonBase';
+import { ButtonBase, ButtonBaseTypeMap } from '@components/Form/ButtonBase';
 import { ComponentWithRef } from '@globalTypes/component';
 
 export const ButtonRoot = styled<
-  ComponentWithRef<ButtonBaseProps<{ size?: 'sm' | 'md'; fullWidth?: boolean }>>
+  ComponentWithRef<
+    ButtonBaseTypeMap<{ size?: 'sm' | 'md'; fullWidth?: boolean }>
+  >
 >(ButtonBase)`
   display: inline-flex;
   align-items: center;
