@@ -1,6 +1,4 @@
 import React from 'react';
-import { useRouter } from 'next/router';
-import { toast } from 'react-toastify';
 import { Input } from '@components/Form/Input';
 import { Button } from '@components/Form/Button';
 import { HelperText } from '@components/Form/HelperText';
@@ -8,13 +6,9 @@ import { Grid } from '@components/Layout/Grid';
 import { Spacing } from '@components/Layout/Spacing';
 import { Title } from '@components/DataDisplay/Title';
 import { Text } from '@components/DataDisplay/Text';
-import { useForm } from '@hooks/useForm';
-import { signupSchema } from '@utils/yupSchemas';
-import { signup } from '@services/auth';
+import useFormSignup from '@modules/Signup/hooks/useFormSignup';
 
-export const SignupForm = (): JSX.Element => {
-  const router = useRouter();
-
+const SignupForm = () => {
   const {
     values,
     errors,
@@ -23,24 +17,7 @@ export const SignupForm = (): JSX.Element => {
     handleBlur,
     isSubmitting,
     isValidForm,
-  } = useForm({
-    initialValues: {
-      username: '',
-      email: '',
-      password: '',
-      passwordConfirmation: '',
-    },
-    validationSchema: signupSchema,
-    onSubmit: async ({ passwordConfirmation, ...values }, helpers) => {
-      try {
-        await signup(values);
-        helpers.setSubmitting(false);
-        router.push(`/email-confirmation?email=${values.email}`);
-      } catch (reason) {
-        toast.error(reason);
-      }
-    },
-  });
+  } = useFormSignup();
 
   return (
     <form onSubmit={handleSubmit} autoComplete='nope'>
@@ -113,3 +90,5 @@ export const SignupForm = (): JSX.Element => {
     </form>
   );
 };
+
+export default SignupForm;

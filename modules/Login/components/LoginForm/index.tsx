@@ -1,8 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { toast } from 'react-toastify';
-import { useAuthMethods } from '@contexts/Auth/hooks';
 import { Input } from '@components/Form/Input';
 import { Button } from '@components/Form/Button';
 import { HelperText } from '@components/Form/HelperText';
@@ -10,13 +7,9 @@ import { Grid } from '@components/Layout/Grid';
 import { Spacing } from '@components/Layout/Spacing';
 import { Title } from '@components/DataDisplay/Title';
 import { Text } from '@components/DataDisplay/Text';
-import { useForm } from '@hooks/useForm';
-import { loginSchema } from '@utils/yupSchemas';
+import useLoginForm from '@modules/Login/hooks/useFormLogin';
 
-export const LoginForm = (): JSX.Element => {
-  const router = useRouter();
-  const { logIn } = useAuthMethods();
-
+const LoginForm = () => {
   const {
     errors,
     isValidForm,
@@ -25,22 +18,7 @@ export const LoginForm = (): JSX.Element => {
     handleSubmit,
     handleChange,
     handleBlur,
-  } = useForm({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    validationSchema: loginSchema,
-    onSubmit: async (values, helpers) => {
-      try {
-        await logIn(values.email, values.password);
-        helpers.setSubmitting(false);
-        router.replace('/');
-      } catch (reason) {
-        toast.error(reason);
-      }
-    },
-  });
+  } = useLoginForm();
 
   return (
     <form onSubmit={handleSubmit}>
@@ -48,9 +26,14 @@ export const LoginForm = (): JSX.Element => {
         Iniciar Sesión
       </Title>
       <Spacing size={8} />
-      <Text colorScheme='secondary'>
-        ¿Ya tienes una cuenta? Inicia sesión más abajo.
-      </Text>
+      <Link href='/signup'>
+        <Text colorScheme='secondary' as='a'>
+          ¿No tienes una cuenta?{' '}
+          <Text as='span' colorScheme='primary' style={{ cursor: 'pointer' }}>
+            Registrate aqui.
+          </Text>
+        </Text>
+      </Link>
       <Spacing size={28} />
       <Grid cols={1} gap={2}>
         <div>
@@ -93,3 +76,5 @@ export const LoginForm = (): JSX.Element => {
     </form>
   );
 };
+
+export default LoginForm;
