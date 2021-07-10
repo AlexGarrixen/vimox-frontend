@@ -3,7 +3,7 @@ import { Title } from '@components/DataDisplay/Title';
 import { Text } from '@components/DataDisplay/Text';
 import { Spacing } from '@components/Layout/Spacing';
 
-export const EmailSend = (): JSX.Element => (
+const ForgotPasswordSuccess = (): JSX.Element => (
   <div style={{ textAlign: 'center' }}>
     <img src='/emailOpen.png' />
     <Title level='3' colorScheme='white'>
@@ -16,3 +16,5 @@ export const EmailSend = (): JSX.Element => (
     </Text>
   </div>
 );
+
+export default ForgotPasswordSuccess;

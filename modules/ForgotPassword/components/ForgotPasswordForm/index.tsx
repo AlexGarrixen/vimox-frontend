@@ -1,26 +1,13 @@
 import React from 'react';
-import { toast } from 'react-toastify';
-import * as Yup from 'yup';
 import { Button } from '@components/Form/Button';
 import { Input } from '@components/Form/Input';
 import { Spacing } from '@components/Layout/Spacing';
 import { HelperText } from '@components/Form/HelperText';
 import { Title } from '@components/DataDisplay/Title';
 import { Text } from '@components/DataDisplay/Text';
-import { useForm } from '@hooks/useForm';
-import { forgotPassword } from '@services/auth';
+import useForgotPasswordForm from '@modules/ForgotPassword/hooks/useForgotPasswordForm';
 
-const validationSchema = Yup.object({
-  email: Yup.string()
-    .email('No es un email valido')
-    .required('El email es requerido'),
-});
-
-type FormProps = {
-  onSuccess?: () => void;
-};
-
-export const Form = ({ onSuccess }: FormProps): JSX.Element => {
+const ForgotPasswordForm = ({ onSuccess }: FormProps) => {
   const {
     values,
     errors,
@@ -29,21 +16,7 @@ export const Form = ({ onSuccess }: FormProps): JSX.Element => {
     handleSubmit,
     isValidForm,
     isSubmitting,
-  } = useForm({
-    initialValues: {
-      email: '',
-    },
-    validationSchema,
-    onSubmit: async (values, helpers) => {
-      try {
-        await forgotPassword(values.email);
-        helpers.setSubmitting(false);
-        onSuccess && onSuccess();
-      } catch (reason) {
-        toast.error(reason);
-      }
-    },
-  });
+  } = useForgotPasswordForm({ onSuccess });
 
   return (
     <div style={{ textAlign: 'center' }}>
@@ -76,3 +49,9 @@ export const Form = ({ onSuccess }: FormProps): JSX.Element => {
     </div>
   );
 };
+
+type FormProps = {
+  onSuccess?: () => void;
+};
+
+export default ForgotPasswordForm;

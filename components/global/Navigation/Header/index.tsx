@@ -23,7 +23,7 @@ export const Header = () => {
   const [session, loading] = useSession();
   const { showSeriesFinder } = useSeriesFinder();
   const shouldShowContent = useMemo(
-    () => !['/login', '/signup'].includes(router.pathname),
+    () => !['/login', '/signup', '/forgot-password'].includes(router.pathname),
     [router.pathname]
   );
 
