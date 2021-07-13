@@ -2,6 +2,10 @@
   <img src="https://res.cloudinary.com/djiqx3siw/image/upload/v1624480890/Group_17_yk32tr.svg" />
 </p>
 
+<h3 align="center">
+  This repository is the frontend base of vimox, so you can modify it if you need to implement more features
+</h3>
+
 # Branches
 
 - **develop** -> any pull request of changes this branch
