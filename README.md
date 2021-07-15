@@ -3,7 +3,7 @@
 </p>
 
 <h3 align="center">
-  This repository is the frontend base of vimox, so you can modify it if you need to implement more features
+  This repository is the frontend base of vimox
 </h3>
 
 # Branches
