@@ -3,7 +3,7 @@
 </p>
 
 <h3 align="center">
-  This repository is the frontend base of vimox
+  This repository is the frontend base of <a href='https://vimux.vercel.app' target='_blank'>vimox</>
 </h3>
 
 # Branches
